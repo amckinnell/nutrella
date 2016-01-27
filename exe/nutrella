@@ -1,8 +1,5 @@
 #!/usr/bin/env ruby
 
-puts "Nutrella arguments: #{ARGV}"
+require "nutrella"
 
-require "git"
-
-g = Git.open(".")
-puts "Current branch: #{g.current_branch}"
+Nutrella::Command.new(ARGV).run
