@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["alistair.mckinnell@gmail.com"]
 
   spec.summary       = %q{Creates a Trello board for managing the engineering tasks for a user story.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.homepage      = "https://github.com/amckinnell/nutrella"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(spec|features)/}) }
