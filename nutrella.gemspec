@@ -1,7 +1,7 @@
 # coding: utf-8
-lib = File.expand_path('../lib', __FILE__)
+lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'nutrella/version'
+require "nutrella/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "nutrella"
@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Alistair McKinnell"]
   spec.email         = ["alistair.mckinnell@gmail.com"]
 
-  spec.summary       = %q{Creates a Trello board for managing the engineering tasks for a user story.}
+  spec.summary       = "Creates a Trello board for managing the engineering tasks for a user story."
   spec.homepage      = "https://github.com/amckinnell/nutrella"
   spec.license       = "MIT"
 
