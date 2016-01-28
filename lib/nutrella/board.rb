@@ -9,11 +9,11 @@ module Nutrella
     end
 
     def open_board
-      configure_trello
+      configure
       system "open #{find_board.url}"
     end
 
-    def configure_trello
+    def configure
       trello_keys = YAML.load_file("trello_keys.yml")
 
       Trello.configure do |config|
