@@ -9,7 +9,7 @@ module Nutrella
     end
 
     def open_board
-      system "open #{find_board.url}"
+      system "open #{find_board.url}" if find_board
     end
 
     private
@@ -28,7 +28,7 @@ module Nutrella
     end
 
     def find_board
-      member.boards.find { |board| board.name == @board_name }
+      @board ||= member.boards.find { |board| board.name == @board_name }
     end
 
     def member
