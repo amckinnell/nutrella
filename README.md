@@ -8,18 +8,6 @@ A command line tool for creating a Trello Board to host the engineering tasks fo
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'nutrella'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
     $ gem install nutrella
 
 
