@@ -5,9 +5,9 @@ module Nutrella
     end
 
     def run
-      success = @options.parse
-
-      puts("Board name: #{@options.board_name}") if success
+      puts "Board name: #{@options.board_name}" if @options.parse
+    rescue OptionParser::InvalidOption => e
+      puts e
     end
   end
 end
