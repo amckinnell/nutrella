@@ -5,16 +5,17 @@ module Nutrella
   class Board
     def initialize(options)
       @board_name = options.board_name
-      @member_id = "amckinnell"
+      configure_trello
     end
 
     def open_board
-      configure
       system "open #{find_board.url}"
     end
 
-    def configure
+    def configure_trello
       trello_keys = YAML.load_file("trello_keys.yml")
+
+      @member_id = trello_keys.fetch(:member_id)
 
       Trello.configure do |config|
         config.consumer_key = trello_keys.fetch(:key)
