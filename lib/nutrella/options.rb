@@ -5,7 +5,7 @@ require "ostruct"
 class Options
   def initialize(args)
     @args = args
-    @options = OpenStruct.new
+    @options = OpenStruct.new(show_usage: false)
   end
 
   def parse
@@ -16,15 +16,17 @@ class Options
 
       opts.on("-h", "--help", "Display this screen") do
         puts(opts)
-        return false
+        @options.show_usage = true
       end
     end.parse!(@args)
-
-    true
   end
 
   def board_name
     @options.board_name || git_branch_name
+  end
+
+  def show_usage?
+    @options.show_usage
   end
 
   private

@@ -5,7 +5,8 @@ module Nutrella
     end
 
     def run
-      puts "Board name: #{@options.board_name}" if @options.parse
+      @options.parse
+      Board.new(@options).open_board unless @options.show_usage?
     rescue OptionParser::InvalidOption => e
       puts e
     end
