@@ -25,7 +25,10 @@ Or install it yourself as:
 
 ## Usage
 
-    $ nutrella
+    $ nutrella -h
+    Usage: nutrella [options]
+        -t, --trello-board BOARD         Open the Trello Board with name BOARD
+        -h, --help                       Display this screen
 
 
 ## Development
