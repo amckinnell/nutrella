@@ -1,13 +1,13 @@
 module Nutrella
   class Command
     def initialize(args)
-      @args = args
+      @options = Options.new(args)
     end
 
     def run
-      o = Options.new(@args)
+      success = @options.parse
 
-      o.parse && puts("Board name: #{o.board_name}")
+      puts("Board name: #{@options.board_name}") if success
     end
   end
 end
