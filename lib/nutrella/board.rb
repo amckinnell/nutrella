@@ -12,6 +12,8 @@ module Nutrella
       system "open #{find_board.url}"
     end
 
+    private
+
     def configure_trello
       trello_keys = YAML.load_file("trello_keys.yml")
 
