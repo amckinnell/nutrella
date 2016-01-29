@@ -3,7 +3,9 @@
 [![Gem Version](https://badge.fury.io/rb/nutrella.svg)](https://badge.fury.io/rb/nutrella)
 [![Code Climate](https://codeclimate.com/github/amckinnell/nutrella/badges/gpa.svg)](https://codeclimate.com/github/amckinnell/nutrella)
 
-A command line tool for creating a Trello Board to host the engineering tasks for a user story.
+A command line tool for creating a Trello Board to track the engineering tasks for a user story.
+
+Nutrella is a portmanteau word that combines these three words: Nulogy, Trello, and Nutella.
 
 
 ## Installation
