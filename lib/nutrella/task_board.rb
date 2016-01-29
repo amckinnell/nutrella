@@ -33,7 +33,7 @@ module Nutrella
     private
 
     def configure_trello
-      trello_keys = YAML.load_file("#{Dir.home}/.trello_config.yml")
+      trello_keys = YAML.load_file("#{Dir.home}/.nutrella.yml")
 
       @member_id = trello_keys.fetch(:member_id)
       @organization_id = trello_keys.fetch(:organization_id)

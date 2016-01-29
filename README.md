@@ -26,7 +26,7 @@ Nutrella is a [portmanteau](https://en.wikipedia.org/wiki/Portmanteau) that comb
 
 ## Trello Configuration
 
-Create a `.trello_config.yml` file in your home directory with the following format:
+Create a `.nutrella.yml` file in your home directory with the following format:
 
     :member_id : <member_id>
     :organization_id : <organization_id>
