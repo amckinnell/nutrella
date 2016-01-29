@@ -16,6 +16,10 @@ module Nutrella
       end
     end
 
+    def exists?
+      !find.nil?
+    end
+
     def find
       @board ||= member.boards.find { |board| board.name == @board_name }
     end
