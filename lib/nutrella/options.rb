@@ -1,6 +1,7 @@
 require "git"
 require "optionparser"
 require "ostruct"
+require "active_support/core_ext/string"
 
 class Options
   def initialize(args)
@@ -22,7 +23,7 @@ class Options
   end
 
   def board_name
-    @options.board_name || git_branch_name
+    @options.board_name || trello_board_name_derived_from_git_branch
   end
 
   def show_usage?
@@ -31,7 +32,7 @@ class Options
 
   private
 
-  def git_branch_name
-    Git.open(".").current_branch
+  def trello_board_name_derived_from_git_branch
+    Git.open(".").current_branch.humanize.titleize
   end
 end
