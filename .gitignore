@@ -1,5 +1,6 @@
 /.rake_tasks
 /coverage
-/pkg
 /Gemfile.lock
+/pkg
 /trello_keys.yml
+/vcr_cassettes
