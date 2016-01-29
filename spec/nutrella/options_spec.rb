@@ -2,17 +2,17 @@ require "spec_helper"
 
 module Nutrella
   RSpec.describe Options do
-    describe "reads board name from args" do
+    describe "reads task board name from args" do
       it "-t" do
-        subject = options_parse("-t", "board_name")
+        subject = options_parse("-t", "task_board_name")
 
-        expect(subject.board_name).to eq("board_name")
+        expect(subject.board_name).to eq("task_board_name")
       end
 
       it "--trello-board" do
-        subject = options_parse("--trello-board", "board_name")
+        subject = options_parse("--trello-board", "task_board_name")
 
-        expect(subject.board_name).to eq("board_name")
+        expect(subject.board_name).to eq("task_board_name")
       end
     end
 
@@ -30,7 +30,7 @@ module Nutrella
       end
     end
 
-    it "derives board name from git branch" do
+    it "derives board name from the current git branch" do
       allow(Git).to receive_message_chain(:open, :current_branch).and_return("9476_git_branch")
 
       subject = options_parse
