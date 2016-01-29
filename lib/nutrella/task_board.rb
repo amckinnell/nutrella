@@ -16,7 +16,7 @@ module Nutrella
       end
     end
 
-    def find_board
+    def find
       @board ||= member.boards.find { |board| board.name == @board_name }
     end
 

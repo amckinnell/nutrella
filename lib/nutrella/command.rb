@@ -16,8 +16,8 @@ module Nutrella
     def open_board
       task_board = TaskBoard.new(@options)
 
-      if task_board.find_board
-        open_trello_board task_board.find_board
+      if task_board.find
+        open_trello_board task_board.find
       elsif confirm_create? task_board
         open_trello_board task_board.create_board
       end
