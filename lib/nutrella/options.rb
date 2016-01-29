@@ -11,6 +11,8 @@ class Options
 
   def parse
     OptionParser.new do |opts|
+      opts.on("-g", "--current-git-branch", "Open the Trello Board matching the current git branch")
+
       opts.on("-t", "--trello-board BOARD", "Open the Trello Board with name BOARD") do |t|
         @options.board_name = t
       end

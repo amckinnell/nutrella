@@ -17,9 +17,11 @@ Nutrella is a [portmanteau](https://en.wikipedia.org/wiki/Portmanteau) that comb
 ## Usage
 
     Usage: nutrella [options]
+        -g, --current-git-branch         Open the Trello Board matching the current git branch
         -t, --trello-board BOARD         Open the Trello Board with name BOARD
         -h, --help                       Display this screen
 
+    Note: invoking nutrella with no options is equivalent to nutrella -g
 
 ## Development
 
