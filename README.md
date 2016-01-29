@@ -26,7 +26,7 @@ Nutrella is a [portmanteau](https://en.wikipedia.org/wiki/Portmanteau) that comb
 
 ## Trello Configuration
 
-Create a `.trello_config.YML` file in your home directory with the following format:
+Create a `.trello_config.yml` file in your home directory with the following format:
 
     :member_id : <member_id>
     :organization_id : <organization_id>
@@ -45,4 +45,3 @@ expected to adhere to the [Contributor Covenant](http://contributor-covenant.org
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
