@@ -5,7 +5,7 @@
 
 A command line tool for creating a Trello Board to track the engineering tasks for a user story.
 
-Nutrella is a portmanteau word that combines these three words: Nulogy, Trello, and Nutella.
+Nutrella is a [portmanteau](https://en.wikipedia.org/wiki/Portmanteau) word that combines these three words: Nulogy, Trello, and Nutella.
 
 
 ## Installation
