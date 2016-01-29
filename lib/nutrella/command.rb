@@ -14,17 +14,17 @@ module Nutrella
     private
 
     def open_board
-      board = Board.new(@options)
+      task_board = TaskBoard.new(@options)
 
-      if board.find_board
-        open_trello_board board.find_board
-      elsif confirm_create? board
-        open_trello_board board.create_board
+      if task_board.find_board
+        open_trello_board task_board.find_board
+      elsif confirm_create? task_board
+        open_trello_board task_board.create_board
       end
     end
 
     def confirm_create?(board)
-      print "Create the '#{board.name}' board? [y/N]: "
+      print "Create the '#{board.name}' task board? [y/N]: "
       gets =~ /^y/i
     end
 

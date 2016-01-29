@@ -2,7 +2,7 @@ require "trello"
 require "yaml"
 
 module Nutrella
-  class Board
+  class TaskBoard
     def initialize(options)
       @board_name = options.board_name
       configure_trello
