@@ -24,9 +24,22 @@ Nutrella is a [portmanteau](https://en.wikipedia.org/wiki/Portmanteau) that comb
     Note: invoking nutrella with no options is equivalent to nutrella -g
 
 
+## Trello Configuration
+
+Create a `.trello_config.YML` file in your home directory with the following format:
+
+    :member_id : <member_id>
+    :organization_id : <organization_id>
+    :key : <key>
+    :secret : <secret>
+    :token : <token>
+
+
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/amckinnell/nutrella. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/amckinnell/nutrella.
+This project is intended to be a safe, welcoming space for collaboration, and contributors are
+expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 
 ## License

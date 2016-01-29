@@ -2,5 +2,4 @@
 /coverage
 /Gemfile.lock
 /pkg
-/trello_keys.yml
 /vcr_cassettes
