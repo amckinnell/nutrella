@@ -2,4 +2,6 @@
 
 require "nutrella"
 
-Nutrella::Command.new(ARGV).run
+task_board = Nutrella::Command.new(ARGV).run
+
+system "open #{task_board.url}" if task_board
