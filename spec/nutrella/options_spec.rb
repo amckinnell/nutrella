@@ -1,5 +1,3 @@
-require "spec_helper"
-
 module Nutrella
   RSpec.describe Options do
     describe "task board name from options" do
