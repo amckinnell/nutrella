@@ -19,7 +19,7 @@ module Nutrella
       if task_board.find
         open_trello_board task_board.find
       elsif confirm_create? task_board
-        open_trello_board task_board.create_board
+        open_trello_board task_board.create
       end
     end
 

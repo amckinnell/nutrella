@@ -8,7 +8,7 @@ module Nutrella
       configure_trello
     end
 
-    def create_board
+    def create
       @board ||= Trello::Board.create(name: @board_name).tap do |board|
         %w(Ready Doing Done Issues).each_with_index do |list_name, i|
           Trello::List.create(name: list_name, board_id: board.id, pos: i + 1)
