@@ -8,7 +8,7 @@ module Nutrella
 
       task_board = subject.run
 
-      expect(task_board).to have_attributes(name: "Nutrella")
+      expect(task_board).to have_attributes(name: task_board_name)
     end
 
     it "creates a new board" do
