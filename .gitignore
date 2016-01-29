@@ -1,4 +1,5 @@
 /.rake_tasks
+/coverage
 /pkg
 /Gemfile.lock
 /trello_keys.yml
