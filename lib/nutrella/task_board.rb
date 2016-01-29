@@ -9,7 +9,7 @@ module Nutrella
     end
 
     def create
-      @board ||= Trello::Board.create(name: @board_name).tap do |board|
+      @board ||= Trello::Board.create(name: @board_name, organization_id: @organization_id).tap do |board|
         %w(Ready Doing Done Issues).each_with_index do |list_name, i|
           Trello::List.create(name: list_name, board_id: board.id, pos: i + 1)
         end
@@ -34,6 +34,7 @@ module Nutrella
       trello_keys = YAML.load_file("trello_keys.yml")
 
       @member_id = trello_keys.fetch(:member_id)
+      @organization_id = trello_keys.fetch(:organization_id)
 
       Trello.configure do |config|
         config.consumer_key = trello_keys.fetch(:key)
