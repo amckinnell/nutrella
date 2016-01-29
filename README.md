@@ -15,7 +15,6 @@ Nutrella is a portmanteau word that combines these three words: Nulogy, Trello, 
 
 ## Usage
 
-    $ nutrella -h
     Usage: nutrella [options]
         -t, --trello-board BOARD         Open the Trello Board with name BOARD
         -h, --help                       Display this screen
