@@ -8,8 +8,20 @@ module Nutrella
       configure_trello
     end
 
-    def open_board
-      system "open #{find_board.url}" if find_board
+    def create_board
+      @board ||= Trello::Board.create(name: @board_name).tap do |board|
+        %w(Ready Doing Done Issues).each_with_index do |list_name, i|
+          Trello::List.create(name: list_name, board_id: board.id, pos: i + 1)
+        end
+      end
+    end
+
+    def find_board
+      @board ||= member.boards.find { |board| board.name == @board_name }
+    end
+
+    def name
+      @board_name
     end
 
     private
@@ -25,10 +37,6 @@ module Nutrella
         config.oauth_token = trello_keys.fetch(:token)
         config.oauth_token_secret = trello_keys.fetch(:secret)
       end
-    end
-
-    def find_board
-      @board ||= member.boards.find { |board| board.name == @board_name }
     end
 
     def member
