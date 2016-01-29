@@ -9,9 +9,11 @@ module Nutrella
     end
 
     def create
-      @board ||= Trello::Board.create(name: @board_name, organization_id: @organization_id).tap do |board|
-        %w(Ready Doing Done Issues).each_with_index do |list_name, i|
-          Trello::List.create(name: list_name, board_id: board.id, pos: i + 1)
+      @cached_task_board ||= begin
+        Trello::Board.create(name: @board_name, organization_id: @organization_id).tap do |board|
+          %w(Ready Doing Done Issues).each_with_index do |list_name, i|
+            Trello::List.create(name: list_name, board_id: board.id, pos: i + 1)
+          end
         end
       end
     end
@@ -21,7 +23,7 @@ module Nutrella
     end
 
     def find
-      @board ||= member.boards.find { |board| board.name == @board_name }
+      @cached_task_board ||= member.boards.find { |board| board.name == @board_name }
     end
 
     def name
