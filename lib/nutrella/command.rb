@@ -49,8 +49,7 @@ module Nutrella
     end
 
     def confirm_initialize?
-      print "Create initial .nutrella.yml configuration? [y/N]: "
-      gets =~ /^y/i
+      confirm? "Create initial .nutrella.yml configuration? [y/N]: "
     end
 
     def find_or_create_task_board
@@ -64,7 +63,11 @@ module Nutrella
     end
 
     def confirm_create?(board)
-      print "Create the '#{board.name}' task board? [y/N]: "
+      confirm? "Create the '#{board.name}' task board? [y/N]: "
+    end
+
+    def confirm?(prompt)
+      print prompt
       gets =~ /^y/i
     end
   end
