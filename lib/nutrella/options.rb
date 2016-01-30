@@ -1,7 +1,6 @@
 require "git"
 require "optparse"
 require "ostruct"
-require "active_support/core_ext/string"
 
 class Options
   def initialize(args)

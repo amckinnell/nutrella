@@ -1,3 +1,5 @@
+require "active_support/core_ext/string"
+
 require "nutrella/command"
 require "nutrella/options"
 require "nutrella/task_board"
