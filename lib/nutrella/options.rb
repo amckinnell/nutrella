@@ -22,6 +22,10 @@ class Options
         @options.init = true
       end
 
+      opts.on("-v", "--version", "Display the version") do
+        @options.version = true
+      end
+
       opts.on("-h", "--help", "Display this screen") do
         @options.usage = opts
       end
@@ -43,6 +47,14 @@ class Options
 
   def usage
     @options.usage
+  end
+
+  def show_version?
+    @options.version
+  end
+
+  def version
+    Nutrella::VERSION
   end
 
   private

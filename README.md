@@ -20,6 +20,7 @@ Nutrella is a [portmanteau](https://en.wikipedia.org/wiki/Portmanteau) that comb
         -g, --current-git-branch         Open the board matching the current git branch
         -t, --trello-board BOARD         Open the board with name BOARD
             --init                       Initialize the nutrella.yml configuration
+        -v, --version                    Display the version
         -h, --help                       Display this screen
 
     Note: invoking nutrella with no options is equivalent to nutrella -g

@@ -13,6 +13,7 @@ module Nutrella
 
     private
 
+    # rubocop:disable Metrics/MethodLength
     def dispatch
       case
       when @options.show_usage?
@@ -21,10 +22,14 @@ module Nutrella
       when @options.init?
         initialize_nutrella_configuration if confirm_initialize?
         nil
+      when @options.show_version?
+        puts @options.version
+        nil
       else
         find_or_create_task_board
       end
     end
+    # rubocop:enable Metrics/MethodLength
 
     def initialize_nutrella_configuration
       File.open("#{Dir.home}/.nutrella.yml", "w") { |f| f.write(nutrella_configuration) }

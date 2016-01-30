@@ -62,6 +62,22 @@ module Nutrella
       end
     end
 
+    describe "display version" do
+      it "-v" do
+        subject = options_parse("-v")
+
+        expect(subject.show_version?).to eq(true)
+        expect(subject.version).to eq(Nutrella::VERSION)
+      end
+
+      it "--version" do
+        subject = options_parse("--version")
+
+        expect(subject.show_version?).to eq(true)
+        expect(subject.version).to eq(Nutrella::VERSION)
+      end
+    end
+
     def options_parse(*opts)
       Options.new(opts).tap(&:parse)
     end
