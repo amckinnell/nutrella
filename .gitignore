@@ -2,4 +2,5 @@
 /coverage
 /Gemfile.lock
 /pkg
+/tmp
 /vcr_cassettes
