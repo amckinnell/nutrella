@@ -4,14 +4,46 @@ module Nutrella
       @options = Options.new(args)
     end
 
-    def run
+    def task_board
       @options.parse
-      find_or_create_task_board unless @options.show_usage?
+      dispatch
     rescue OptionParser::InvalidOption => e
       puts e
     end
 
     private
+
+    def dispatch
+      case
+      when @options.show_usage?
+        puts @options.usage
+        nil
+      when @options.init?
+        initialize_nutrella_configuration if confirm_initialize?
+        nil
+      else
+        find_or_create_task_board
+      end
+    end
+
+    def initialize_nutrella_configuration
+      File.open("#{Dir.home}/.nutrella.yml", "w") { |f| f.write(nutrella_configuration) }
+    end
+
+    def nutrella_configuration
+      <<-CONFIG.strip_heredoc
+        :member_id : <your username>
+        :organization_id : <your organization id>
+        :key : <your developer API Key>
+        :secret : <your developer secret>
+        :token : <your developer token>
+      CONFIG
+    end
+
+    def confirm_initialize?
+      print "Create initial .nutrella.yml configuration? [y/N]: "
+      gets =~ /^y/i
+    end
 
     def find_or_create_task_board
       task_board = TaskBoard.new(@options)

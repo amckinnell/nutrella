@@ -6,7 +6,7 @@ module Nutrella
       task_board_name = "Nutrella"
       subject = command("-t", task_board_name)
 
-      task_board = subject.run
+      task_board = subject.task_board
 
       expect(task_board).to have_attributes(name: task_board_name)
     end
@@ -17,7 +17,7 @@ module Nutrella
 
       allow(subject).to receive(:confirm_create?).and_return("yes")
 
-      task_board = subject.run
+      task_board = subject.task_board
 
       expect(task_board).to have_attributes(name: task_board_name)
     end

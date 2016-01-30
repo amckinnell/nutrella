@@ -6,30 +6,43 @@ require "active_support/core_ext/string"
 class Options
   def initialize(args)
     @args = args
-    @options = OpenStruct.new(show_usage: false)
+    @options = OpenStruct.new
   end
 
+  # rubocop:disable Metrics/MethodLength
   def parse
     OptionParser.new do |opts|
-      opts.on("-g", "--current-git-branch", "Open the Trello Board matching the current git branch")
+      opts.on("-g", "--current-git-branch", "Open the board matching the current git branch")
 
-      opts.on("-t", "--trello-board BOARD", "Open the Trello Board with name BOARD") do |t|
+      opts.on("--init", "Initialize the nutrella.yml configuration") do
+        @options.init = true
+      end
+
+      opts.on("-t", "--trello-board BOARD", "Open the board with name BOARD") do |t|
         @options.board_name = t
       end
 
       opts.on("-h", "--help", "Display this screen") do
-        puts(opts)
-        @options.show_usage = true
+        @options.usage = opts
       end
     end.parse!(@args)
   end
+  # rubocop:enable Metrics/MethodLength
 
   def board_name
     @options.board_name || trello_board_name_derived_from_git_branch
   end
 
+  def init?
+    @options.init
+  end
+
   def show_usage?
-    @options.show_usage
+    usage.present?
+  end
+
+  def usage
+    @options.usage
   end
 
   private

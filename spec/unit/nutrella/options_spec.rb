@@ -40,6 +40,14 @@ module Nutrella
       end
     end
 
+    describe "initialization the configuration" do
+      it "--init" do
+        subject = options_parse("--init")
+
+        expect(subject.init?).to eq(true)
+      end
+    end
+
     describe "display usage" do
       it "-h" do
         subject = options_parse("-h")
@@ -55,9 +63,7 @@ module Nutrella
     end
 
     def options_parse(*opts)
-      Options.new(opts).tap do |options|
-        silence_stream(STDOUT) { options.parse }
-      end
+      Options.new(opts).tap(&:parse)
     end
   end
 end
