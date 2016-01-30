@@ -21,7 +21,7 @@ module Nutrella
         puts @options.usage
         nil
       when @options.init?
-        initialize_nutrella_configuration if confirm_initialize?
+        write_default_nutrella_configuration if confirm_initialize?
         nil
       when @options.show_version?
         puts @options.version
@@ -32,20 +32,8 @@ module Nutrella
     end
     # rubocop:enable Metrics/MethodLength
 
-    def initialize_nutrella_configuration
-      File.open("#{Dir.home}/.nutrella.yml", "w") { |f| f.write(nutrella_configuration) }
-    end
-
-    def nutrella_configuration
-      <<-CONFIG.strip_heredoc
-        # Trello Username
-        :username : <your username>
-
-        # Trello Developer API Keys
-        :key : <your developer key>
-        :secret : <your developer secret>
-        :token : <your developer token>
-      CONFIG
+    def write_default_nutrella_configuration
+      Configuration.write_default
     end
 
     def confirm_initialize?
