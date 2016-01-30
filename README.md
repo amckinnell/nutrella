@@ -49,7 +49,7 @@ Get your developer API keys from Trello via the irb console:
     irb> Trello.open_public_key_url                         # copy your public key
     irb> Trello.open_authorization_url key: 'yourpublickey' # copy your member token
 
-Insert the developer API keys into your ~/.nutrella.yml configuration.
+Insert the developer API keys into your `.nutrella.yml` configuration.
 
 
 ## Contributing
