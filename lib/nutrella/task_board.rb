@@ -2,6 +2,9 @@ require "trello"
 require "yaml"
 
 module Nutrella
+  #
+  # Knows the Trello API for finding and creating task boards.
+  #
   class TaskBoard
     def initialize(options)
       @board_name = options.board_name

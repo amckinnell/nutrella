@@ -1,4 +1,7 @@
 module Nutrella
+  #
+  # Knows the location and format of the configuration.
+  #
   module Configuration
     module_function
 

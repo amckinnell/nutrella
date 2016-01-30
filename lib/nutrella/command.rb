@@ -1,4 +1,7 @@
 module Nutrella
+  #
+  # Knows how to dispatch to a command based on the specified options.
+  #
   class Command
     def initialize(args)
       @options = Options.new(args)

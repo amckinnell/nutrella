@@ -1,9 +1,6 @@
 AllCops:
   TargetRubyVersion: 2.1
 
-Documentation:
-  Enabled: false
-
 Style/StringLiterals:
   EnforcedStyle: double_quotes
 
