@@ -20,9 +20,9 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = "~> 2.2"
 
-  spec.add_runtime_dependency "activesupport"
-  spec.add_runtime_dependency "git"
-  spec.add_runtime_dependency "ruby-trello"
+  spec.add_runtime_dependency "activesupport", "~> 4.2"
+  spec.add_runtime_dependency "git", "~> 1.2"
+  spec.add_runtime_dependency "ruby-trello", "~> 1.4"
 
   spec.add_development_dependency "bundler", "~> 1.11"
   spec.add_development_dependency "rake", "~> 10.0"
