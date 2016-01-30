@@ -29,8 +29,7 @@ Nutrella is a [portmanteau](https://en.wikipedia.org/wiki/Portmanteau) that comb
 
 Create a `.nutrella.yml` file in your home directory with the following format:
 
-    :member_id : <member_id>
-    :organization_id : <organization_id>
+    :username : <username>
     :key : <key>
     :secret : <secret>
     :token : <token>

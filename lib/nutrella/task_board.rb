@@ -10,7 +10,7 @@ module Nutrella
 
     def create
       @cached_task_board ||= begin
-        Trello::Board.create(name: @board_name, organization_id: @organization_id).tap do |board|
+        Trello::Board.create(name: @board_name).tap do |board|
           %w(Ready Doing Done Issues).each_with_index do |list_name, i|
             Trello::List.create(name: list_name, board_id: board.id, pos: i + 1)
           end
@@ -35,8 +35,7 @@ module Nutrella
     def configure_trello
       trello_keys = YAML.load_file("#{Dir.home}/.nutrella.yml")
 
-      @member_id = trello_keys.fetch(:member_id)
-      @organization_id = trello_keys.fetch(:organization_id)
+      @username = trello_keys.fetch(:username)
 
       Trello.configure do |config|
         config.consumer_key = trello_keys.fetch(:key)
@@ -47,7 +46,7 @@ module Nutrella
     end
 
     def member
-      Trello::Member.find(@member_id)
+      Trello::Member.find(@username)
     end
   end
 end

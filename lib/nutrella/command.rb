@@ -32,8 +32,7 @@ module Nutrella
 
     def nutrella_configuration
       <<-CONFIG.strip_heredoc
-        :member_id : <your username>
-        :organization_id : <your organization id>
+        :username : <your username>
         :key : <your developer API Key>
         :secret : <your developer secret>
         :token : <your developer token>
