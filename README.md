@@ -25,14 +25,31 @@ Nutrella is a [portmanteau](https://en.wikipedia.org/wiki/Portmanteau) that comb
     Note: invoking nutrella with no options is equivalent to nutrella -g
 
 
-## Trello Configuration
+## Configuration
 
-Create a `.nutrella.yml` file in your home directory with the following format:
+Create a `.nutrella.yml` file in your home directory using:
 
-    :username : <username>
-    :key : <key>
-    :secret : <secret>
-    :token : <token>
+    $ nutrella --init
+
+The configuration file has the following format:
+
+    # Trello Username
+    :username : <your username>
+
+    # Trello Developer API Keys
+    :key : <your developer key>
+    :secret : <your developer secret>
+    :token : <your developer token>
+
+Get your developer API keys from Trello via the irb console:
+
+    $ gem install nutrella
+    $ irb -rubygems
+    irb> require 'trello'
+    irb> Trello.open_public_key_url                         # copy your public key
+    irb> Trello.open_authorization_url key: 'yourpublickey' # copy your member token
+
+Insert the developer API keys into your ~/.nutrella.yml configuration.
 
 
 ## Contributing

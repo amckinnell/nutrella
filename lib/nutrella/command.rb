@@ -32,8 +32,11 @@ module Nutrella
 
     def nutrella_configuration
       <<-CONFIG.strip_heredoc
+        # Trello Username
         :username : <your username>
-        :key : <your developer API Key>
+
+        # Trello Developer API Keys
+        :key : <your developer key>
         :secret : <your developer secret>
         :token : <your developer token>
       CONFIG
