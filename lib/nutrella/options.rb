@@ -1,5 +1,5 @@
 require "git"
-require "optionparser"
+require "optparse"
 require "ostruct"
 require "active_support/core_ext/string"
 
