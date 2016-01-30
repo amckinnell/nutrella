@@ -7,8 +7,9 @@ module Nutrella
     def task_board
       @options.parse
       dispatch
-    rescue OptionParser::InvalidOption => e
-      puts e
+    rescue StandardError => e
+      puts "Error: #{e}"
+      exit(false)
     end
 
     private
