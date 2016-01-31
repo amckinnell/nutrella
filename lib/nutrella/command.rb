@@ -3,12 +3,14 @@ module Nutrella
   # Knows how to dispatch to a command based on the specified options.
   #
   class Command
-    def initialize(args)
-      @options = Options.new(args)
+    attr_reader :options
+
+    def initialize(options)
+      @options = options
     end
 
     def task_board
-      @options.parse
+      options.parse
       dispatch
     rescue StandardError => e
       puts "Error: #{e}"
@@ -20,14 +22,14 @@ module Nutrella
     # rubocop:disable Metrics/MethodLength
     def dispatch
       case
-      when @options.show_usage?
-        puts @options.usage
+      when options.show_usage?
+        puts options.usage
         nil
-      when @options.init?
-        write_default_configuration if confirm_initialize?
+      when options.init?
+        write_default_configuration
         nil
-      when @options.show_version?
-        puts @options.version
+      when options.show_version?
+        puts options.version
         nil
       else
         find_or_create_task_board
@@ -36,7 +38,7 @@ module Nutrella
     # rubocop:enable Metrics/MethodLength
 
     def write_default_configuration
-      Configuration.write_default
+      Configuration.write_default if confirm_initialize?
     end
 
     def confirm_initialize?
@@ -44,7 +46,7 @@ module Nutrella
     end
 
     def find_or_create_task_board
-      task_board = TaskBoard.new(@options, Configuration.path)
+      task_board = TaskBoard.new(options, Configuration.path)
 
       if task_board.exists?
         task_board.find

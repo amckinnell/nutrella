@@ -1,7 +1,7 @@
 module Nutrella
-  vcr_options = { cassette_name: "command", record: :new_episodes }
+  vcr_options = { cassette_name: "nutrella", record: :new_episodes }
 
-  RSpec.describe Command, vcr: vcr_options do
+  RSpec.describe "Nutrella", vcr: vcr_options do
     it "finds an existing board" do
       task_board_name = "Nutrella"
       subject = command("-t", task_board_name)
@@ -23,7 +23,7 @@ module Nutrella
     end
 
     def command(*args)
-      Command.new(args)
+      Command.new(Options.new(args))
     end
   end
 end
