@@ -22,7 +22,9 @@ module Nutrella
     end
 
     def write_default
-      File.open(location, "w") { |f| f.write(DEFAULT_CONFIGURATION) }
+      fail "#{path} exists" if File.exist? path
+
+      File.open(path, "w") { |f| f.write(DEFAULT_CONFIGURATION) }
     end
   end
 end
