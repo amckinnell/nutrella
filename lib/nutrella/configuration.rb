@@ -17,7 +17,7 @@ module Nutrella
         :token : <your developer token>
     DEFAULT_CONFIG
 
-    def location
+    def path
       "#{Dir.home}/#{CONFIGURATION_FILENAME}"
     end
 

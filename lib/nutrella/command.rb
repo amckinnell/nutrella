@@ -44,7 +44,7 @@ module Nutrella
     end
 
     def find_or_create_task_board
-      task_board = TaskBoard.new(@options, Configuration.location)
+      task_board = TaskBoard.new(@options, Configuration.path)
 
       if task_board.exists?
         task_board.find
