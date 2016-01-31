@@ -6,15 +6,21 @@ module Nutrella
   # Knows the Trello API for finding and creating task boards.
   #
   class TaskBoard
+    LIST_NAMES = %w(Ready Doing Done Issues).freeze
+
+    attr_reader :board_name, :configuration_path
+
     def initialize(options)
       @board_name = options.board_name
-      configure_trello
+      @configuration_path = Configuration.location
+
+      apply_configuration(load_configuration)
     end
 
     def create
       @cached_task_board ||= begin
-        Trello::Board.create(name: @board_name).tap do |board|
-          %w(Ready Doing Done Issues).each_with_index do |list_name, i|
+        Trello::Board.create(name: board_name).tap do |board|
+          LIST_NAMES.each_with_index do |list_name, i|
             Trello::List.create(name: list_name, board_id: board.id, pos: i + 1)
           end
         end
@@ -26,26 +32,34 @@ module Nutrella
     end
 
     def find
-      @cached_task_board ||= member.boards.find { |board| board.name == @board_name }
+      @cached_task_board ||= member.boards.find { |board| board.name == board_name }
     end
 
     def name
-      @board_name
+      board_name
     end
 
     private
 
-    def configure_trello
-      trello_keys = YAML.load_file(Configuration.location)
+    def load_configuration
+      unless File.exist? configuration_path
+        fail "#{configuration_path} does not exist. Use the --init option to create"
+      end
 
-      @username = trello_keys.fetch(:username)
+      YAML.load_file(configuration_path)
+    end
+
+    def apply_configuration(configuration)
+      @username = configuration.fetch(:username)
 
       Trello.configure do |config|
-        config.consumer_key = trello_keys.fetch(:key)
-        config.consumer_secret = trello_keys.fetch(:secret)
-        config.oauth_token = trello_keys.fetch(:token)
-        config.oauth_token_secret = trello_keys.fetch(:secret)
+        config.consumer_key = configuration.fetch(:key)
+        config.consumer_secret = configuration.fetch(:secret)
+        config.oauth_token = configuration.fetch(:token)
+        config.oauth_token_secret = configuration.fetch(:secret)
       end
+    rescue
+      raise "#{configuration_path} malformed"
     end
 
     def member
