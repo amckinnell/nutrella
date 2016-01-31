@@ -17,8 +17,8 @@ module Nutrella
       OptionParser.new do |opts|
         opts.on("-g", "--current-git-branch", "Open the board matching the current git branch")
 
-        opts.on("-t", "--trello-board BOARD", "Open the board with name BOARD") do |t|
-          @options.board_name = t
+        opts.on("-t", "--trello-board BOARD", "Open the board with name BOARD") do |name|
+          @options.board_name = name
         end
 
         opts.on("--init", "Initialize the nutrella.yml configuration") do
@@ -34,7 +34,6 @@ module Nutrella
         end
       end.parse!(@args)
     end
-
     # rubocop:enable Metrics/MethodLength
 
     def board_name
