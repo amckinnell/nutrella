@@ -24,7 +24,7 @@ module Nutrella
         puts @options.usage
         nil
       when @options.init?
-        write_default_nutrella_configuration if confirm_initialize?
+        write_default_configuration if confirm_initialize?
         nil
       when @options.show_version?
         puts @options.version
@@ -35,7 +35,7 @@ module Nutrella
     end
     # rubocop:enable Metrics/MethodLength
 
-    def write_default_nutrella_configuration
+    def write_default_configuration
       Configuration.write_default
     end
 
