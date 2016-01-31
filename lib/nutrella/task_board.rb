@@ -10,9 +10,9 @@ module Nutrella
 
     attr_reader :board_name, :configuration_path
 
-    def initialize(options)
+    def initialize(options, configuration_path)
       @board_name = options.board_name
-      @configuration_path = Configuration.location
+      @configuration_path = configuration_path
 
       apply_configuration(load_configuration)
     end
