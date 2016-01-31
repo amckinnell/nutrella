@@ -43,7 +43,7 @@ The configuration file has the following format:
     :secret : <your developer secret>
     :token : <your developer token>
 
-Get your developer API keys from Trello via the irb console:
+Get your developer API keys from Trello via the irb console (you must first be logged into Trello):
 
     $ gem install nutrella
     $ irb -rubygems
