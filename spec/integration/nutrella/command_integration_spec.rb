@@ -22,6 +22,18 @@ module Nutrella
       expect(task_board).to have_attributes(name: task_board_name)
     end
 
+    it "displays the version" do
+      subject = command("-v")
+
+      expect { subject.task_board }.to output(/#{Nutrella::VERSION}/).to_stdout
+    end
+
+    it "displays the usage" do
+      subject = command("-h")
+
+      expect { subject.task_board }.to output(/Usage:/).to_stdout
+    end
+
     def command(*args)
       Command.new(Options.new(args))
     end
