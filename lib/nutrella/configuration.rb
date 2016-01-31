@@ -7,18 +7,7 @@ module Nutrella
 
     CONFIGURATION_FILENAME = ".nutrella.yml".freeze
 
-    def location
-      "#{Dir.home}/#{CONFIGURATION_FILENAME}"
-    end
-
-    def write_default
-      File.open(location, "w") { |f| f.write(default_nutrella_configuration) }
-    end
-
-    private
-
-    def default_nutrella_configuration
-      <<-CONFIG.strip_heredoc
+    DEFAULT_CONFIGURATION = <<-DEFAULT_CONFIG.strip_heredoc.freeze
         # Trello Username
         :username : <your username>
 
@@ -26,7 +15,14 @@ module Nutrella
         :key : <your developer key>
         :secret : <your developer secret>
         :token : <your developer token>
-      CONFIG
+    DEFAULT_CONFIG
+
+    def location
+      "#{Dir.home}/#{CONFIGURATION_FILENAME}"
+    end
+
+    def write_default
+      File.open(location, "w") { |f| f.write(DEFAULT_CONFIGURATION) }
     end
   end
 end
