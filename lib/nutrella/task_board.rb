@@ -60,6 +60,8 @@ module Nutrella
 
     def member
       Trello::Member.find(@username)
+    rescue
+      raise "can't find username '#{@username}'"
     end
   end
 end
