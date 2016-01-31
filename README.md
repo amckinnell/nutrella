@@ -43,15 +43,15 @@ The configuration file has the following format:
     :secret : <your developer secret>
     :token : <your developer token>
 
-Get your developer API keys from Trello via the irb console (you must first be logged into Trello):
+Get your developer API keys via the `irb` console (you must be logged into Trello):
 
     $ gem install nutrella
     $ irb -rubygems
     irb> require 'trello'
-    irb> Trello.open_public_key_url                         # copy your public key
-    irb> Trello.open_authorization_url key: 'yourpublickey' # copy your member token
+    irb> Trello.open_public_key_url                         # copy your key and secret
+    irb> Trello.open_authorization_url key: 'yourpublickey' # copy your token
 
-Insert the developer API keys into your `.nutrella.yml` configuration.
+Insert your username, key, secret, and token into the `.nutrella.yml` file.
 
 
 ## Contributing
