@@ -8,10 +8,10 @@ module Nutrella
   class TaskBoard
     LIST_NAMES = %w(Ready Doing Done Issues).freeze
 
-    attr_reader :board_name, :configuration_path
+    attr_reader :name, :configuration_path
 
     def initialize(options, configuration_path)
-      @board_name = options.board_name
+      @name = options.board_name
       @configuration_path = configuration_path
 
       apply_configuration(load_configuration)
@@ -19,7 +19,7 @@ module Nutrella
 
     def create
       @cached_task_board ||= begin
-        Trello::Board.create(name: board_name).tap do |board|
+        Trello::Board.create(name: name).tap do |board|
           LIST_NAMES.each_with_index do |list_name, i|
             Trello::List.create(name: list_name, board_id: board.id, pos: i + 1)
           end
@@ -32,11 +32,7 @@ module Nutrella
     end
 
     def find
-      @cached_task_board ||= member.boards.find { |board| board.name == board_name }
-    end
-
-    def name
-      board_name
+      @cached_task_board ||= member.boards.find { |board| board.name == name }
     end
 
     private
