@@ -39,7 +39,7 @@ module Nutrella
 
     def load_configuration
       unless File.exist? configuration_path
-        fail "#{configuration_path} does not exist. Use the --init option to create"
+        fail MissingConfiguration, "#{configuration_path} does not exist. Use the --init option to create"
       end
 
       YAML.load_file(configuration_path)
@@ -55,13 +55,17 @@ module Nutrella
         config.oauth_token_secret = configuration.fetch(:secret)
       end
     rescue
-      raise "#{configuration_path} malformed"
+      raise MalformedPath, "#{configuration_path} malformed"
     end
 
     def member
       Trello::Member.find(@username)
     rescue
-      raise "can't find username '#{@username}'"
+      raise MissingUsername, "can't find username '#{@username}'"
     end
   end
+
+  class MalformedPath < StandardError; end
+  class MissingConfiguration < StandardError; end
+  class MissingUsername < StandardError; end
 end

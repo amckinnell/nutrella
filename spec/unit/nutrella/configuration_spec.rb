@@ -10,7 +10,8 @@ module Nutrella
       allow(Dir).to receive(:home).and_return("home_dir")
       allow(File).to receive(:exist?).and_return(true)
 
-      expect { Configuration.write_default }.to raise_error(RuntimeError, %r{home_dir/.nutrella.yml exists})
+      expect { Configuration.write_default }.to raise_error(
+        ExistingConfiguration, %r{home_dir/.nutrella.yml exists})
     end
   end
 end
