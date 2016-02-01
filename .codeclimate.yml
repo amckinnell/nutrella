@@ -9,6 +9,9 @@ engines:
     enabled: true
   rubocop:
     enabled: true
+    checks:
+      Rubocop/Rails/Output:
+        enabled: false
 ratings:
   paths:
   - "**.rb"
