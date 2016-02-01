@@ -12,7 +12,7 @@ module Nutrella
     def task_board
       options.parse
       dispatch
-    rescue StandardError => e
+    rescue => e
       puts "Error: #{e}"
       exit(false)
     end
