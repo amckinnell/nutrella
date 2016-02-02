@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+require "httplog" if ENV["HTTPLOG"] =~ /true/i
+
 require "nutrella"
 
 task_board = Nutrella::Command.new(Nutrella::Options.new(ARGV)).task_board
