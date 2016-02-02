@@ -46,7 +46,7 @@ module Nutrella
     end
 
     def find_or_create_board
-      task_board = TaskBoard.new(options, Configuration.new)
+      task_board = TaskBoard.new(options.board_name, Configuration.new)
 
       existing = task_board.find
       return existing unless existing.nil?

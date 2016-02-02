@@ -7,8 +7,8 @@ module Nutrella
   class TaskBoard
     attr_reader :name, :configuration_path
 
-    def initialize(options, configuration)
-      @name = options.board_name
+    def initialize(board_name, configuration)
+      @name = board_name
 
       configuration.apply
     end
