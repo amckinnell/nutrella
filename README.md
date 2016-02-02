@@ -33,16 +33,6 @@ Create a `.nutrella.yml` file in your home directory using:
 
     $ nutrella --init
 
-The configuration file has the following format:
-
-    # Trello Username
-    :username : <your username>
-
-    # Trello Developer API Keys
-    :key : <your developer key>
-    :secret : <your developer secret>
-    :token : <your developer token>
-
 Get your developer API keys via the `irb` console (you must be logged into Trello):
 
     $ gem install nutrella
