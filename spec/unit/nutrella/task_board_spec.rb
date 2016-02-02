@@ -15,7 +15,7 @@ module Nutrella
         allow(YAML).to receive(:load_file).and_return(username: "<your username>")
 
         expect { TaskBoard.new(options, "location") }.to raise_error(
-          MalformedPath, /location malformed/)
+          MalformedConfiguration, /location malformed/)
       end
     end
   end

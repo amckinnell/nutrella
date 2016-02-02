@@ -55,7 +55,7 @@ module Nutrella
         config.oauth_token_secret = configuration.fetch("secret")
       end
     rescue
-      raise MalformedPath, "#{configuration_path} malformed"
+      raise MalformedConfiguration, "#{configuration_path} malformed"
     end
 
     def member
@@ -65,7 +65,7 @@ module Nutrella
     end
   end
 
-  class MalformedPath < StandardError; end
+  class MalformedConfiguration < StandardError; end
   class MissingConfiguration < StandardError; end
   class MissingUsername < StandardError; end
 end
