@@ -15,7 +15,7 @@ module Nutrella
       task_board_name = "nutrella_new_task_board"
       subject = command("-t", task_board_name)
 
-      allow(subject).to receive(:confirm_create?).and_return("yes")
+      allow(subject).to receive(:confirm_create?).and_return(true)
 
       task_board = subject.task_board
 

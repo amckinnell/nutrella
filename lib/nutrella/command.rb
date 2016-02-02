@@ -38,7 +38,7 @@ module Nutrella
     # rubocop:enable Metrics/MethodLength
 
     def write_default_configuration
-      Configuration.write_default if confirm_initialize?
+      Configuration.new.write_default if confirm_initialize?
     end
 
     def confirm_initialize?
@@ -46,7 +46,7 @@ module Nutrella
     end
 
     def find_or_create_board
-      task_board = TaskBoard.new(options, Configuration.path)
+      task_board = TaskBoard.new(options, Configuration.new)
 
       existing = task_board.find
       return existing unless existing.nil?
