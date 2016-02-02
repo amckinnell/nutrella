@@ -8,9 +8,6 @@ module Nutrella
     CONFIGURATION_FILENAME = ".nutrella.yml".freeze
 
     DEFAULT_CONFIGURATION = <<-DEFAULT_CONFIG.strip_heredoc.freeze
-        # Trello Username
-        username: <your username>
-
         # Trello Developer API Keys
         key: <your developer key>
         secret: <your developer secret>

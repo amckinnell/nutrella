@@ -6,8 +6,6 @@ module Nutrella
   # Knows the Trello API for finding and creating task boards.
   #
   class TaskBoard
-    LIST_NAMES = %w(Ready Doing Done Issues).freeze
-
     attr_reader :name, :configuration_path
 
     def initialize(options, configuration_path)
@@ -18,11 +16,7 @@ module Nutrella
     end
 
     def create
-      Trello::Board.create(name: name).tap do |board|
-        LIST_NAMES.each_with_index do |list_name, i|
-          Trello::List.create(name: list_name, board_id: board.id, pos: i + 1)
-        end
-      end
+      Trello::Board.create(name: name)
     end
 
     def find
@@ -42,8 +36,6 @@ module Nutrella
     end
 
     def apply_configuration(configuration)
-      @username = configuration.fetch("username")
-
       Trello.configure do |config|
         config.consumer_key = configuration.fetch("key")
         config.consumer_secret = configuration.fetch("secret")
@@ -53,15 +45,8 @@ module Nutrella
     rescue
       raise MalformedConfiguration, "#{configuration_path} malformed"
     end
-
-    def member
-      Trello::Member.find(@username)
-    rescue
-      raise MissingUsername, "can't find username '#{@username}'"
-    end
   end
 
   class MalformedConfiguration < StandardError; end
   class MissingConfiguration < StandardError; end
-  class MissingUsername < StandardError; end
 end
