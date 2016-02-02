@@ -9,12 +9,12 @@ module Nutrella
 
     DEFAULT_CONFIGURATION = <<-DEFAULT_CONFIG.strip_heredoc.freeze
         # Trello Username
-        :username : <your username>
+        username: <your username>
 
         # Trello Developer API Keys
-        :key : <your developer key>
-        :secret : <your developer secret>
-        :token : <your developer token>
+        key: <your developer key>
+        secret: <your developer secret>
+        token: <your developer token>
     DEFAULT_CONFIG
 
     def path

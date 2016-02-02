@@ -46,13 +46,13 @@ module Nutrella
     end
 
     def apply_configuration(configuration)
-      @username = configuration.fetch(:username)
+      @username = configuration.fetch("username")
 
       Trello.configure do |config|
-        config.consumer_key = configuration.fetch(:key)
-        config.consumer_secret = configuration.fetch(:secret)
-        config.oauth_token = configuration.fetch(:token)
-        config.oauth_token_secret = configuration.fetch(:secret)
+        config.consumer_key = configuration.fetch("key")
+        config.consumer_secret = configuration.fetch("secret")
+        config.oauth_token = configuration.fetch("token")
+        config.oauth_token_secret = configuration.fetch("secret")
       end
     rescue
       raise MalformedPath, "#{configuration_path} malformed"
