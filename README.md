@@ -30,7 +30,7 @@ Follow these steps:
 
     $ gem install nutrella
 
-**Step 2**: Use Nutrella to create a configuration file
+**Step 2**: Use Nutrella to create a configuration file in your home directory
 
     $ nutrella --init
 
@@ -42,7 +42,7 @@ Follow these steps:
     irb> Trello.open_authorization_url key: 'yourpublickey' # copy your token
     irb> exit
 
-Insert your `key`, `secret`, and `token` into your `.nutrella.yml` file.
+Insert your `key`, `secret`, and `token` into your `~/.nutrella.yml` file.
 
 **Step 4**: Use Nutrella to smooth out your workflow
 
