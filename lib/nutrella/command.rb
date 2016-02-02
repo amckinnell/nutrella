@@ -19,23 +19,18 @@ module Nutrella
 
     private
 
-    # rubocop:disable Metrics/MethodLength
     def dispatch
       case
       when options.init?
         write_default_configuration
-        nil
       when options.show_usage?
         puts options.usage
-        nil
       when options.show_version?
         puts options.version
-        nil
       else
         find_or_create_board
       end
     end
-    # rubocop:enable Metrics/MethodLength
 
     def write_default_configuration
       Configuration.new.write_default
