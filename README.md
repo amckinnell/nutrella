@@ -6,20 +6,35 @@
 
 A command line tool for creating a Trello Board to track the engineering tasks for a user story.
 
+Nutrella makes it easy to connect a git branch to a Trello board. The expected workflow is as follows:
+
+1. Prepare to work on a feature
+2. Create a feature branch
+3. Use Nutrella to open a task board to manage the feature's engineering tasks
+
+
 _Nutrella_ is a [portmanteau](https://en.wikipedia.org/wiki/Portmanteau) that combines these three words:
 [Nulogy](http://nulogy.com/), [Trello](http://trello.com/), and [Nutella](http://www.nutella.com/).
 
 
 ## Installation
 
+Follow these steps:
+
+1. Install the latest version of the Nutrella gem
+2. Use Nutrella to create a configuration file
+3. Grab your developer keys from Trello and add them to the configuration file
+4. Use Nutrella to smooth out your workflow
+
+**Step 1**: Install the latest version of the Nutrella gem
+
     $ gem install nutrella
 
-
-Create a `.nutrella.yml` file in your home directory:
+**Step 2**: Use Nutrella to create a configuration file
 
     $ nutrella --init
 
-Get your developer API keys via the `irb` console (you must be logged into Trello):
+**Step 3**: Grab your developer keys from Trello and add them to the configuration file
 
     $ irb -rubygems
     irb> require 'trello'
@@ -28,6 +43,10 @@ Get your developer API keys via the `irb` console (you must be logged into Trell
     irb> exit
 
 Insert your `key`, `secret`, and `token` into your `.nutrella.yml` file.
+
+**Step 4**: Use Nutrella to smooth out your workflow
+
+    $ nutrella
 
 
 ## Usage
