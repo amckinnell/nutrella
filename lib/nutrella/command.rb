@@ -22,11 +22,11 @@ module Nutrella
     # rubocop:disable Metrics/MethodLength
     def dispatch
       case
-      when options.show_usage?
-        puts options.usage
-        nil
       when options.init?
         write_default_configuration
+        nil
+      when options.show_usage?
+        puts options.usage
         nil
       when options.show_version?
         puts options.version
