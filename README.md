@@ -32,8 +32,7 @@ Insert your `key`, `secret`, and `token` into your `.nutrella.yml` file.
 
 ## Usage
 
-The name of the current git branch is used to create a new task board.
-You create or open your task board with:
+The name of the current git branch is used to create or open a task board:
 
     $ nutrella
 
