@@ -15,7 +15,7 @@ module Nutrella
         key: <your developer key>
         secret: <your developer secret>
         token: <your developer token>
-    DEFAULT_CONFIG
+      DEFAULT_CONFIG
 
     def path
       "#{Dir.home}/#{CONFIGURATION_FILENAME}"
