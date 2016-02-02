@@ -18,21 +18,15 @@ module Nutrella
     end
 
     def create
-      @cached_task_board ||= begin
-        Trello::Board.create(name: name).tap do |board|
-          LIST_NAMES.each_with_index do |list_name, i|
-            Trello::List.create(name: list_name, board_id: board.id, pos: i + 1)
-          end
+      Trello::Board.create(name: name).tap do |board|
+        LIST_NAMES.each_with_index do |list_name, i|
+          Trello::List.create(name: list_name, board_id: board.id, pos: i + 1)
         end
       end
     end
 
-    def exists?
-      !find.nil?
-    end
-
     def find
-      @cached_task_board ||= member.boards.find { |board| board.name == name }
+      member.boards.find { |board| board.name == name }
     end
 
     private

@@ -32,7 +32,7 @@ module Nutrella
         puts options.version
         nil
       else
-        find_or_create_task_board
+        find_or_create_board
       end
     end
     # rubocop:enable Metrics/MethodLength
@@ -45,18 +45,17 @@ module Nutrella
       confirm? "Create initial .nutrella.yml configuration? [y/N]: "
     end
 
-    def find_or_create_task_board
+    def find_or_create_board
       task_board = TaskBoard.new(options, Configuration.path)
 
-      if task_board.exists?
-        task_board.find
-      elsif confirm_create? task_board
-        task_board.create
-      end
+      existing = task_board.find
+      return existing unless existing.nil?
+
+      task_board.create if confirm_create? task_board
     end
 
-    def confirm_create?(board)
-      confirm? "Create the '#{board.name}' task board? [y/N]: "
+    def confirm_create?(task_board)
+      confirm? "Create the '#{task_board.name}' task board? [y/N]: "
     end
 
     def confirm?(prompt)
