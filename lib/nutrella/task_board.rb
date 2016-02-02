@@ -26,7 +26,9 @@ module Nutrella
     end
 
     def find
-      member.boards.find { |board| board.name == name }
+      results = Trello::Action.search(name, modelTypes: "boards", board_fields: "name,url")
+
+      results["boards"].find { |board| board.name == name }
     end
 
     private
