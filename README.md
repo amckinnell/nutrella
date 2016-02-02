@@ -27,9 +27,21 @@ Get your developer API keys via the `irb` console (you must be logged into Trell
     irb> Trello.open_authorization_url key: 'yourpublickey' # copy your token
     irb> exit
 
-Insert your `key`, `secret`, and `token` from the setps above into your `.nutrella.yml` file.
+Insert your `key`, `secret`, and `token` into your `.nutrella.yml` file.
+
+
+## Usage
+
+The name of the current git branch is used to create a new task board.
+You can create or open your task board with:
 
     $ nutrella
+
+To open the Team Assassins task board:
+
+    $ nutrella -t Assassins
+
+Use the `-h` option to see all the command line options.
 
 
 ## Contributing
