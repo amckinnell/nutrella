@@ -15,33 +15,21 @@ _Nutrella_ is a [portmanteau](https://en.wikipedia.org/wiki/Portmanteau) that co
     $ gem install nutrella
 
 
-## Usage
-
-    Usage: nutrella [options]
-        -g, --current-git-branch         Open the board matching the current git branch
-        -t, --trello-board BOARD         Open the board with name BOARD
-            --init                       Initialize the nutrella.yml configuration
-        -v, --version                    Display the version
-        -h, --help                       Display this screen
-
-    Note: invoking nutrella with no options is equivalent to nutrella -g
-
-
-## Configuration
-
-Create a `.nutrella.yml` file in your home directory using:
+Create a `.nutrella.yml` file in your home directory:
 
     $ nutrella --init
 
 Get your developer API keys via the `irb` console (you must be logged into Trello):
 
-    $ gem install nutrella
     $ irb -rubygems
     irb> require 'trello'
     irb> Trello.open_public_key_url                         # copy your key and secret
     irb> Trello.open_authorization_url key: 'yourpublickey' # copy your token
+    irb> exit
 
-Insert your username, key, secret, and token into the `.nutrella.yml` file.
+Insert your `key`, `secret`, and `token` from the setps above into your `.nutrella.yml` file.
+
+    $ nutrella
 
 
 ## Contributing

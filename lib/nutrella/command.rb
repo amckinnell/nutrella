@@ -38,11 +38,7 @@ module Nutrella
     # rubocop:enable Metrics/MethodLength
 
     def write_default_configuration
-      Configuration.new.write_default if confirm_initialize?
-    end
-
-    def confirm_initialize?
-      confirm? "Create initial .nutrella.yml configuration? [y/N]: "
+      Configuration.new.write_default
     end
 
     def find_or_create_board
@@ -55,11 +51,7 @@ module Nutrella
     end
 
     def confirm_create?(task_board)
-      confirm? "Create the '#{task_board.name}' task board? [y/N]: "
-    end
-
-    def confirm?(prompt)
-      print prompt
+      print "Create the '#{task_board.name}' task board? [y/N]: "
       gets =~ /^y/i
     end
   end
