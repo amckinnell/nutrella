@@ -4,14 +4,7 @@
 [![Code Climate](https://codeclimate.com/github/amckinnell/nutrella/badges/gpa.svg)](https://codeclimate.com/github/amckinnell/nutrella)
 [![security](https://hakiri.io/github/amckinnell/nutrella/master.svg)](https://hakiri.io/github/amckinnell/nutrella/master)
 
-A command line tool for creating a Trello Board to track the engineering tasks for a user story.
-
-Nutrella makes it easy to connect a git branch to a Trello board. The expected workflow is as follows:
-
-1. Prepare to work on a feature
-2. Create a feature branch
-3. Use Nutrella to open a task board to manage the feature's engineering tasks
-
+A command line tool for creating a Trello Board based on the current git branch.
 
 _Nutrella_ is a [portmanteau](https://en.wikipedia.org/wiki/Portmanteau) that combines these three words:
 [Nulogy](http://nulogy.com/), [Trello](http://trello.com/), and [Nutella](http://www.nutella.com/).
@@ -42,7 +35,12 @@ Follow these steps:
     irb> Trello.open_authorization_url key: 'yourpublickey' # copy your token
     irb> exit
 
-Insert your `key`, `secret`, and `token` into your `~/.nutrella.yml` file.
+Insert your `key`, `secret`, and `token` into your `~/.nutrella.yml` file
+
+    # Trello Developer API Keys
+    key: c2fc703429da08b6e7dcb0a878e35564
+    secret: 7fd865f372891afa93aabdb6b836254bcda10c8a320def2b3207e2ffb425bc0a
+    token: 4c13558cbafdcb4765103a195e05b0476f3b3f7f3efc83f2a810fb769f4ae2d6
 
 **Step 4**: Use Nutrella to smooth out your workflow
 
