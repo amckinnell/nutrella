@@ -14,7 +14,7 @@ _Nutrella_ is a [portmanteau](https://en.wikipedia.org/wiki/Portmanteau) that co
 
 Follow these steps:
 
-1. Install the latest version of the Nutrella gem
+1. Install the Nutrella gem
 2. Use Nutrella to create a configuration file
 3. Grab your developer keys from Trello and add them to the configuration file
 4. Use Nutrella to smooth out your workflow
