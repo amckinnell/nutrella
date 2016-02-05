@@ -1,5 +1,6 @@
 require "active_support/core_ext/string"
 
+require "nutrella/cache"
 require "nutrella/command"
 require "nutrella/configuration"
 require "nutrella/options"

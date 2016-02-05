@@ -28,12 +28,24 @@ module Nutrella
       when options.show_version?
         puts options.version
       else
-        find_or_create_board
+        task_board_url
       end
     end
 
     def write_default_configuration
       Configuration.new.write_default
+    end
+
+    def task_board_url
+      (cached_url || find_or_create_board).tap do |board|
+        Cache.write(options.board_name, board.url) unless board.nil?
+      end
+    end
+
+    def cached_url
+      url = Cache.lookup(options.board_name)
+
+      url && OpenStruct.new(url: url)
     end
 
     def find_or_create_board

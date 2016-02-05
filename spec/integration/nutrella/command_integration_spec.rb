@@ -8,18 +8,18 @@ module Nutrella
 
       task_board = subject.task_board
 
-      expect(task_board).to have_attributes(name: task_board_name)
+      expect(task_board).to have_attributes(url: "https://trello.com/b/bqxSqUDM/nutrella")
     end
 
     it "creates a new board" do
-      task_board_name = "nutrella_new_task_board"
+      task_board_name = "fresh_task_board"
       subject = command("-t", task_board_name)
 
       allow(subject).to receive(:confirm_create?).and_return(true)
 
       task_board = subject.task_board
 
-      expect(task_board).to have_attributes(name: task_board_name)
+      expect(task_board).to have_attributes(url: "https://trello.com/b/teWn4IIX/fresh-task-board")
     end
 
     it "displays the version" do
