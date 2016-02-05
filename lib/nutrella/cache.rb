@@ -2,12 +2,12 @@ require "yaml"
 
 module Nutrella
   #
-  # Knows how to cache the URL for a task board.
+  # Provides a cache of the most recently accessed items.
   #
   module Cache
     module_function
 
-    CACHE_FILENAME = ".nutrella.cache.yml".freeze
+    CACHE_FILENAME = ".nutrella.cache.yml"
     CACHE_CAPACITY = 5
 
     def lookup(board_name)

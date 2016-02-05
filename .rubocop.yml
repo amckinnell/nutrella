@@ -1,8 +1,27 @@
 AllCops:
   TargetRubyVersion: 2.1
 
+Metrics/LineLength:
+  Max: 120
+
+Metrics/MethodLength:
+  Exclude:
+    - 'lib/nutrella/command.rb'
+
+Style/HashSyntax:
+  Exclude:
+    - 'Rakefile'
+
+Style/MutableConstant:
+  Enabled: false
+
+Style/Semicolon:
+  Exclude:
+    - 'lib/nutrella/command.rb'
+
+Style/SignalException:
+  Enabled: false
+
 Style/StringLiterals:
   EnforcedStyle: double_quotes
 
-Metrics/LineLength:
-  Max: 120

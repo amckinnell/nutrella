@@ -3,7 +3,7 @@ require "optparse"
 
 module Nutrella
   #
-  # Knows how to dispatch to a command based on the specified options.
+  # This is the top-level class for the gem.
   #
   class Command
     attr_reader :options
@@ -12,30 +12,39 @@ module Nutrella
       @args = args
     end
 
+    def run
+      system("open #{task_board.url}") if task_board.respond_to? :url
+    end
+
     def task_board
-      boardname = nil
-
-      OptionParser.new do |opts|
-        opts.on("-g", "--current-git-branch", "Open the board matching the current git branch")
-        opts.on("-t", "--trello-board BOARD", "Open the board with name BOARD") { |n| boardname = n }
-        opts.on("--init", "Initialize the nutrella.yml configuration") { |_n| Configuration.new.write_default; exit }
-        opts.on("-v", "--version", "Display the version") { |_n| puts Nutrella::VERSION; exit }
-        opts.on("-h", "--help", "Display this screen") { |_n| puts opts; exit }
-      end.parse!(@args)
-
-      find_or_create_board(boardname || trello_board_name_derived_from_git_branch)
-    rescue => e
+      process_options
+      find_or_create_board
+    rescue
       abort "Error: invalid option: #{@args}"
     end
 
     private
 
-    def find_or_create_board(board_name)
+    def process_options
+      OptionParser.new do |opts|
+        opts.on("-g", "--current-git-branch", "Open the board matching the current git branch")
+        opts.on("-t", "--trello-board BOARD", "Open the board with name BOARD") { |n| @board_name = n }
+        opts.on("--init", "Initialize the nutrella.yml configuration") { Configuration.new.write_default; exit }
+        opts.on("-v", "--version", "Display the version") { puts Nutrella::VERSION; exit }
+        opts.on("-h", "--help", "Display this screen") { puts opts; exit }
+      end.parse!(@args)
+    end
+
+    def find_or_create_board
       task_board = TaskBoard.new(board_name, Configuration.new)
       board = task_board.find
       return board if board
 
       task_board.create if confirm_create?(task_board)
+    end
+
+    def board_name
+      @board_name || trello_board_name_derived_from_git_branch
     end
 
     def confirm_create?(task_board)
