@@ -18,9 +18,9 @@ module Nutrella
       OptionParser.new do |opts|
         opts.on("-g", "--current-git-branch", "Open the board matching the current git branch")
         opts.on("-t", "--trello-board BOARD", "Open the board with name BOARD") { |n| boardname = n }
-        opts.on("--init", "Initialize the nutrella.yml configuration") { |n| Configuration.new.write_default; exit }
-        opts.on("-v", "--version", "Display the version") { |n| puts Nutrella::VERSION; exit }
-        opts.on("-h", "--help", "Display this screen") { |n| puts opts; exit }
+        opts.on("--init", "Initialize the nutrella.yml configuration") { |_n| Configuration.new.write_default; exit }
+        opts.on("-v", "--version", "Display the version") { |_n| puts Nutrella::VERSION; exit }
+        opts.on("-h", "--help", "Display this screen") { |_n| puts opts; exit }
       end.parse!(@args)
 
       find_or_create_board(boardname || trello_board_name_derived_from_git_branch)
