@@ -2,45 +2,45 @@ module Nutrella
   RSpec.describe Cache do
     describe "lookup" do
       it "cache hit" do
-        cache_contents(%w(board_1 url_1))
+        cache_contents(["b 1", "url 1"])
 
-        expect(Cache.lookup("board_1")).to eq("url_1")
+        expect(Cache.lookup("b 1")).to eq("url 1")
       end
 
       it "cache miss" do
-        cache_contents(%w(board_1 url_1))
+        cache_contents(["b 1", "url 1"])
 
-        expect(Cache.lookup("board_2")).to be_nil
+        expect(Cache.lookup("b 2")).to be_nil
       end
     end
 
     describe "write" do
       it "add to top of empty cache" do
         cache_contents
-        expected_cache(%w(board_1 url_1))
+        expected_cache(["b 1", "url 1"])
 
-        Cache.write("board_1", "url_1")
+        Cache.write("b 1", "url 1")
       end
 
       it "add to top of cache" do
-        cache_contents(%w(board_2 url_2))
-        expected_cache(%w(board_1 url_1), %w(board_2 url_2))
+        cache_contents(["b 2", "url 2"])
+        expected_cache(["b 1", "url 1"], ["b 2", "url 2"])
 
-        Cache.write("board_1", "url_1")
+        Cache.write("b 1", "url 1")
       end
 
       it "shuffle to top of cache" do
-        cache_contents(%w(board_2 url_2), %w(board_1 url_1), %w(board_3 url_3))
-        expected_cache(%w(board_1 url_1), %w(board_2 url_2), %w(board_3 url_3))
+        cache_contents(["b 2", "url 2"], ["b 1", "url 1"], ["b 3", "url 3"])
+        expected_cache(["b 1", "url 1"], ["b 2", "url 2"], ["b 3", "url 3"])
 
-        Cache.write("board_1", "url_1")
+        Cache.write("b 1", "url 1")
       end
 
       it "cache capacity" do
-        cache_contents(%w(board_1 url_1), %w(board_2 url_2), %w(board_3 url_3), %w(board_4 url_4), %w(board_5 url_5))
-        expected_cache(%w(board_6 url_6), %w(board_1 url_1), %w(board_2 url_2), %w(board_3 url_3), %w(board_4 url_4))
+        cache_contents(["b 1", "url 1"], ["b 2", "url 2"], ["b 3", "url 3"], ["b 4", "url 4"], ["b 5", "url 5"])
+        expected_cache(["b 6", "url 6"], ["b 1", "url 1"], ["b 2", "url 2"], ["b 3", "url 3"], ["b 4", "url 4"])
 
-        Cache.write("board_6", "url_6")
+        Cache.write("b 6", "url 6")
       end
     end
 
