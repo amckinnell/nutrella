@@ -4,56 +4,52 @@
 [![Code Climate](https://codeclimate.com/github/amckinnell/nutrella/badges/gpa.svg)](https://codeclimate.com/github/amckinnell/nutrella)
 [![security](https://hakiri.io/github/amckinnell/nutrella/master.svg)](https://hakiri.io/github/amckinnell/nutrella/master)
 
-A command line tool for creating a Trello Board based on the current git branch.
-
-_Nutrella_ is a [portmanteau](https://en.wikipedia.org/wiki/Portmanteau) that combines these three words:
-[Nulogy](http://nulogy.com/), [Trello](http://trello.com/), and [Nutella](http://www.nutella.com/).
+A command line tool for creating a Trello board based on the current git branch.
 
 
 ## Installation
 
-Follow these steps:
-
-1. Install the Nutrella gem
-2. Use Nutrella to create a configuration file
-3. Grab your developer keys from Trello and add them to the configuration file
-4. Use Nutrella to smooth out your workflow
-
-**Step 1**: Install the latest version of the Nutrella gem
+**Step 1**: Install gem
 
     $ gem install nutrella
 
-**Step 2**: Use Nutrella to create a configuration file in your home directory
+**Step 2**: Create configuration file `~/.nutrella.yml`
 
     $ nutrella --init
 
-**Step 3**: Grab your developer keys from Trello and add them to the configuration file
+**Step 3**: Get key and secret
 
     $ irb -rubygems
     irb> require 'trello'
-    irb> Trello.open_public_key_url                         # copy your key and secret
-    irb> Trello.open_authorization_url key: 'yourpublickey' # copy your token
-    irb> exit
+    irb> Trello.open_public_key_url
 
-Insert your `key`, `secret`, and `token` into your `~/.nutrella.yml` file
+Copy your `key` and `secret`.
+
+**Step 4**: Get token
+
+    irb> Trello.open_authorization_url key: '<your_public_key_from_step_3>'
+
+Copy your `token`.
+
+**Step 5**: Update configuration file
+
+Insert your `key`, `secret`, and `token` into your `~/.nutrella.yml` file.
+
+The configuration file should look like the following (don't use the keys below, they won't work) :
 
     # Trello Developer API Keys
     key: c2fc703429da08b6e7dcb0a878e35564
     secret: 7fd865f372891afa93aabdb6b836254bcda10c8a320def2b3207e2ffb425bc0a
     token: 4c13558cbafdcb4765103a195e05b0476f3b3f7f3efc83f2a810fb769f4ae2d6
 
-**Step 4**: Use Nutrella to smooth out your workflow
-
-    $ nutrella
-
 
 ## Usage
 
-The name of the current git branch is used to create or open a task board:
+Create or open a Trello board based on the name of the current git branch:
 
     $ nutrella
 
-To open a named task board (such as the Team Assassins task board):
+Open a named Trello board (such as the 'Team Assassins' Trello board):
 
     $ nutrella -t Assassins
 
