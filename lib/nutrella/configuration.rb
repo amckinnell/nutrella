@@ -19,7 +19,7 @@ module Nutrella
     end
 
     def write_default
-      fail ExistingConfiguration, "#{path} exists" if File.exist? path
+      fail ExistingConfiguration, "#{path} exists" if File.exist?(path)
 
       File.open(path, "w") { |f| f.write(DEFAULT_CONFIGURATION) }
     end
@@ -38,7 +38,7 @@ module Nutrella
     end
 
     def load_configuration
-      unless File.exist? path
+      unless File.exist?(path)
         fail MissingConfiguration, "#{path} does not exist. Use the --init option to create"
       end
 
