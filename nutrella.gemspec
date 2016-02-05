@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Alistair McKinnell"]
   spec.email         = ["alistair.mckinnell@gmail.com"]
 
-  spec.summary       = "Creates a Trello board for managing the engineering tasks for a user story."
+  spec.summary       = "A command line tool for creating a Trello Board based on the current git branch."
   spec.homepage      = "https://github.com/amckinnell/nutrella"
   spec.license       = "MIT"
 
