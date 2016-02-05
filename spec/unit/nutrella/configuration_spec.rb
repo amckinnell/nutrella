@@ -15,8 +15,7 @@ module Nutrella
       it "fails when configuration exists" do
         configuration_exists
 
-        expect { subject.write_default }.to raise_error(
-          ExistingConfiguration, /#{path} exists/)
+        expect { subject.write_default }.to raise_error(/#{path} exists/)
       end
     end
 
@@ -43,8 +42,7 @@ module Nutrella
       it "fails when configuration is missing" do
         configuration_missing
 
-        expect { subject.apply }.to raise_error(
-          MissingConfiguration, /#{path} does not exist/)
+        expect { subject.apply }.to raise_error(/#{path} does not exist/)
       end
 
       it "fails when configuration is malformed" do
@@ -55,8 +53,7 @@ module Nutrella
           "token" => "5f"
         )
 
-        expect { subject.apply }.to raise_error(
-          MalformedConfiguration, /#{path} malformed/)
+        expect { subject.apply }.to raise_error(/#{path} malformed/)
       end
     end
 

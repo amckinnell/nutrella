@@ -19,7 +19,7 @@ module Nutrella
     end
 
     def write_default
-      fail ExistingConfiguration, "#{path} exists" if File.exist?(path)
+      fail "#{path} exists" if File.exist?(path)
 
       File.open(path, "w") { |f| f.write(DEFAULT_CONFIGURATION) }
     end
@@ -34,13 +34,11 @@ module Nutrella
         config.oauth_token_secret = configuration.fetch("secret")
       end
     rescue
-      raise MalformedConfiguration, "#{path} malformed"
+      raise "#{path} malformed"
     end
 
     def load_configuration
-      unless File.exist?(path)
-        fail MissingConfiguration, "#{path} does not exist. Use the --init option to create"
-      end
+      fail "#{path} does not exist. Use the --init option to create" unless File.exist?(path)
 
       YAML.load_file(path)
     end
@@ -49,8 +47,4 @@ module Nutrella
       "#{Dir.home}/#{CONFIGURATION_FILENAME}"
     end
   end
-
-  class ExistingConfiguration < StandardError; end
-  class MalformedConfiguration < StandardError; end
-  class MissingConfiguration < StandardError; end
 end
