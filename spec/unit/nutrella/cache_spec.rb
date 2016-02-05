@@ -55,7 +55,7 @@ module Nutrella
     end
 
     def expected_cache(*contents)
-      expect_any_instance_of(File).to receive(:write).with(contents.to_yaml)
+      expect(File).to receive(:write).with(anything, contents.to_yaml)
     end
   end
 end

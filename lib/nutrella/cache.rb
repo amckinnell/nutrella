@@ -17,9 +17,7 @@ module Nutrella
     end
 
     def write(board_name, url)
-      entries = cached_entries(board_name, url)
-
-      File.open(path, "w") { |f| f.write entries.to_yaml }
+      File.write(path, cached_entries(board_name, url).to_yaml)
     end
 
     def cached_entries(board_name, url)
