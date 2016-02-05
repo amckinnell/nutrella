@@ -1,8 +1,16 @@
 AllCops:
   TargetRubyVersion: 2.1
 
-Style/StringLiterals:
-  EnforcedStyle: double_quotes
-
 Metrics/LineLength:
   Max: 120
+
+Metrics/MethodLength:
+  Exclude:
+    - 'lib/nutrella/command.rb'
+
+Style/Semicolon:
+  Exclude:
+    - 'lib/nutrella/command.rb'
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
