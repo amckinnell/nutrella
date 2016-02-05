@@ -12,6 +12,10 @@ module Nutrella
       @args = args
     end
 
+    def run
+      system("open #{task_board.url}") if task_board.respond_to? :url
+    end
+
     def task_board
       process_options
       find_or_create_board
