@@ -1,4 +1,5 @@
 /.rake_tasks
+/.rubocop_todo.yml
 /coverage
 /Gemfile.lock
 /pkg

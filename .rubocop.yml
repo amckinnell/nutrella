@@ -8,6 +8,10 @@ Metrics/MethodLength:
   Exclude:
     - 'lib/nutrella/command.rb'
 
+Style/HashSyntax:
+  Exclude:
+    - 'Rakefile'
+
 Style/MutableConstant:
   Enabled: false
 
@@ -20,3 +24,4 @@ Style/SignalException:
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
+
