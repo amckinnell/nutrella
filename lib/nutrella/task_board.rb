@@ -5,7 +5,7 @@ module Nutrella
   # Knows the Trello API for finding and creating task boards.
   #
   class TaskBoard
-    attr_reader :name, :configuration_path
+    attr_reader :name
 
     def initialize(board_name, configuration)
       @name = board_name
