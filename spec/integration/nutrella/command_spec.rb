@@ -2,6 +2,18 @@ module Nutrella
   vcr_options = { cassette_name: "nutrella", record: :new_episodes }
 
   RSpec.describe "Nutrella", vcr: vcr_options do
+    it "displays help" do
+      expect { command("-h").run }.to(
+        output(/Usage:/).to_stdout.and(raise_error(SystemExit))
+      )
+    end
+
+    it "displays version" do
+      expect { command("-v").run }.to(
+        output(/#{Nutrella::VERSION}/).to_stdout.and(raise_error(SystemExit))
+      )
+    end
+
     it "finds an existing board" do
       subject = command("-t", "Nutrella")
 
@@ -20,7 +32,7 @@ module Nutrella
     end
 
     it "fails when options don't parse" do
-      expect { Command.new(["--invalid-option"]).run }.to(
+      expect { command("--invalid-option").run }.to(
         output(/Error: invalid option/).to_stderr.and(raise_error(SystemExit))
       )
     end
