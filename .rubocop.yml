@@ -8,9 +8,15 @@ Metrics/MethodLength:
   Exclude:
     - 'lib/nutrella/command.rb'
 
+Style/MutableConstant:
+  Enabled: false
+
 Style/Semicolon:
   Exclude:
     - 'lib/nutrella/command.rb'
+
+Style/SignalException:
+  Enabled: false
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes

@@ -3,7 +3,7 @@ require "optparse"
 
 module Nutrella
   #
-  # Knows how to dispatch to a command based on the specified options.
+  # This is the top-level class for the gem.
   #
   class Command
     attr_reader :options

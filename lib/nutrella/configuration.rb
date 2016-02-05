@@ -5,21 +5,21 @@ module Nutrella
   # Knows the location and format of the configuration.
   #
   class Configuration
-    CONFIGURATION_FILENAME = ".nutrella.yml".freeze
+    CONFIGURATION_FILENAME = ".nutrella.yml"
 
-    DEFAULT_CONFIGURATION = <<-DEFAULT_CONFIG.strip_heredoc.freeze
-        # Trello Developer API Keys
-        key: <your developer key>
-        secret: <your developer secret>
-        token: <your developer token>
-      DEFAULT_CONFIG
+    DEFAULT_CONFIGURATION = <<-DEFAULT_CONFIG.strip_heredoc
+      # Trello Developer API Keys
+      key: <your developer key>
+      secret: <your developer secret>
+      token: <your developer token>
+    DEFAULT_CONFIG
 
     def apply
       apply_configuration(load_configuration)
     end
 
     def write_default
-      fail "#{path} exists" if File.exist?(path)
+      raise "#{path} exists" if File.exist?(path)
 
       File.open(path, "w") { |f| f.write(DEFAULT_CONFIGURATION) }
     end
@@ -38,7 +38,7 @@ module Nutrella
     end
 
     def load_configuration
-      fail "#{path} does not exist. Use the --init option to create" unless File.exist?(path)
+      raise "#{path} does not exist. Use the --init option to create" unless File.exist?(path)
 
       YAML.load_file(path)
     end

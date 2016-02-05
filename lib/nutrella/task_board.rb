@@ -2,7 +2,7 @@ require "trello"
 
 module Nutrella
   #
-  # Knows the Trello API for finding and creating task boards.
+  # Knows the Trello API for creating and finding task boards.
   #
   class TaskBoard
     attr_reader :name
