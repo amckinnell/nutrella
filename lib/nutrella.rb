@@ -8,7 +8,7 @@ require "nutrella/task_board"
 require "nutrella/version"
 
 #
-# A command line tool for creating a Trello Board to track the engineering tasks for a user story.
+# A command line tool for creating a Trello Board based on the current git branch.
 #
 module Nutrella
 end
