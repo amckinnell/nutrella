@@ -4,6 +4,6 @@ require "httplog" if ENV["HTTPLOG"] =~ /true/i
 
 require "nutrella"
 
-task_board = Nutrella::Command.new(Nutrella::Options.new(ARGV)).task_board
+task_board = Nutrella::Command.new(ARGV).task_board
 
 system("open #{task_board.url}") if task_board.respond_to? :url

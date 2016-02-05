@@ -3,8 +3,7 @@ module Nutrella
 
   RSpec.describe "Nutrella", vcr: vcr_options do
     it "finds an existing board" do
-      task_board_name = "Nutrella"
-      subject = command("-t", task_board_name)
+      subject = command("-t", "Nutrella")
 
       task_board = subject.task_board
 
@@ -12,30 +11,17 @@ module Nutrella
     end
 
     it "creates a new board" do
-      task_board_name = "fresh_task_board"
-      subject = command("-t", task_board_name)
+      subject = command("-t", "fresh_task_board")
 
       allow(subject).to receive(:confirm_create?).and_return(true)
 
       task_board = subject.task_board
 
-      expect(task_board).to have_attributes(url: "https://trello.com/b/teWn4IIX/fresh-task-board")
-    end
-
-    it "displays the version" do
-      subject = command("-v")
-
-      expect { subject.task_board }.to output(/#{Nutrella::VERSION}/).to_stdout
-    end
-
-    it "displays the usage" do
-      subject = command("-h")
-
-      expect { subject.task_board }.to output(/Usage:/).to_stdout
+      expect(task_board).to have_attributes(url: match(/https:.*fresh-task-board/))
     end
 
     def command(*args)
-      Command.new(Options.new(args))
+      Command.new(args)
     end
   end
 end
