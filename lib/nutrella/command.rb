@@ -6,8 +6,6 @@ module Nutrella
   # This is the top-level class for the gem.
   #
   class Command
-    attr_reader :options
-
     def run(args)
       if args.blank?
         find_or_create_board_from_git_branch
