@@ -1,31 +1,25 @@
 module Nutrella
   vcr_options = { cassette_name: "nutrella", record: :new_episodes }
 
-  RSpec.describe "Nutrella", vcr: vcr_options do
+  RSpec.describe Command, vcr: vcr_options do
     it "displays help" do
-      expect { command("-h").run }.to(output(/Usage:/).to_stdout)
+      expect { subject.run(["-h"]) }.to(output(/Usage:/).to_stdout)
     end
 
     it "displays version" do
-      expect { command("-v").run }.to(output(/#{Nutrella::VERSION}/).to_stdout)
+      expect { subject.run(["-v"]) }.to(output(/#{Nutrella::VERSION}/).to_stdout)
     end
 
     it "finds an existing board" do
-      subject = command("-t", "Nutrella")
-
       expect(subject).to receive(:system).with(match(%r{open https://trello.com/b/.*/nutrella}))
 
-      subject.run
+      subject.run(["-t", "Nutrella"])
     end
 
     it "fails when options don't parse" do
-      expect { command("--invalid-option").run }.to(
+      expect { subject.run(["--invalid-option"]) }.to(
         output(/Error: invalid option/).to_stderr.and(raise_error(SystemExit))
       )
-    end
-
-    def command(*args)
-      Command.new(args)
     end
   end
 end

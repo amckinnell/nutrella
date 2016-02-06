@@ -5,22 +5,18 @@ module Nutrella
   # Knows the Trello API for creating and finding task boards.
   #
   class TaskBoard
-    attr_reader :name
-
-    def initialize(board_name, configuration)
-      @name = board_name
-
+    def initialize(configuration)
       configuration.apply
     end
 
-    def create
-      Trello::Board.create(name: name)
+    def create(board_name)
+      Trello::Board.create(name: board_name)
     end
 
-    def find
-      results = Trello::Action.search(name, modelTypes: "boards", board_fields: "name,url")
+    def find(board_name)
+      results = Trello::Action.search(board_name, modelTypes: "boards", board_fields: "name,url")
 
-      results["boards"].find { |board| board.name == name }
+      results["boards"].find { |board| board.name == board_name }
     end
   end
 end

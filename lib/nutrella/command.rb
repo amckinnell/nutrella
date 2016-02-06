@@ -6,55 +6,51 @@ module Nutrella
   # This is the top-level class for the gem.
   #
   class Command
-    attr_reader :options
-
-    def initialize(args)
-      @args = args
-    end
-
-    def run
-      if @args.blank?
-        find_or_create_board_from_git_branch
+    def run(args)
+      if args.blank?
+        open_board_for_git_branch
         return
       end
 
       OptionParser.new do |opts|
-        opts.on("-t", "--trello-board BOARD", "Open the board with name BOARD") { |n| find_board_by_name(n) }
-        opts.on("--init", "Initialize the nutrella.yml configuration") { Configuration.new.write_default }
+        opts.on("-t", "--trello-board BOARD", "Open the board with name BOARD") { |name| open_board(name) }
+        opts.on("--init", "Initialize the nutrella.yml configuration") { Configuration.init }
         opts.on("-v", "--version", "Display the version") { puts Nutrella::VERSION }
         opts.on("-h", "--help", "Display this screen") { puts opts }
-      end.parse!(@args)
-    rescue
-      abort "Error: invalid option: #{@args}"
+      end.parse!(args)
+    rescue OptionParser::InvalidOption
+      abort "Error: invalid option: #{args}"
     end
 
     private
 
-    def find_or_create_board_from_git_branch
-      task_board = find_or_create_board(trello_board_name_derived_from_git_branch)
-      system("open #{task_board.url}") if task_board.respond_to? :url
+    def open_board_for_git_branch
+      board_name = board_name_from_git_branch
+      open_url(find(board_name) || create(board_name))
     end
 
-    def find_or_create_board(board_name)
-      task_board = TaskBoard.new(board_name, Configuration.new)
-      board = task_board.find
-      return board if board
-
-      task_board.create
+    def open_board(board_name)
+      open_url(find(board_name))
     end
 
-    def find_board_by_name(board_name)
-      task_board = find_board(board_name)
-      system("open #{task_board.url}") if task_board.respond_to? :url
+    def open_url(board)
+      system("open #{board.url}") if board.respond_to?(:url)
     end
 
-    def find_board(board_name)
-      task_board = TaskBoard.new(board_name, Configuration.new)
-      task_board.find
-    end
-
-    def trello_board_name_derived_from_git_branch
+    def board_name_from_git_branch
       Git.open(".").current_branch.humanize.titleize
+    end
+
+    def find(board_name)
+      task_board.find(board_name)
+    end
+
+    def create(board_name)
+      task_board.create(board_name)
+    end
+
+    def task_board
+      @cached_task_board ||= TaskBoard.new(Configuration.new)
     end
   end
 end
