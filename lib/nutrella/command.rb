@@ -39,7 +39,7 @@ module Nutrella
 
     def find_board_by_name(board_name)
       board = find_board(board_name)
-      system("open #{board.url}") if board.respond_to? :url
+      system("open #{board.url}") if board.respond_to?(:url)
     end
 
     def find_board(board_name)
