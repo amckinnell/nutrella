@@ -24,7 +24,7 @@ module Nutrella
         opts.on("-v", "--version", "Display the version") { puts Nutrella::VERSION }
         opts.on("-h", "--help", "Display this screen") { puts opts }
       end.parse!(@args)
-    rescue
+    rescue OptionParser::InvalidOption
       abort "Error: invalid option: #{@args}"
     end
 
