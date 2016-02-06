@@ -8,12 +8,12 @@ module Nutrella
   class Command
     def run(args)
       if args.blank?
-        find_or_create_board_from_git_branch
+        open_board_for_git_branch
         return
       end
 
       OptionParser.new do |opts|
-        opts.on("-t", "--trello-board BOARD", "Open the board with name BOARD") { |n| find_board_by_name(n) }
+        opts.on("-t", "--trello-board BOARD", "Open the board with name BOARD") { |name| open_board(name) }
         opts.on("--init", "Initialize the nutrella.yml configuration") { Configuration.new.write_default }
         opts.on("-v", "--version", "Display the version") { puts Nutrella::VERSION }
         opts.on("-h", "--help", "Display this screen") { puts opts }
@@ -24,12 +24,12 @@ module Nutrella
 
     private
 
-    def find_or_create_board_from_git_branch
+    def open_board_for_git_branch
       board_name = board_name_from_git_branch
       open_url(find(board_name) || create(board_name))
     end
 
-    def find_board_by_name(board_name)
+    def open_board(board_name)
       open_url(find(board_name))
     end
 
