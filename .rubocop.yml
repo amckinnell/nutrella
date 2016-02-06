@@ -4,24 +4,19 @@ AllCops:
 Metrics/LineLength:
   Max: 120
 
-Metrics/MethodLength:
-  Exclude:
-    - 'lib/nutrella/command.rb'
-
+# We like to use the hash rocket in rake files.
 Style/HashSyntax:
   Exclude:
     - 'Rakefile'
 
-Style/MutableConstant:
-  Enabled: false
-
-Style/Semicolon:
-  Exclude:
-    - 'lib/nutrella/command.rb'
-
-Style/SignalException:
-  Enabled: false
-
+# We'll just use double quotes everywhere.
 Style/StringLiterals:
   EnforcedStyle: double_quotes
 
+# We are not going to optimize by freezing strings.
+Style/MutableConstant:
+  Enabled: false
+
+# We are not going to distinguish between fail and raise.
+Style/SignalException:
+  Enabled: false
