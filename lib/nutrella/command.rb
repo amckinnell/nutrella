@@ -30,7 +30,7 @@ module Nutrella
     end
 
     def find_or_create_board(board_name)
-      task_board(board_name).find || task_board(board_name).create
+      task_board.find(board_name) || task_board.create(board_name)
     end
 
     def find_board_by_name(board_name)
@@ -43,15 +43,15 @@ module Nutrella
     end
 
     def find_board(board_name)
-      task_board(board_name).find
+      task_board.find(board_name)
     end
 
     def trello_board_name_derived_from_git_branch
       Git.open(".").current_branch.humanize.titleize
     end
 
-    def task_board(board_name)
-      @cached_task_board ||= TaskBoard.new(board_name, Configuration.new)
+    def task_board
+      @cached_task_board ||= TaskBoard.new(Configuration.new)
     end
   end
 end
