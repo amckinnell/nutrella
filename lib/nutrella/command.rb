@@ -25,7 +25,7 @@ module Nutrella
     private
 
     def find_or_create_board_from_git_branch
-      board_name = trello_board_name_derived_from_git_branch
+      board_name = board_name_from_git_branch
       open_url(find(board_name) || create(board_name))
     end
 
@@ -37,7 +37,7 @@ module Nutrella
       system("open #{board.url}") if board.respond_to?(:url)
     end
 
-    def trello_board_name_derived_from_git_branch
+    def board_name_from_git_branch
       Git.open(".").current_branch.humanize.titleize
     end
 
