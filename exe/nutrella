@@ -4,4 +4,4 @@ require "httplog" if ENV["HTTPLOG"] =~ /true/i
 
 require "nutrella"
 
-Nutrella::Command.new(ARGV).run
+Nutrella::Command.new.run(ARGV)

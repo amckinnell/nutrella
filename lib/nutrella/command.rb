@@ -8,12 +8,8 @@ module Nutrella
   class Command
     attr_reader :options
 
-    def initialize(args)
-      @args = args
-    end
-
-    def run
-      if @args.blank?
+    def run(args)
+      if args.blank?
         find_or_create_board_from_git_branch
         return
       end
@@ -23,9 +19,9 @@ module Nutrella
         opts.on("--init", "Initialize the nutrella.yml configuration") { Configuration.new.write_default }
         opts.on("-v", "--version", "Display the version") { puts Nutrella::VERSION }
         opts.on("-h", "--help", "Display this screen") { puts opts }
-      end.parse!(@args)
+      end.parse!(args)
     rescue OptionParser::InvalidOption
-      abort "Error: invalid option: #{@args}"
+      abort "Error: invalid option: #{args}"
     end
 
     private
