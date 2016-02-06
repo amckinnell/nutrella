@@ -14,6 +14,10 @@ module Nutrella
       token: <your developer token>
     DEFAULT_CONFIG
 
+    def self.init
+      new.write_default
+    end
+
     def apply
       apply_configuration(load_configuration)
     end
