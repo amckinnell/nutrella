@@ -30,10 +30,7 @@ module Nutrella
     end
 
     def find_or_create_board(board_name)
-      board = task_board(board_name).find
-      return board if board
-
-      task_board(board_name).create
+      task_board(board_name).find || task_board(board_name).create
     end
 
     def find_board_by_name(board_name)
