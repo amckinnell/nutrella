@@ -13,43 +13,44 @@ module Nutrella
     end
 
     def run
-      system("open #{task_board.url}") if task_board.respond_to? :url
-    end
+      if @args.blank?
+        find_or_create_board_from_git_branch
+        return
+      end
 
-    def task_board
-      process_options
-      find_or_create_board
+      OptionParser.new do |opts|
+        opts.on("-t", "--trello-board BOARD", "Open the board with name BOARD") { |n| find_board_by_name(n) }
+        opts.on("--init", "Initialize the nutrella.yml configuration") { Configuration.new.write_default }
+        opts.on("-v", "--version", "Display the version") { puts Nutrella::VERSION }
+        opts.on("-h", "--help", "Display this screen") { puts opts }
+      end.parse!(@args)
     rescue
       abort "Error: invalid option: #{@args}"
     end
 
     private
 
-    def process_options
-      OptionParser.new do |opts|
-        opts.on("-g", "--current-git-branch", "Open the board matching the current git branch")
-        opts.on("-t", "--trello-board BOARD", "Open the board with name BOARD") { |n| @board_name = n }
-        opts.on("--init", "Initialize the nutrella.yml configuration") { Configuration.new.write_default; exit }
-        opts.on("-v", "--version", "Display the version") { puts Nutrella::VERSION; exit }
-        opts.on("-h", "--help", "Display this screen") { puts opts; exit }
-      end.parse!(@args)
+    def find_or_create_board_from_git_branch
+      task_board = find_or_create_board(trello_board_name_derived_from_git_branch)
+      system("open #{task_board.url}") if task_board.respond_to? :url
     end
 
-    def find_or_create_board
+    def find_or_create_board(board_name)
       task_board = TaskBoard.new(board_name, Configuration.new)
       board = task_board.find
       return board if board
 
-      task_board.create if confirm_create?(task_board)
+      task_board.create
     end
 
-    def board_name
-      @board_name || trello_board_name_derived_from_git_branch
+    def find_board_by_name(board_name)
+      task_board = find_board(board_name)
+      system("open #{task_board.url}") if task_board.respond_to? :url
     end
 
-    def confirm_create?(task_board)
-      print "Create the '#{task_board.name}' task board? [y/N]: "
-      gets =~ /^y/i
+    def find_board(board_name)
+      task_board = TaskBoard.new(board_name, Configuration.new)
+      task_board.find
     end
 
     def trello_board_name_derived_from_git_branch
