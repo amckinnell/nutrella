@@ -9,9 +9,14 @@ module Nutrella
     def run(args)
       if args.blank?
         open_board_for_git_branch
-        return
+      else
+        parse(args)
       end
+    end
 
+    private
+
+    def parse(args)
       OptionParser.new do |opts|
         opts.on("-t", "--trello-board BOARD", "Open the board with name BOARD") { |name| open_board(name) }
         opts.on("--init", "Initialize the nutrella.yml configuration") { Configuration.init }
@@ -21,8 +26,6 @@ module Nutrella
     rescue OptionParser::InvalidOption
       abort "Error: invalid option: #{args}"
     end
-
-    private
 
     def open_board_for_git_branch
       board_name = board_name_from_git_branch
