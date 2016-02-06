@@ -25,29 +25,28 @@ module Nutrella
     private
 
     def find_or_create_board_from_git_branch
-      board = find_or_create_board(trello_board_name_derived_from_git_branch)
-      open_url(board)
-    end
-
-    def find_or_create_board(board_name)
-      task_board.find(board_name) || task_board.create(board_name)
+      board_name = trello_board_name_derived_from_git_branch
+      open_url(find(board_name) || create(board_name))
     end
 
     def find_board_by_name(board_name)
-      board = find_board(board_name)
-      open_url(board)
+      open_url(find(board_name))
     end
 
     def open_url(board)
       system("open #{board.url}") if board.respond_to?(:url)
     end
 
-    def find_board(board_name)
+    def trello_board_name_derived_from_git_branch
+      Git.open(".").current_branch.humanize.titleize
+    end
+
+    def find(board_name)
       task_board.find(board_name)
     end
 
-    def trello_board_name_derived_from_git_branch
-      Git.open(".").current_branch.humanize.titleize
+    def create(board_name)
+      task_board.create(board_name)
     end
 
     def task_board
