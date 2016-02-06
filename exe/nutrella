@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby
 
-require "httplog" if ENV["HTTPLOG"] =~ /true/i
-
 require "nutrella"
 
 Nutrella::Command.new.run(ARGV)
