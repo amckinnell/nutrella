@@ -11,12 +11,12 @@ module Nutrella
     end
 
     def run(args)
-      args.blank? ? open_board_for_git_branch : parse(args)
+      args.blank? ? open_board_for_git_branch : process(args)
     end
 
     private
 
-    def parse(args)
+    def process(args)
       OptionParser.new do |opts|
         opts.on("-t", "--trello-board BOARD", "Open the board with name BOARD") { |name| open_board(name) }
         opts.on("--init", "Initialize the nutrella.yml configuration") { Configuration.init }
