@@ -37,8 +37,6 @@ module Nutrella
     end
 
     def open_url(board_url)
-      puts board_url
-
       system("open #{board_url}") if board_url
     end
 
