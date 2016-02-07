@@ -7,7 +7,7 @@ module Nutrella
       it "succeeds when configuration missing" do
         configuration_missing
 
-        expect(File).to receive(:open).with(path, "w")
+        expect(File).to receive(:write).with(path, Configuration::INITIAL_CONFIGURATION)
 
         subject.write_initial_configuration
       end

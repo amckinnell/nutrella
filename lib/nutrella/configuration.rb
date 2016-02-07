@@ -25,7 +25,7 @@ module Nutrella
     def write_initial_configuration
       raise "#{path} exists" if File.exist?(path)
 
-      File.open(path, "w") { |f| f.write(INITIAL_CONFIGURATION) }
+      File.write(path, INITIAL_CONFIGURATION)
     end
 
     private
