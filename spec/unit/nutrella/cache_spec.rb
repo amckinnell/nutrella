@@ -3,12 +3,14 @@ module Nutrella
     describe "lookup" do
       it "cache hit" do
         cache_contents(["b 1", "url 1"])
+        expected_cache(["b 1", "url 1"])
 
         expect(subject.get("b 1") { "url 1" }).to eq("url 1")
       end
 
       it "cache miss" do
         cache_contents(["b 1", "url 1"])
+        expected_cache(["b 2", "url 2"], ["b 1", "url 1"])
 
         expect(subject.get("b 2") { "url 2" }).to eq("url 2")
       end

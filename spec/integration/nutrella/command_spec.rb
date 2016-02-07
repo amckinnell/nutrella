@@ -25,8 +25,8 @@ module Nutrella
     end
 
     def disable_cache
-      allow(Cache).to receive(:get).and_yield
-      allow(Cache).to receive(:put).and_yield
+      allow_any_instance_of(Cache).to receive(:get).and_yield
+      allow_any_instance_of(Cache).to receive(:put).and_yield
     end
   end
 end
