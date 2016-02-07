@@ -6,6 +6,10 @@ module Nutrella
   # This is the top-level class for the gem.
   #
   class Command
+    def initialize
+      @cache = Cache.new
+    end
+
     def run(args)
       args.blank? ? open_board_for_git_branch : parse(args)
     end
@@ -43,11 +47,11 @@ module Nutrella
     end
 
     def find(board_name)
-      Cache.get(board_name) { task_board.find(board_name) }
+      @cache.get(board_name) { task_board.find(board_name) }
     end
 
     def create(board_name)
-      Cache.put(board_name) { task_board.create(board_name) }
+      @cache.put(board_name) { task_board.create(board_name) }
     end
 
     def task_board
