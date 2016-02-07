@@ -3,11 +3,11 @@ module Nutrella
 
   RSpec.describe Command, vcr: vcr_options do
     it "displays help" do
-      expect { subject.run(["-h"]) }.to(output(/Usage:/).to_stdout)
+      expect { subject.run(["-h"]) }.to output(/Usage:/).to_stdout
     end
 
     it "displays version" do
-      expect { subject.run(["-v"]) }.to(output(/#{Nutrella::VERSION}/).to_stdout)
+      expect { subject.run(["-v"]) }.to output(/#{Nutrella::VERSION}/).to_stdout
     end
 
     it "finds an existing board" do
