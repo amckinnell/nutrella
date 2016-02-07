@@ -29,11 +29,11 @@ module Nutrella
 
     def open_board_for_git_branch
       board_name = board_name_from_git_branch
-      open_url(find(board_name) || create(board_name))
+      open_url(lookup(board_name) || create(board_name))
     end
 
     def open_board(board_name)
-      open_url(find(board_name))
+      open_url(lookup(board_name))
     end
 
     def open_url(board_url)
@@ -44,12 +44,12 @@ module Nutrella
       Git.open(".").current_branch.humanize.titleize
     end
 
-    def find(board_name)
-      @cache.get(board_name) { task_board.find(board_name) }
-    end
-
     def create(board_name)
       @cache.put(board_name) { task_board.create(board_name) }
+    end
+
+    def lookup(board_name)
+      @cache.get(board_name) { task_board.lookup(board_name) }
     end
 
     def task_board
