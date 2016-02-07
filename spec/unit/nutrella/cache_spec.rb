@@ -47,7 +47,7 @@ module Nutrella
     end
 
     it "handles error loading cache from file" do
-      allow(YAML).to receive(:load_file).and_raise
+      cache_load_error
       expected_cache(["k 1", "v 1"])
 
       expect(subject.get("k 1") { "v 1" }).to eq("v 1")
@@ -60,6 +60,10 @@ module Nutrella
     def expected_cache(*contents)
       allow(Dir).to receive(:home).and_return("home_dir")
       expect(File).to receive(:write).with("home_dir/.nutrella.cache.yml", contents.to_yaml)
+    end
+
+    def cache_load_error
+      allow(YAML).to receive(:load_file).and_raise
     end
   end
 end
