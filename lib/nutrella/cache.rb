@@ -10,12 +10,29 @@ module Nutrella
     CACHE_FILENAME = ".nutrella.cache.yml"
     CACHE_CAPACITY = 5
 
-    def self.get(_board_name)
-      yield
+    def get(board_name)
+      url = lookup(board_name)
+
+      if url.nil?
+        board = yield
+        url = board.try(:url)
+      end
+
+      save(board_name, url)
     end
 
-    def self.put(_board_name)
-      yield
+    def put(board_name)
+      board = yield
+      url = board.try(:url)
+
+      save(board_name, url)
+    end
+
+    def save(board_name, url)
+      return if url.nil?
+
+      write(board_name, url)
+      OpenStruct.new(url: url)
     end
 
     def lookup(board_name)
