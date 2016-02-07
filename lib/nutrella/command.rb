@@ -1,4 +1,3 @@
-require "git"
 require "optparse"
 
 module Nutrella
@@ -28,7 +27,7 @@ module Nutrella
     end
 
     def open_board_for_git_branch
-      board_name = board_name_from_git_branch
+      board_name = TaskBoardNamePolicy.from_git_branch
       open_url(lookup(board_name) || create(board_name))
     end
 
@@ -38,10 +37,6 @@ module Nutrella
 
     def open_url(board_url)
       system("open #{board_url}") if board_url
-    end
-
-    def board_name_from_git_branch
-      Git.open(".").current_branch.humanize.titleize
     end
 
     def create(board_name)

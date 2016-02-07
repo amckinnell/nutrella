@@ -4,6 +4,7 @@ require "nutrella/cache"
 require "nutrella/command"
 require "nutrella/configuration"
 require "nutrella/task_board"
+require "nutrella/task_board_name_policy"
 require "nutrella/version"
 
 #
