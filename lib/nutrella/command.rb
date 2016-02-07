@@ -41,11 +41,11 @@ module Nutrella
     end
 
     def find(board_name)
-      task_board.find(board_name)
+      Cache.get(board_name) { task_board.find(board_name) }
     end
 
     def create(board_name)
-      task_board.create(board_name)
+      Cache.put(board_name) { task_board.create(board_name) }
     end
 
     def task_board

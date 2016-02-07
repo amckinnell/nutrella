@@ -11,6 +11,8 @@ module Nutrella
     end
 
     it "finds an existing board" do
+      disable_cache
+
       expect(subject).to receive(:system).with(match(%r{open https://trello.com/b/.*/nutrella}))
 
       subject.run(["-t", "Nutrella"])
@@ -20,6 +22,11 @@ module Nutrella
       expect { subject.run(["--invalid-option"]) }.to(
         output(/Error: invalid option/).to_stderr.and(raise_error(SystemExit))
       )
+    end
+
+    def disable_cache
+      allow(Cache).to receive(:get).and_yield
+      allow(Cache).to receive(:put).and_yield
     end
   end
 end

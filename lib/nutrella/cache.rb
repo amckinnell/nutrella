@@ -10,6 +10,14 @@ module Nutrella
     CACHE_FILENAME = ".nutrella.cache.yml"
     CACHE_CAPACITY = 5
 
+    def self.get(_board_name)
+      yield
+    end
+
+    def self.put(_board_name)
+      yield
+    end
+
     def lookup(board_name)
       YAML.load_file(path).find { |board, _url| board == board_name }.last
     rescue
