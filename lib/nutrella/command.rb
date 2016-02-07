@@ -32,8 +32,10 @@ module Nutrella
       open_url(find(board_name))
     end
 
-    def open_url(board)
-      system("open #{board.url}") if board.respond_to?(:url)
+    def open_url(board_url)
+      puts board_url
+
+      system("open #{board_url}") if board_url
     end
 
     def board_name_from_git_branch
