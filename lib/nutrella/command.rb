@@ -7,11 +7,7 @@ module Nutrella
   #
   class Command
     def run(args)
-      if args.blank?
-        open_board_for_git_branch
-      else
-        parse(args)
-      end
+      args.blank? ? open_board_for_git_branch : parse(args)
     end
 
     private
