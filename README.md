@@ -56,6 +56,12 @@ Open a named Trello board (such as the 'Team Assassins' Trello board):
 Use the `-h` option to see all the command line options.
 
 
+## Origin of Name
+
+Nutrella is a [portmanteau](https://en.wikipedia.org/wiki/Portmanteau) that combines these three words:
+[Nulogy](http://nulogy.com/), [Trello](http://trello.com/), and [Nutella](http://www.nutella.com/).
+
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/amckinnell/nutrella.
