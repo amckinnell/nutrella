@@ -3,19 +3,19 @@ module Nutrella
     let(:home) { "home_dir" }
     let(:path) { "home_dir/#{Configuration::CONFIGURATION_FILENAME}" }
 
-    describe "#write_initial_configuration" do
+    describe ".init" do
       it "succeeds when configuration missing" do
         configuration_missing
 
         expect(File).to receive(:write).with(path, Configuration::INITIAL_CONFIGURATION)
 
-        subject.write_initial_configuration
+        Configuration.init
       end
 
       it "fails when configuration exists" do
         configuration_exists
 
-        expect { subject.write_initial_configuration }.to raise_error(/#{path} exists/)
+        expect { Configuration.init }.to raise_error(/#{path} exists/)
       end
     end
 
