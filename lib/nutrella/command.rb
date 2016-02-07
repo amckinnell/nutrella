@@ -27,7 +27,7 @@ module Nutrella
     end
 
     def open_board_for_git_branch
-      board_name = TaskBoardNamePolicy.from_git_branch
+      board_name = TaskBoardName.current_git_branch
       open_url(lookup(board_name) || create(board_name))
     end
 
