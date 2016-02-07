@@ -6,13 +6,17 @@ module Nutrella
   # This is the top-level class for the gem.
   #
   class Command
+    def initialize
+      @cache = Cache.new
+    end
+
     def run(args)
-      args.blank? ? open_board_for_git_branch : parse(args)
+      args.blank? ? open_board_for_git_branch : process(args)
     end
 
     private
 
-    def parse(args)
+    def process(args)
       OptionParser.new do |opts|
         opts.on("-t", "--trello-board BOARD", "Open the board with name BOARD") { |name| open_board(name) }
         opts.on("--init", "Initialize the nutrella.yml configuration") { Configuration.init }
@@ -32,8 +36,10 @@ module Nutrella
       open_url(find(board_name))
     end
 
-    def open_url(board)
-      system("open #{board.url}") if board.respond_to?(:url)
+    def open_url(board_url)
+      puts board_url
+
+      system("open #{board_url}") if board_url
     end
 
     def board_name_from_git_branch
@@ -41,11 +47,11 @@ module Nutrella
     end
 
     def find(board_name)
-      task_board.find(board_name)
+      @cache.get(board_name) { task_board.find(board_name) }
     end
 
     def create(board_name)
-      task_board.create(board_name)
+      @cache.put(board_name) { task_board.create(board_name) }
     end
 
     def task_board
