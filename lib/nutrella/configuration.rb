@@ -7,25 +7,25 @@ module Nutrella
   class Configuration
     CONFIGURATION_FILENAME = ".nutrella.yml"
 
-    DEFAULT_CONFIGURATION = <<-DEFAULT_CONFIG.strip_heredoc
+    INITIAL_CONFIGURATION = <<-YAML.strip_heredoc
       # Trello Developer API Keys
       key: <your developer key>
       secret: <your developer secret>
       token: <your developer token>
-    DEFAULT_CONFIG
+    YAML
 
     def self.init
-      new.write_default
+      new.write_initial_configuration
     end
 
     def apply
       apply_configuration(load_configuration)
     end
 
-    def write_default
+    def write_initial_configuration
       raise "#{path} exists" if File.exist?(path)
 
-      File.open(path, "w") { |f| f.write(DEFAULT_CONFIGURATION) }
+      File.open(path, "w") { |f| f.write(INITIAL_CONFIGURATION) }
     end
 
     private
