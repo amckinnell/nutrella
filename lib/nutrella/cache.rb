@@ -10,12 +10,14 @@ module Nutrella
 
     def get(key)
       value = lookup(key) || yield
-      update(key, value)
+      write(key, value)
+      value
     end
 
     def put(key)
       value = yield
-      update(key, value)
+      write(key, value)
+      value
     end
 
     private
@@ -26,13 +28,8 @@ module Nutrella
       nil
     end
 
-    def update(key, value)
-      write(key, value) unless value.nil?
-      value
-    end
-
     def write(key, value)
-      File.write(path, cached_entries(key, value).to_yaml)
+      File.write(path, cached_entries(key, value).to_yaml) unless value.nil?
     end
 
     def cached_entries(key, value)

@@ -1,6 +1,6 @@
 module Nutrella
   RSpec.describe Cache do
-    describe "lookup" do
+    describe "#get" do
       it "cache hit" do
         cache_contents(["b 1", "url 1"])
         expected_cache(["b 1", "url 1"])
@@ -16,33 +16,33 @@ module Nutrella
       end
     end
 
-    describe "write" do
+    describe "#put" do
       it "add to top of empty cache" do
         cache_contents
         expected_cache(["b 1", "url 1"])
 
-        subject.put("b 1") { "url 1" }
+        expect(subject.put("b 1") { "url 1" }).to eq("url 1")
       end
 
       it "add to top of cache" do
         cache_contents(["b 2", "url 2"])
         expected_cache(["b 1", "url 1"], ["b 2", "url 2"])
 
-        subject.put("b 1") { "url 1" }
+        expect(subject.put("b 1") { "url 1" }).to eq("url 1")
       end
 
       it "shuffle to top of cache" do
         cache_contents(["b 2", "url 2"], ["b 1", "url 1"], ["b 3", "url 3"])
         expected_cache(["b 1", "url 1"], ["b 2", "url 2"], ["b 3", "url 3"])
 
-        subject.put("b 1") { "url 1" }
+        expect(subject.put("b 1") { "url 1" }).to eq("url 1")
       end
 
-      it "cache capacity" do
+      it "enforce cache capacity" do
         cache_contents(["b 1", "url 1"], ["b 2", "url 2"], ["b 3", "url 3"], ["b 4", "url 4"], ["b 5", "url 5"])
         expected_cache(["b 6", "url 6"], ["b 1", "url 1"], ["b 2", "url 2"], ["b 3", "url 3"], ["b 4", "url 4"])
 
-        subject.put("b 6") { "url 6" }
+        expect(subject.put("b 6") { "url 6" }).to eq("url 6")
       end
     end
 
