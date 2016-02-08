@@ -23,17 +23,17 @@ A command line tool for creating a Trello board based on the current git branch.
     irb> require 'trello'
     irb> Trello.open_public_key_url
 
-Copy your `key` and `secret`.
+Insert your `key` and `secret` into your `~/.nutrella.yml` file.
 
 **Step 4**: Get token
 
     irb> Trello.open_authorization_url key: '<your_public_key_from_step_3>'
 
-Copy your `token`.
+Insert your `token` into your `~/.nutrella.yml` file.
 
 **Step 5**: Update configuration file
 
-Insert your `key`, `secret`, and `token` into your `~/.nutrella.yml` file.
+If your haven't already done so, insert your `key`, `secret`, and `token` into your `~/.nutrella.yml` file.
 
 The configuration file should look like the following (don't use the keys below, they won't work) :
 
