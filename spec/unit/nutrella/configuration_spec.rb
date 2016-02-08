@@ -3,22 +3,6 @@ module Nutrella
     let(:home) { "home_dir" }
     let(:path) { "home_dir/#{Configuration::CONFIGURATION_FILENAME}" }
 
-    describe ".init" do
-      it "succeeds when configuration missing" do
-        configuration_missing
-
-        expect(File).to receive(:write).with(path, Configuration::INITIAL_CONFIGURATION)
-
-        Configuration.init
-      end
-
-      it "fails when configuration exists" do
-        configuration_exists
-
-        expect { Configuration.init }.to raise_error(/#{path} exists/)
-      end
-    end
-
     describe "#apply" do
       it "succeeds when configuration exists and YAML well formed" do
         configuration_exists
@@ -39,10 +23,14 @@ module Nutrella
         )
       end
 
-      it "fails when configuration is missing" do
+      it "handles the case when the configuration is missing" do
         configuration_missing
 
-        expect { subject.apply }.to raise_error(/#{path} does not exist/)
+        expect(File).to receive(:write).with(path, Configuration::INITIAL_CONFIGURATION)
+
+        expect { subject.apply }.to(
+          output(/you don't have a config file/).to_stderr.and(raise_error(SystemExit))
+        )
       end
 
       it "fails when configuration is malformed" do

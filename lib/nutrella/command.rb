@@ -1,5 +1,3 @@
-require "optparse"
-
 module Nutrella
   #
   # This is the top-level class for the gem.
@@ -9,19 +7,11 @@ module Nutrella
       @cache = Cache.new
     end
 
-    def run(args)
-      args.blank? ? open_board_for_git_branch : process(args)
+    def run(_)
+      open_board_for_git_branch
     end
 
     private
-
-    def process(args)
-      OptionParser.new do |opts|
-        opts.on("--init", "Initialize the nutrella.yml configuration") { Configuration.init }
-      end.parse!(args)
-    rescue OptionParser::InvalidOption
-      abort "Error: invalid option: #{args}"
-    end
 
     def open_board_for_git_branch
       board_name = TaskBoardName.current_git_branch
