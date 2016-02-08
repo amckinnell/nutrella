@@ -1,7 +1,8 @@
 module Nutrella
   RSpec.describe Configuration do
     let(:home) { "home_dir" }
-    let(:path) { "home_dir/#{Configuration::CONFIGURATION_FILENAME}" }
+    let(:path) { "home_dir/#{Command::CONFIGURATION_FILENAME}" }
+    let(:subject) { Configuration.new(path) }
 
     describe "#apply" do
       it "succeeds when configuration exists and YAML well formed" do

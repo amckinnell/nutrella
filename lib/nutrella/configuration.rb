@@ -5,14 +5,18 @@ module Nutrella
   # Knows the location and format of the configuration.
   #
   class Configuration
-    CONFIGURATION_FILENAME = ".nutrella.yml"
-
     INITIAL_CONFIGURATION = <<-YAML.strip_heredoc
       # Trello Developer API Keys
       key: <your developer key>
       secret: <your developer secret>
       token: <your developer token>
     YAML
+
+    attr_reader :path
+
+    def initialize(path)
+      @path = path
+    end
 
     def apply
       apply_configuration(load_configuration)
@@ -55,10 +59,6 @@ module Nutrella
         See the following page for instructions:
         https://github.com/amckinnell/nutrella
       TEXT
-    end
-
-    def path
-      "#{Dir.home}/#{CONFIGURATION_FILENAME}"
     end
   end
 end

@@ -3,6 +3,9 @@ module Nutrella
   # This is the top-level class for the gem.
   #
   class Command
+    CONFIGURATION_FILENAME = ".nutrella.yml"
+    CONFIGURATION_PATH = "#{Dir.home}/#{CONFIGURATION_FILENAME}"
+
     def initialize
       @cache = Cache.new
     end
@@ -31,7 +34,7 @@ module Nutrella
     end
 
     def task_board
-      @cached_task_board ||= TaskBoard.new(Configuration.new)
+      @cached_task_board ||= TaskBoard.new(Configuration.new(CONFIGURATION_PATH))
     end
   end
 end
