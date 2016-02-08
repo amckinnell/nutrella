@@ -55,9 +55,9 @@ module Nutrella
         I see that you don't have a config file #{path}.
         So, I created one for you.
 
-        You still need to enter you Trello API keys in the config file.
-        See the following page for instructions:
-        https://github.com/amckinnell/nutrella
+        You still need to enter your Trello API keys in the config file.
+
+        See https://github.com/amckinnell/nutrella for instructions.
       TEXT
     end
   end
