@@ -15,7 +15,7 @@ A command line tool for creating a Trello board based on the current git branch.
 
 **Step 2**: Create configuration file `~/.nutrella.yml`
 
-    $ nutrella --init
+    $ nutrella
 
 **Step 3**: Get key and secret
 
@@ -48,12 +48,6 @@ The configuration file should look like the following (don't use the keys below,
 Create or open a Trello board based on the name of the current git branch:
 
     $ nutrella
-
-Open a named Trello board (such as the 'Team Assassins' Trello board):
-
-    $ nutrella -t Assassins
-
-Use the `-h` option to see all the command line options.
 
 
 ## Origin of Name
