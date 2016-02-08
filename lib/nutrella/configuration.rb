@@ -5,8 +5,6 @@ module Nutrella
   # Knows the location and format of the configuration.
   #
   class Configuration
-    CONFIGURATION_FILENAME = ".nutrella.yml"
-
     INITIAL_CONFIGURATION = <<-YAML.strip_heredoc
       # Trello Developer API Keys
       key: <your developer key>
@@ -14,18 +12,14 @@ module Nutrella
       token: <your developer token>
     YAML
 
-    def self.init
-      new.write_initial_configuration
+    attr_reader :path
+
+    def initialize(path)
+      @path = path
     end
 
     def apply
       apply_configuration(load_configuration)
-    end
-
-    def write_initial_configuration
-      raise "#{path} exists" if File.exist?(path)
-
-      File.write(path, INITIAL_CONFIGURATION)
     end
 
     private
@@ -42,13 +36,29 @@ module Nutrella
     end
 
     def load_configuration
-      raise "#{path} does not exist. Use the --init option to create" unless File.exist?(path)
+      unless File.exist?(path)
+        write_initial_configuration
+        abort configuration_file_not_found_message
+      end
 
       YAML.load_file(path)
     end
 
-    def path
-      "#{Dir.home}/#{CONFIGURATION_FILENAME}"
+    def write_initial_configuration
+      raise "#{path} exists" if File.exist?(path)
+
+      File.write(path, INITIAL_CONFIGURATION)
+    end
+
+    def configuration_file_not_found_message
+      <<-TEXT.strip_heredoc
+        I see that you don't have a config file #{path}.
+        So, I created one for you.
+
+        You still need to enter your Trello API keys in the config file.
+
+        See https://github.com/amckinnell/nutrella for instructions.
+      TEXT
     end
   end
 end

@@ -2,19 +2,20 @@ module Nutrella
   vcr_options = { cassette_name: "nutrella", record: :new_episodes }
 
   RSpec.describe Command, vcr: vcr_options do
-    it "finds an existing board" do
-      disable_cache
+    let(:path) { "home_dir/config.yml" }
+    let(:subject) { Command.new(path) }
 
-      expect(subject).to receive(:system).with(match(%r{open https://trello.com/b/.*/nutrella}))
+    xit "creates an initial configuration when missing" do
+      expect(File).to receive(:write).with(path, Configuration::INITIAL_CONFIGURATION)
 
-      subject.run(["-t", "Nutrella"])
-    end
-
-    it "fails when options don't parse" do
-      expect { subject.run(["--invalid-option"]) }.to(
-        output(/Error: invalid option/).to_stderr.and(raise_error(SystemExit))
+      expect { subject.run }.to(
+        output(/you don't have a config file/).to_stderr.and(raise_error(SystemExit))
       )
     end
+
+    # lookup existing board
+
+    # create new board
 
     def disable_cache
       allow_any_instance_of(Cache).to receive(:get).and_yield
