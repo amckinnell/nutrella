@@ -1,7 +1,6 @@
 module Nutrella
   RSpec.describe Configuration do
-    let(:home) { "home_dir" }
-    let(:path) { "home_dir/#{Command::CONFIGURATION_FILENAME}" }
+    let(:path) { "home_dir/config.yml" }
     let(:subject) { Configuration.new(path) }
 
     describe "#apply" do
@@ -47,12 +46,10 @@ module Nutrella
     end
 
     def configuration_exists
-      allow(Dir).to receive(:home).and_return(home)
       allow(File).to receive(:exist?).with(path).and_return(true)
     end
 
     def configuration_missing
-      allow(Dir).to receive(:home).and_return(home)
       allow(File).to receive(:exist?).with(path).and_return(false)
     end
   end
