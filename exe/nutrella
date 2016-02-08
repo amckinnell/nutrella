@@ -2,4 +2,4 @@
 
 require "nutrella"
 
-Nutrella::Command.new.run("#{Dir.home}/.nutrella.yml")
+Nutrella::Command.new("#{Dir.home}/.nutrella.yml").run
