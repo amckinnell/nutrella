@@ -2,14 +2,6 @@ module Nutrella
   vcr_options = { cassette_name: "nutrella", record: :new_episodes }
 
   RSpec.describe Command, vcr: vcr_options do
-    it "finds an existing board" do
-      disable_cache
-
-      expect(subject).to receive(:system).with(match(%r{open https://trello.com/b/.*/nutrella}))
-
-      subject.run(["-t", "Nutrella"])
-    end
-
     it "fails when options don't parse" do
       expect { subject.run(["--invalid-option"]) }.to(
         output(/Error: invalid option/).to_stderr.and(raise_error(SystemExit))

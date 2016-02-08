@@ -17,7 +17,6 @@ module Nutrella
 
     def process(args)
       OptionParser.new do |opts|
-        opts.on("-t", "--trello-board BOARD", "Open the board with name BOARD") { |name| open_board(name) }
         opts.on("--init", "Initialize the nutrella.yml configuration") { Configuration.init }
       end.parse!(args)
     rescue OptionParser::InvalidOption
@@ -27,10 +26,6 @@ module Nutrella
     def open_board_for_git_branch
       board_name = TaskBoardName.current_git_branch
       open_url(lookup(board_name) || create(board_name))
-    end
-
-    def open_board(board_name)
-      open_url(lookup(board_name))
     end
 
     def open_url(board_url)
