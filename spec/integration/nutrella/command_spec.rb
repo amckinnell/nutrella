@@ -6,10 +6,6 @@ module Nutrella
       expect { subject.run(["-h"]) }.to output(/Usage:/).to_stdout
     end
 
-    it "displays version" do
-      expect { subject.run(["-v"]) }.to output(/#{Nutrella::VERSION}/).to_stdout
-    end
-
     it "finds an existing board" do
       disable_cache
 

@@ -19,7 +19,6 @@ module Nutrella
       OptionParser.new do |opts|
         opts.on("-t", "--trello-board BOARD", "Open the board with name BOARD") { |name| open_board(name) }
         opts.on("--init", "Initialize the nutrella.yml configuration") { Configuration.init }
-        opts.on("-v", "--version", "Display the version") { puts Nutrella::VERSION }
         opts.on("-h", "--help", "Display this screen") { puts opts }
       end.parse!(args)
     rescue OptionParser::InvalidOption
