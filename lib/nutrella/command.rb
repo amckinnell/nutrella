@@ -7,7 +7,7 @@ module Nutrella
       @cache = Cache.new
     end
 
-    def run(_)
+    def run
       open_board_for_git_branch
     end
 

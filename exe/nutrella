@@ -2,4 +2,4 @@
 
 require "nutrella"
 
-Nutrella::Command.new.run(ARGV)
+Nutrella::Command.new.run
