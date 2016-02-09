@@ -20,14 +20,14 @@ A command line tool for creating a Trello board based on the current git branch.
 **Step 3**: Get key and secret
 
     $ irb -rubygems
-    irb> require 'trello'
-    irb> Trello.open_public_key_url
+    irb> require 'nutrella'
+    irb> Nutrella.open_public_key_url
 
 Insert your `key` and `secret` into your `~/.nutrella.yml` file.
 
 **Step 4**: Get token
 
-    irb> Trello.open_authorization_url key: '<your_public_key_from_step_3>'
+    irb> Nutrella.open_authorization_url key: '<your_public_key_from_step_3>'
 
 Insert your `token` into your `~/.nutrella.yml` file.
 
