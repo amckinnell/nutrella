@@ -13,7 +13,7 @@ A command line tool for creating a Trello board based on the current git branch.
 
     $ gem install nutrella
 
-**Step 2**: Create configuration file `~/.nutrella.yml`
+**Step 2**: Create configuration file
 
     $ nutrella
 
