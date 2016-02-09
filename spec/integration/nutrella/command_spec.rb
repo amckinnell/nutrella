@@ -13,13 +13,8 @@ module Nutrella
       )
     end
 
-    # lookup existing board
+    it "looks up an existing board"
 
-    # create new board
-
-    def disable_cache
-      allow_any_instance_of(Cache).to receive(:get).and_yield
-      allow_any_instance_of(Cache).to receive(:put).and_yield
-    end
+    it "creates a new board"
   end
 end
