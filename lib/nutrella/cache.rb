@@ -8,14 +8,8 @@ module Nutrella
     CACHE_FILENAME = ".nutrella.cache.yml"
     CACHE_CAPACITY = 5
 
-    def get(key)
+    def fetch(key)
       value = lookup(key) || yield
-      write(key, value)
-      value
-    end
-
-    def put(key)
-      value = yield
       write(key, value)
       value
     end
