@@ -1,6 +1,6 @@
 module Nutrella
   RSpec.describe Configuration do
-    let(:path) { "home_dir/config.yml" }
+    let(:path) { "nutrella.yml" }
     let(:subject) { Configuration.new(path) }
 
     describe "#initialize" do
