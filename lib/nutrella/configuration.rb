@@ -17,7 +17,7 @@ module Nutrella
     def initialize(path)
       @path = path
 
-      load_configuration unless missing_configuration?
+      load_configuration unless configuration_missing?
     end
 
     private
@@ -32,23 +32,23 @@ module Nutrella
       raise "#{path} malformed: #{e.message}"
     end
 
-    def missing_configuration?
+    def configuration_missing?
       return false if File.exist?(path)
 
       write_initial_configuration
-      abort missing_configuration_message
+      abort configuration_missing_message
     end
 
     def write_initial_configuration
       File.write(path, INITIAL_CONFIGURATION)
     end
 
-    def missing_configuration_message
+    def configuration_missing_message
       <<-TEXT.strip_heredoc
         I see that you don't have a config file '#{path}''.
         So, I created one for you.
 
-        You still need to enter your Trello API keys in the config file.
+        You still need to enter your Trello API keys into the config file.
 
         See https://github.com/amckinnell/nutrella for instructions.
       TEXT
