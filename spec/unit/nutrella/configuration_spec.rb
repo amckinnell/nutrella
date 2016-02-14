@@ -4,7 +4,7 @@ module Nutrella
     let(:subject) { Configuration.new(path) }
 
     describe "#initialize" do
-      it "succeeds when configuration exists and YAML well formed" do
+      it "succeeds when configuration exists and is well formed" do
         configuration_file(key: "c1", secret: "5f", token: "3c")
 
         expect(subject).to have_attributes(key: "c1", secret: "5f", token: "3c")
