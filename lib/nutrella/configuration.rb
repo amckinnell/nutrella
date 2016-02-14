@@ -12,50 +12,43 @@ module Nutrella
       token: <your developer token>
     YAML
 
-    attr_reader :path
+    attr_reader :key, :path, :secret, :token
 
     def initialize(path)
       @path = path
-    end
 
-    def apply
-      apply_configuration(load_configuration)
+      load_configuration unless configuration_missing?
     end
 
     private
 
-    def apply_configuration(configuration)
-      Trello.configure do |config|
-        config.consumer_key = configuration.fetch("key")
-        config.consumer_secret = configuration.fetch("secret")
-        config.oauth_token = configuration.fetch("token")
-        config.oauth_token_secret = configuration.fetch("secret")
-      end
-    rescue
-      raise "#{path} malformed"
+    def load_configuration
+      configuration = YAML.load_file(path)
+
+      @key = configuration.fetch(:key)
+      @secret = configuration.fetch(:secret)
+      @token = configuration.fetch(:token)
+    rescue => e
+      raise "#{path} malformed: #{e.message}"
     end
 
-    def load_configuration
-      unless File.exist?(path)
-        write_initial_configuration
-        abort configuration_file_not_found_message
-      end
+    def configuration_missing?
+      return false if File.exist?(path)
 
-      YAML.load_file(path)
+      write_initial_configuration
+      abort configuration_missing_message
     end
 
     def write_initial_configuration
-      raise "#{path} exists" if File.exist?(path)
-
       File.write(path, INITIAL_CONFIGURATION)
     end
 
-    def configuration_file_not_found_message
+    def configuration_missing_message
       <<-TEXT.strip_heredoc
-        I see that you don't have a config file #{path}.
+        I see that you don't have a config file '#{path}'.
         So, I created one for you.
 
-        You still need to enter your Trello API keys in the config file.
+        You still need to enter your Trello API keys into the config file.
 
         See https://github.com/amckinnell/nutrella for instructions.
       TEXT

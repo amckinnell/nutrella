@@ -1,55 +1,36 @@
 module Nutrella
   RSpec.describe Configuration do
-    let(:path) { "home_dir/config.yml" }
+    let(:path) { "nutrella.yml" }
     let(:subject) { Configuration.new(path) }
 
-    describe "#apply" do
-      it "succeeds when configuration exists and YAML well formed" do
-        configuration_exists
+    describe "#initialize" do
+      it "succeeds when configuration exists and is well formed" do
+        configuration_file(key: "c1", secret: "5f", token: "3c")
 
-        allow(YAML).to receive(:load_file).with(path).and_return(
-          "key" => "c1",
-          "secret" => "5f",
-          "token" => "3c"
-        )
-
-        subject.apply
-
-        expect(Trello.configuration).to have_attributes(
-          consumer_key: "c1",
-          consumer_secret: "5f",
-          oauth_token: "3c",
-          oauth_token_secret: "5f"
-        )
+        expect(subject).to have_attributes(key: "c1", secret: "5f", token: "3c")
       end
 
       it "handles the case when the configuration is missing" do
-        configuration_missing
+        missing_configuration_file
 
         expect(File).to receive(:write).with(path, Configuration::INITIAL_CONFIGURATION)
 
-        expect { subject.apply }.to(
-          output(/you don't have a config file/).to_stderr.and(raise_error(SystemExit))
-        )
+        expect { subject }.to output(/you don't have a config file/).to_stderr.and(raise_error(SystemExit))
       end
 
       it "fails when configuration is malformed" do
-        configuration_exists
+        configuration_file(key: "c1", token: "5f")
 
-        allow(YAML).to receive(:load_file).with(path).and_return(
-          "key" => "c1",
-          "token" => "5f"
-        )
-
-        expect { subject.apply }.to raise_error(/#{path} malformed/)
+        expect { subject }.to raise_error(/#{path} malformed/)
       end
     end
 
-    def configuration_exists
+    def configuration_file(values)
       allow(File).to receive(:exist?).with(path).and_return(true)
+      allow(YAML).to receive(:load_file).with(path).and_return(values)
     end
 
-    def configuration_missing
+    def missing_configuration_file
       allow(File).to receive(:exist?).with(path).and_return(false)
     end
   end
