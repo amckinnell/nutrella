@@ -15,13 +15,13 @@ module Nutrella
     end
 
     def create(board_name)
-      Trello::Board.create(name: board_name).try(:url)
+      Trello::Board.create(name: board_name)
     end
 
     def lookup(board_name)
-      results = Trello::Action.search(board_name, modelTypes: "boards", board_fields: "name,url")
+      boards = Trello::Action.search(board_name, modelTypes: "boards", board_fields: "name,url").fetch("boards", [])
 
-      results["boards"].find { |board| board.name == board_name }.try(:url)
+      boards.find { |board| board.name == board_name }
     end
   end
 end

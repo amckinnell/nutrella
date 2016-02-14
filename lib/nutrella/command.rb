@@ -24,11 +24,11 @@ module Nutrella
     end
 
     def create(board_name)
-      @cache.put(board_name) { task_board.create(board_name) }
+      @cache.put(board_name) { task_board.create(board_name).try(:url) }
     end
 
     def lookup(board_name)
-      @cache.get(board_name) { task_board.lookup(board_name) }
+      @cache.get(board_name) { task_board.lookup(board_name).try(:url) }
     end
 
     def task_board
