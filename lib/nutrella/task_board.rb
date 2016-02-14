@@ -6,7 +6,12 @@ module Nutrella
   #
   class TaskBoard
     def initialize(configuration)
-      configuration.apply
+      Trello.configure do |config|
+        config.consumer_key = configuration.key
+        config.consumer_secret = configuration.secret
+        config.oauth_token = configuration.token
+        config.oauth_token_secret = configuration.secret
+      end
     end
 
     def create(board_name)
