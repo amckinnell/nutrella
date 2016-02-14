@@ -45,7 +45,7 @@ module Nutrella
 
     def configuration_missing_message
       <<-TEXT.strip_heredoc
-        I see that you don't have a config file '#{path}''.
+        I see that you don't have a config file '#{path}'.
         So, I created one for you.
 
         You still need to enter your Trello API keys into the config file.
