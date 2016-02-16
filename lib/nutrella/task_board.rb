@@ -20,16 +20,19 @@ module Nutrella
       end
     end
 
+    def lookup(board_name)
+      lookup_boards(board_name).find { |board| board.name == board_name }
+    end
+
     def create(board_name)
       create_board(board_name).tap { |board| make_team_visible(board) }
     end
 
-    def lookup(board_name)
-      Trello::Action.search(board_name, modelTypes: "boards", board_fields: "all").fetch(
-        "boards", []).find { |board| board.name == board_name }
-    end
-
     private
+
+    def lookup_boards(board_name)
+      Trello::Action.search(board_name, modelTypes: "boards", board_fields: "all").fetch("boards", [])
+    end
 
     def create_board(board_name)
       Trello::Board.create(name: board_name, organization_id: NULOGY_ORGANIZATION_ID)
