@@ -2,7 +2,7 @@ require "yaml"
 
 module Nutrella
   #
-  # Provides a cache of the most recently accessed items.
+  # Provides a cache of the most recently used items.
   #
   class Cache
     CACHE_FILENAME = ".nutrella.cache.yml"
