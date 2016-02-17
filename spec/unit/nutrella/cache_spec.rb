@@ -1,7 +1,7 @@
 module Nutrella
   RSpec.describe Cache do
     let(:configuration_directory) { "home_dir" }
-    let(:subject) { Cache.new(configuration_directory) }
+    let(:subject) { Cache.new(configuration_directory, 3) }
 
     describe "#fetch" do
       it "cache hit" do
@@ -40,10 +40,10 @@ module Nutrella
       end
 
       it "enforce cache capacity" do
-        cache_contents(["k 1", "v 1"], ["k 2", "v 2"], ["k 3", "v 3"], ["k 4", "v 4"], ["k 5", "v 5"])
-        expected_cache(["k 6", "v 6"], ["k 1", "v 1"], ["k 2", "v 2"], ["k 3", "v 3"], ["k 4", "v 4"])
+        cache_contents(["k 1", "v 1"], ["k 2", "v 2"], ["k 3", "v 3"])
+        expected_cache(["k 4", "v 4"], ["k 1", "v 1"], ["k 2", "v 2"])
 
-        expect(subject.fetch("k 6") { "v 6" }).to eq("v 6")
+        expect(subject.fetch("k 4") { "v 4" }).to eq("v 4")
       end
     end
 

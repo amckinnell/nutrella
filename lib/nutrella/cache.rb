@@ -6,12 +6,12 @@ module Nutrella
   #
   class Cache
     CACHE_FILENAME = ".nutrella.cache.yml"
-    CACHE_CAPACITY = 5
 
-    attr_reader :path
+    attr_reader :capacity, :path
 
-    def initialize(configuration_directory)
+    def initialize(configuration_directory, capacity)
       @path = File.join(configuration_directory, CACHE_FILENAME)
+      @capacity = capacity
     end
 
     def fetch(key)
@@ -35,7 +35,7 @@ module Nutrella
     def cached_entries(key, value)
       entries = YAML.load_file(path).reject { |k, _v| k == key }
 
-      [[key, value]].concat(entries).take(CACHE_CAPACITY)
+      [[key, value]].concat(entries).take(capacity)
     rescue
       [[key, value]]
     end
