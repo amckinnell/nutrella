@@ -1,7 +1,7 @@
 module Nutrella
   RSpec.describe Configuration do
-    let(:path) { "nutrella.yml" }
-    let(:subject) { Configuration.new(path) }
+    let(:configuration_directory) { "home_dir" }
+    let(:subject) { Configuration.new(configuration_directory) }
 
     describe "#initialize" do
       it "succeeds when configuration exists and is well formed" do
@@ -32,6 +32,10 @@ module Nutrella
 
     def missing_configuration_file
       allow(File).to receive(:exist?).with(path).and_return(false)
+    end
+
+    def path
+      File.join(configuration_directory, Configuration::CONFIGURATION_FILENAME)
     end
   end
 end

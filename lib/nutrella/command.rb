@@ -3,9 +3,9 @@ module Nutrella
   # This is the top-level class for the gem.
   #
   class Command
-    def initialize(configuration_path)
-      @url_cache = Cache.new
-      @task_board = TaskBoard.new(Configuration.new(configuration_path))
+    def initialize(configuration_directory)
+      @url_cache = Cache.new(configuration_directory)
+      @task_board = TaskBoard.new(Configuration.new(configuration_directory))
     end
 
     def run

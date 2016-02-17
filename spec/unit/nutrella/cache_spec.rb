@@ -1,5 +1,8 @@
 module Nutrella
   RSpec.describe Cache do
+    let(:configuration_directory) { "home_dir" }
+    let(:subject) { Cache.new(configuration_directory) }
+
     describe "#fetch" do
       it "cache hit" do
         cache_contents(["k 1", "v 1"])
@@ -56,12 +59,15 @@ module Nutrella
     end
 
     def expected_cache(*contents)
-      allow(Dir).to receive(:home).and_return("home_dir")
-      expect(File).to receive(:write).with("home_dir/.nutrella.cache.yml", contents.to_yaml)
+      expect(File).to receive(:write).with(path, contents.to_yaml)
     end
 
     def cache_load_error
       allow(YAML).to receive(:load_file).and_raise
+    end
+
+    def path
+      File.join(configuration_directory, Cache::CACHE_FILENAME)
     end
   end
 end

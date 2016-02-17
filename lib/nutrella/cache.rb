@@ -8,6 +8,12 @@ module Nutrella
     CACHE_FILENAME = ".nutrella.cache.yml"
     CACHE_CAPACITY = 5
 
+    attr_reader :path
+
+    def initialize(configuration_directory)
+      @path = File.join(configuration_directory, CACHE_FILENAME)
+    end
+
     def fetch(key)
       value = lookup(key) || yield
       write(key, value)
@@ -32,10 +38,6 @@ module Nutrella
       [[key, value]].concat(entries).take(CACHE_CAPACITY)
     rescue
       [[key, value]]
-    end
-
-    def path
-      "#{Dir.home}/#{CACHE_FILENAME}"
     end
   end
 end
