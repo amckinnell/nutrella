@@ -3,26 +3,24 @@ module Nutrella
     let(:configuration_directory) { "home_dir" }
     let(:subject) { Configuration.new(configuration_directory) }
 
-    describe "#initialize" do
-      it "succeeds when configuration exists and is well formed" do
-        configuration_file(key: "c1", secret: "5f", token: "3c")
+    it "succeeds when configuration exists and is well formed" do
+      configuration_file(key: "c1", secret: "5f", token: "3c")
 
-        expect(subject).to have_attributes(key: "c1", secret: "5f", token: "3c")
-      end
+      expect(subject).to have_attributes(key: "c1", secret: "5f", token: "3c")
+    end
 
-      it "handles the case when the configuration is missing" do
-        missing_configuration_file
+    it "handles the case when the configuration is missing" do
+      missing_configuration_file
 
-        expect(File).to receive(:write).with(path, Configuration::INITIAL_CONFIGURATION)
+      expect(File).to receive(:write).with(path, Configuration::INITIAL_CONFIGURATION)
 
-        expect { subject }.to output(/you don't have a config file/).to_stderr.and(raise_error(SystemExit))
-      end
+      expect { subject }.to output(/you don't have a config file/).to_stderr.and(raise_error(SystemExit))
+    end
 
-      it "fails when configuration is malformed" do
-        configuration_file(key: "c1", token: "5f")
+    it "fails when configuration is malformed (missing secret)" do
+      configuration_file(key: "c1", token: "5f")
 
-        expect { subject }.to raise_error(/#{path} malformed/)
-      end
+      expect { subject }.to raise_error(/#{path} malformed/)
     end
 
     def configuration_file(values)
