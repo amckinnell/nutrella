@@ -27,9 +27,9 @@ module Nutrella
     def load_configuration
       configuration = YAML.load_file(path)
 
-      @key = configuration.fetch(:key)
-      @secret = configuration.fetch(:secret)
-      @token = configuration.fetch(:token)
+      @key = configuration.fetch("key")
+      @secret = configuration.fetch("secret")
+      @token = configuration.fetch("token")
     rescue => e
       raise "#{path} malformed: #{e.message}"
     end

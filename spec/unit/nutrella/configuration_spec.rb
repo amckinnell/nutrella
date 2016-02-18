@@ -25,7 +25,7 @@ module Nutrella
 
     def configuration_file(values)
       allow(File).to receive(:exist?).with(path).and_return(true)
-      allow(YAML).to receive(:load_file).with(path).and_return(values)
+      allow(YAML).to receive(:load_file).with(path).and_return(values.stringify_keys)
     end
 
     def missing_configuration_file
