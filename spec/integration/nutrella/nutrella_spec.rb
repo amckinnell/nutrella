@@ -29,7 +29,8 @@ module Nutrella
 
     def arrange_trello(board_name:, url:)
       allow(TaskBoardName).to receive(:current_git_branch).and_return(board_name)
-      allow(Trello::Action).to receive(:search).with(board_name, anything).and_return({ "boards" => [OpenStruct.new(name: board_name, url: url)] })
+      allow(Trello::Action).to receive(:search).with(board_name, anything)
+        .and_return("boards" => [OpenStruct.new(name: board_name, url: url)])
     end
 
     def expect_contents(configuration_filename, expected_configuration)
