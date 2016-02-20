@@ -41,7 +41,7 @@ module Nutrella
     end
 
     def arrange_trello_for_lookup(board_name:, url:)
-      allow(TaskBoardName).to receive(:currentrubo_git_branch)
+      allow(TaskBoardName).to receive(:current_git_branch)
         .and_return(board_name)
 
       expect(Trello::Action).to receive(:search)
