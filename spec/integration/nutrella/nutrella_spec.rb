@@ -1,11 +1,13 @@
 module Nutrella
   RSpec.describe "Nutrella" do
+    let(:board_name) { "My Board" }
+    let(:url) { "board_url" }
+
     it "creates initial configuration file" do
       Dir.mktmpdir do |home_dir|
         expect { Command.new(home_dir).run }.to(
           output(/you don't have a config file/).to_stderr.and(raise_error(SystemExit))
         )
-
         expect_contents(configuration_filename(home_dir), initial_configuration)
       end
     end
@@ -13,7 +15,7 @@ module Nutrella
     it "looks up an existing task board" do
       Dir.mktmpdir do |home_dir|
         create_configuration_file(home_dir)
-        arrange_trello_for_lookup(board_name: "My Board", url: "board_url")
+        arrange_trello_for_lookup(board_name, url)
 
         subject = Command.new(home_dir)
 
@@ -26,7 +28,14 @@ module Nutrella
     it "creates a task board" do
       Dir.mktmpdir do |home_dir|
         create_configuration_file(home_dir)
-        arrange_trello_for_create(board_name: "My Board", url: "board_url")
+        arrange_trello_for_create(board_name)
+
+        expect(Trello::Board).to receive(:create)
+          .with(name: board_name, organization_id: TaskBoard::NULOGY_ORGANIZATION_ID)
+          .and_return(board("create_id", board_name, url))
+
+        expect_any_instance_of(Trello::Client).to receive(:put)
+          .with("/boards/create_id", "prefs/permissionLevel=org")
 
         subject = Command.new(home_dir)
 
@@ -40,31 +49,23 @@ module Nutrella
       File.write(configuration_filename(home_dir), sample_configuration)
     end
 
-    def arrange_trello_for_lookup(board_name:, url:)
+    def arrange_trello_for_lookup(board_name, url)
       allow(TaskBoardName).to receive(:current_git_branch)
         .and_return(board_name)
 
-      expect(Trello::Action).to receive(:search)
+      allow(Trello::Action).to receive(:search)
         .with(board_name, anything)
-        .and_return("boards" => [board(id: "lookup_id", name: board_name, url: url)])
+        .and_return("boards" => [board("lookup_id", board_name, url)])
     end
 
-    # rubocop:disable Metrics/AbcSize
-    def arrange_trello_for_create(board_name:, url:)
+    def arrange_trello_for_create(board_name)
       allow(TaskBoardName).to receive(:current_git_branch)
         .and_return(board_name)
 
       allow(Trello::Action).to receive(:search)
         .with(board_name, anything)
         .and_return("boards" => [])
-
-      expect(Trello::Board).to receive(:create)
-        .with(name: board_name, organization_id: TaskBoard::NULOGY_ORGANIZATION_ID)
-        .and_return(board(id: "create_id", name: board_name, url: url))
-      expect_any_instance_of(Trello::Client).to receive(:put)
-        .with("/boards/create_id", "prefs/permissionLevel=org")
     end
-    # rubocop:enable Metrics/AbcSize
 
     def expect_contents(configuration_filename, expected_configuration)
       expect(File.exist?(configuration_filename)).to eq(true)
@@ -75,7 +76,7 @@ module Nutrella
       File.join(home_dir, ".nutrella.yml")
     end
 
-    def board(id:, name:, url:)
+    def board(id, name, url)
       OpenStruct.new(id: id, name: name, url: url)
     end
 
