@@ -49,6 +49,7 @@ module Nutrella
         .and_return("boards" => [board(id: "lookup_id", name: board_name, url: url)])
     end
 
+    # rubocop:disable Metrics/AbcSize
     def arrange_trello_for_create(board_name:, url:)
       allow(TaskBoardName).to receive(:current_git_branch)
         .and_return(board_name)
@@ -63,6 +64,7 @@ module Nutrella
       expect_any_instance_of(Trello::Client).to receive(:put)
         .with("/boards/create_id", "prefs/permissionLevel=org")
     end
+    # rubocop:enable Metrics/AbcSize
 
     def expect_contents(configuration_filename, expected_configuration)
       expect(File.exist?(configuration_filename)).to eq(true)
