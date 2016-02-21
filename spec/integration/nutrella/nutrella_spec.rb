@@ -50,7 +50,7 @@ module Nutrella
     end
 
     def arrange_trello_for_lookup(board_name, url)
-      allow(TaskBoardName).to receive(:current_git_branch)
+      allow(TaskBoardName).to receive(:from_git_branch)
         .and_return(board_name)
 
       allow(Trello::Action).to receive(:search)
@@ -59,7 +59,7 @@ module Nutrella
     end
 
     def arrange_trello_for_create(board_name)
-      allow(TaskBoardName).to receive(:current_git_branch)
+      allow(TaskBoardName).to receive(:from_git_branch)
         .and_return(board_name)
 
       allow(Trello::Action).to receive(:search)

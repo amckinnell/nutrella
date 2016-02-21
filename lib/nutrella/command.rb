@@ -9,7 +9,7 @@ module Nutrella
     end
 
     def run
-      open_board(TaskBoardName.current_git_branch)
+      open_board(TaskBoardName.from_git_branch)
     end
 
     private
