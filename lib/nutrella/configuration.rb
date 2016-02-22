@@ -31,7 +31,7 @@ module Nutrella
       @secret = configuration.fetch("secret")
       @token = configuration.fetch("token")
     rescue => e
-      raise "#{path} malformed: #{e.message}"
+      abort "#{path} malformed: #{e.message}"
     end
 
     def configuration_missing?

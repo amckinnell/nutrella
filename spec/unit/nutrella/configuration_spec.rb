@@ -20,7 +20,7 @@ module Nutrella
     it "fails when configuration is malformed (missing secret)" do
       configuration_file(key: "c1", token: "5f")
 
-      expect { subject }.to raise_error(/#{path} malformed/)
+      expect { subject }.to output(/#{path} malformed/).to_stderr.and(raise_error(SystemExit))
     end
 
     def configuration_file(values)
