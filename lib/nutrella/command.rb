@@ -4,7 +4,7 @@ module Nutrella
   #
   class Command
     def initialize(configuration_directory)
-      @url_cache = Cache.new(configuration_directory, 5)
+      @url_cache = Cache.new(File.join(configuration_directory, ".nutrella.cache.yml"), 5)
       @task_board = TaskBoard.new(Configuration.new(configuration_directory))
     end
 

@@ -5,12 +5,10 @@ module Nutrella
   # Provides a cache of the most recently used items.
   #
   class Cache
-    CACHE_FILENAME = ".nutrella.cache.yml"
-
     attr_reader :capacity, :path
 
-    def initialize(configuration_directory, capacity)
-      @path = File.join(configuration_directory, CACHE_FILENAME)
+    def initialize(path, capacity)
+      @path = path
       @capacity = capacity
     end
 
