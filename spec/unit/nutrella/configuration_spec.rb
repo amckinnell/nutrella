@@ -3,7 +3,7 @@ module Nutrella
     let(:configuration_path) { "configuration_path" }
     let(:subject) { Configuration.new(configuration_path) }
 
-    it "succeeds when configuration exists and is well formed" do
+    it "succeeds when the configuration exists and is well formed" do
       configuration_file(key: "c1", secret: "5f", token: "3c")
 
       expect(subject).to have_attributes(key: "c1", secret: "5f", token: "3c")

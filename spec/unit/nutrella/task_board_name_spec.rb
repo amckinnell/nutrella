@@ -6,7 +6,7 @@ module Nutrella
       expect(TaskBoardName.from_git_branch).to eq("1234 Feature Branch")
     end
 
-    it "displays an error when no associated git branch" do
+    it "displays an error when there is no associated git branch" do
       Dir.mktmpdir do |non_git_dir|
         expect { TaskBoardName.from_git_branch(non_git_dir) }.to output(
           /Can't find an associated git branch/).to_stderr.and(raise_error(SystemExit))
