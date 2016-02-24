@@ -12,12 +12,10 @@ module Nutrella
       token: <your developer token>
     YAML
 
-    CONFIGURATION_FILENAME = ".nutrella.yml"
-
     attr_reader :key, :path, :secret, :token
 
-    def initialize(configuration_directory)
-      @path = File.join(configuration_directory, CONFIGURATION_FILENAME)
+    def initialize(path)
+      @path = path
 
       load_configuration unless configuration_missing?
     end

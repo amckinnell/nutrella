@@ -4,8 +4,7 @@ module Nutrella
   #
   class Command
     def initialize(configuration_directory)
-      @url_cache = Cache.new(configuration_directory, 5)
-      @task_board = TaskBoard.new(Configuration.new(configuration_directory))
+      @configuration_directory = configuration_directory
     end
 
     def run
@@ -19,11 +18,19 @@ module Nutrella
     end
 
     def board_url(board_name)
-      @url_cache.fetch(board_name) { @task_board.lookup_or_create(board_name).try(:url) }
+      url_cache.fetch(board_name) { task_board.lookup_or_create(board_name).try(:url) }
     end
 
     def open_url(board_url)
       system("open #{board_url}") if board_url
+    end
+
+    def task_board
+      TaskBoard.new(Configuration.new(File.join(@configuration_directory, ".nutrella.yml")))
+    end
+
+    def url_cache
+      Cache.new(File.join(@configuration_directory, ".nutrella.cache.yml"), 5)
     end
   end
 end
