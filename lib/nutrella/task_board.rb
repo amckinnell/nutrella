@@ -7,11 +7,7 @@ module Nutrella
   class TaskBoard
     NULOGY_ORGANIZATION_ID = "542d76ac2fad4697c3e80448"
 
-    attr_reader :configuration
-
     def initialize(configuration)
-      @configuration = configuration
-
       Trello.configure do |config|
         config.consumer_key = configuration.key
         config.consumer_secret = configuration.secret
@@ -43,16 +39,7 @@ module Nutrella
     end
 
     def make_team_visible(board)
-      client.put("/boards/#{board.id}", "prefs/permissionLevel=org") if board
-    end
-
-    def client
-      Trello::Client.new(
-        consumer_key: configuration.key,
-        consumer_secret: configuration.secret,
-        oauth_token: configuration.token,
-        oauth_token_secret: configuration.secret
-      )
+      Trello.client.put("/boards/#{board.id}", "prefs/permissionLevel=org") if board
     end
   end
 end
