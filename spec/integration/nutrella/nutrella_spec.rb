@@ -5,7 +5,7 @@ module Nutrella
     let(:board) { instance_double(Trello::Board, id: "id", name: board_name, url: url) }
 
     before do
-      allow(TaskBoardName).to receive(:from_git_branch).and_return(board_name)
+      allow(TaskBoardName).to receive(:from_git_branch).with(".").and_return(board_name)
     end
 
     it "creates initial configuration file" do
