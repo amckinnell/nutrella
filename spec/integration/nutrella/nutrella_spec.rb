@@ -9,7 +9,7 @@ module Nutrella
 
         expect { subject.run }.to output(/you don't have a config file/)
           .to_stderr.and(raise_error(SystemExit))
-        expect_contents(home_dir, initial_configuration)
+        expect_contents(subject.configuration_filename, initial_configuration)
       end
     end
 
@@ -17,7 +17,7 @@ module Nutrella
       Dir.mktmpdir do |home_dir|
         subject = Command.new(home_dir)
 
-        create_configuration_file(home_dir)
+        sample_configuration(subject.configuration_filename)
         arrange_trello_for_lookup(board_name, url)
 
         expect(subject).to receive(:system).with("open #{url}")
@@ -30,7 +30,7 @@ module Nutrella
       Dir.mktmpdir do |home_dir|
         subject = Command.new(home_dir)
 
-        create_configuration_file(home_dir)
+        sample_configuration(subject.configuration_filename)
         arrange_trello_for_create(board_name)
 
         expect(Trello::Board).to receive(:create)
@@ -46,8 +46,8 @@ module Nutrella
       end
     end
 
-    def create_configuration_file(home_dir)
-      File.write(configuration_filename(home_dir), sample_configuration)
+    def sample_configuration(configuration_filename)
+      File.write(configuration_filename, sample_configuration_contents)
     end
 
     def arrange_trello_for_lookup(board_name, url)
@@ -68,15 +68,9 @@ module Nutrella
         .and_return("boards" => [])
     end
 
-    def expect_contents(home_dir, expected_configuration)
-      configuration_filename = configuration_filename(home_dir)
-
+    def expect_contents(configuration_filename, expected_configuration)
       expect(File.exist?(configuration_filename)).to eq(true)
       expect(File.read(configuration_filename)).to eq(expected_configuration)
-    end
-
-    def configuration_filename(home_dir)
-      File.join(home_dir, ".nutrella.yml")
     end
 
     def board(id, name, url)
@@ -92,7 +86,7 @@ module Nutrella
       YAML
     end
 
-    def sample_configuration
+    def sample_configuration_contents
       <<-YAML.strip_heredoc
         # Trello Developer API Keys
         key: developer_key
