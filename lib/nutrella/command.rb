@@ -3,6 +3,8 @@ module Nutrella
   # This is the top-level class for the gem.
   #
   class Command
+    attr_reader :configuration_directory
+
     def initialize(configuration_directory)
       @configuration_directory = configuration_directory
     end
@@ -26,11 +28,11 @@ module Nutrella
     end
 
     def task_board
-      TaskBoard.new(Configuration.new(File.join(@configuration_directory, ".nutrella.yml")))
+      TaskBoard.new(Configuration.new(File.join(configuration_directory, ".nutrella.yml")))
     end
 
     def url_cache
-      Cache.new(File.join(@configuration_directory, ".nutrella.cache.yml"), 5)
+      Cache.new(File.join(configuration_directory, ".nutrella.cache.yml"), 5)
     end
   end
 end
