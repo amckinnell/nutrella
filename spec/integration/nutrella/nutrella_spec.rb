@@ -5,7 +5,7 @@ module Nutrella
     let(:board) { instance_double(Trello::Board, id: "id", name: board_name, url: url) }
 
     before do
-      allow(TaskBoardName).to receive(:from_git_branch).and_return(board_name)
+      allow(TaskBoardName).to receive(:from_git_branch).with(".").and_return(board_name)
     end
 
     it "creates initial configuration file" do
@@ -39,6 +39,21 @@ module Nutrella
           .with("/boards/#{board.id}", "prefs/permissionLevel=org")
 
         expect(subject).to receive(:system).with("open #{url}")
+
+        subject.run
+      end
+    end
+
+    it "fails to create a task board" do
+      create_command do |subject|
+        create_sample(subject.configuration_filename)
+        trello_search(board_name, search_result: [])
+
+        expect(Trello::Board).to receive(:create)
+          .with(name: board_name, organization_id: TaskBoard::NULOGY_ORGANIZATION_ID)
+          .and_return(nil)
+
+        expect(subject).not_to receive(:system).with(start_with("open"))
 
         subject.run
       end

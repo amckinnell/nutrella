@@ -8,7 +8,7 @@ module Nutrella
     end
 
     def run
-      open_board(TaskBoardName.from_git_branch)
+      open_board(TaskBoardName.from_git_branch("."))
     end
 
     def cache_filename
