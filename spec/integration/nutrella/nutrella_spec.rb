@@ -11,7 +11,7 @@ module Nutrella
     it "creates initial configuration file" do
       create_command do |subject|
         expect { subject.run }.to output(/you don't have a config file/).to_stderr.and(raise_error(SystemExit))
-        expect_contents(subject.configuration_filename, initial_configuration)
+        expect(subject.configuration_filename).to have_configuration(initial_configuration)
       end
     end
 
@@ -63,11 +63,6 @@ module Nutrella
       SAMPLE
     end
 
-    def expect_contents(configuration_filename, expected_configuration)
-      expect(File.exist?(configuration_filename)).to eq(true)
-      expect(File.read(configuration_filename)).to eq(expected_configuration)
-    end
-
     def initial_configuration
       <<-YAML.strip_heredoc
         # Trello Developer API Keys
@@ -75,6 +70,13 @@ module Nutrella
         secret: <your developer secret>
         token: <your developer token>
       YAML
+    end
+
+    RSpec::Matchers.define :have_configuration do |expected_configuration|
+      match do |configuration_filename|
+        expect(File.exist?(configuration_filename)).to eq(true)
+        expect(File.read(configuration_filename)).to eq(expected_configuration)
+      end
     end
   end
 end
