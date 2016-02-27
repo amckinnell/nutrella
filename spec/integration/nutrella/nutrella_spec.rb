@@ -55,16 +55,12 @@ module Nutrella
     end
 
     def create_sample(configuration_filename)
-      File.write(configuration_filename, sample_configuration_contents)
-    end
-
-    def sample_configuration_contents
-      <<-YAML.strip_heredoc
+      File.write(configuration_filename, <<-SAMPLE.strip_heredoc)
         # Trello Developer API Keys
         key: developer_key
         secret: developer_secret
         token: developer_token
-      YAML
+      SAMPLE
     end
 
     def expect_contents(configuration_filename, expected_configuration)
