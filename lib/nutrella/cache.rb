@@ -10,6 +10,8 @@ module Nutrella
     def initialize(path, capacity)
       @path = path
       @capacity = capacity
+
+      raise(ArgumentError, "invalid cache capacity #{capacity}") if capacity < 1
     end
 
     def fetch(key)
