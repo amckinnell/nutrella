@@ -29,7 +29,7 @@ module Nutrella
       @secret = configuration.fetch("secret")
       @token = configuration.fetch("token")
     rescue => e
-      abort "#{path} #{e.message}"
+      abort "#{path} #{e}"
     end
 
     def configuration_missing?
