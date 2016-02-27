@@ -6,7 +6,7 @@ module Nutrella
   #
   module TaskBoardName
     def self.from_git_branch(dir)
-      Git.open(dir).current_branch.humanize.titleize
+      Git.open(dir).current_branch.titleize
     rescue
       abort "Sorry. Can't find an associated git branch here."
     end
