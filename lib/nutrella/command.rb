@@ -11,6 +11,14 @@ module Nutrella
       open_board(TaskBoardName.from_git_branch)
     end
 
+    def cache_filename
+      File.join(@configuration_directory, ".nutrella.cache.yml")
+    end
+
+    def configuration_filename
+      File.join(@configuration_directory, ".nutrella.yml")
+    end
+
     private
 
     def open_board(board_name)
@@ -26,11 +34,11 @@ module Nutrella
     end
 
     def task_board
-      TaskBoard.new(Configuration.new(File.join(@configuration_directory, ".nutrella.yml")))
+      TaskBoard.new(Configuration.new(configuration_filename))
     end
 
     def url_cache
-      Cache.new(File.join(@configuration_directory, ".nutrella.cache.yml"), 5)
+      Cache.new(cache_filename, 5)
     end
   end
 end
