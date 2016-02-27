@@ -5,9 +5,10 @@ module Nutrella
 
     it "creates initial configuration file" do
       Dir.mktmpdir do |home_dir|
-        expect { Command.new(home_dir).run }.to(
-          output(/you don't have a config file/).to_stderr.and(raise_error(SystemExit))
-        )
+        subject = Command.new(home_dir)
+
+        expect { subject.run }.to output(/you don't have a config file/)
+          .to_stderr.and(raise_error(SystemExit))
         expect_contents(home_dir, initial_configuration)
       end
     end
