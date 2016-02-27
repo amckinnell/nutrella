@@ -15,10 +15,10 @@ module Nutrella
 
     it "looks up an existing task board" do
       Dir.mktmpdir do |home_dir|
+        subject = Command.new(home_dir)
+
         create_configuration_file(home_dir)
         arrange_trello_for_lookup(board_name, url)
-
-        subject = Command.new(home_dir)
 
         expect(subject).to receive(:system).with("open #{url}")
 
@@ -28,6 +28,8 @@ module Nutrella
 
     it "creates a task board" do
       Dir.mktmpdir do |home_dir|
+        subject = Command.new(home_dir)
+
         create_configuration_file(home_dir)
         arrange_trello_for_create(board_name)
 
@@ -37,8 +39,6 @@ module Nutrella
 
         expect_any_instance_of(Trello::Client).to receive(:put)
           .with("/boards/create_id", "prefs/permissionLevel=org")
-
-        subject = Command.new(home_dir)
 
         expect(subject).to receive(:system).with("open #{url}")
 
