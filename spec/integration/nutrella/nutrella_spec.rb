@@ -8,7 +8,7 @@ module Nutrella
         expect { Command.new(home_dir).run }.to(
           output(/you don't have a config file/).to_stderr.and(raise_error(SystemExit))
         )
-        expect_contents(configuration_filename(home_dir), initial_configuration)
+        expect_contents(home_dir, initial_configuration)
       end
     end
 
@@ -19,7 +19,7 @@ module Nutrella
 
         subject = Command.new(home_dir)
 
-        expect(subject).to receive(:system).with("open board_url")
+        expect(subject).to receive(:system).with("open #{url}")
 
         subject.run
       end
@@ -39,7 +39,7 @@ module Nutrella
 
         subject = Command.new(home_dir)
 
-        expect(subject).to receive(:system).with("open board_url")
+        expect(subject).to receive(:system).with("open #{url}")
 
         subject.run
       end
@@ -67,7 +67,9 @@ module Nutrella
         .and_return("boards" => [])
     end
 
-    def expect_contents(configuration_filename, expected_configuration)
+    def expect_contents(home_dir, expected_configuration)
+      configuration_filename = configuration_filename(home_dir)
+
       expect(File.exist?(configuration_filename)).to eq(true)
       expect(File.read(configuration_filename)).to eq(expected_configuration)
     end
