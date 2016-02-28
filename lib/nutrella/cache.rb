@@ -29,7 +29,7 @@ module Nutrella
     end
 
     def write(key, value)
-      File.write(path, cached_entries(key, value).to_yaml) unless value.nil?
+      File.write(path, cached_entries(key, value).to_yaml) if value
     end
 
     def cached_entries(key, value)
