@@ -62,7 +62,7 @@ module Nutrella
 
     def trello_search(board_name, search_result:)
       allow(Trello::Action).to receive(:search)
-        .with(board_name, anything)
+        .with(board_name, modelTypes: "boards", board_fields: "all")
         .and_return("boards" => search_result)
     end
 
