@@ -9,12 +9,11 @@ engines:
     enabled: true
   rubocop:
     enabled: true
-    exclude_fingerprints:
-    - d5d53f59247ba6952a3a2df1be0280bd
-    - c229be8637ecd3f01d64af692cbf05eb
     checks:
       Rubocop/Rails/Output:
         enabled: false
+  reek:
+    enabled: true
 ratings:
   paths:
   - "**.rb"
