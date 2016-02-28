@@ -8,11 +8,11 @@ module Nutrella
     NULOGY_ORGANIZATION_ID = "542d76ac2fad4697c3e80448"
 
     def initialize(configuration)
-      Trello.configure do |config|
-        config.consumer_key = configuration.key
-        config.consumer_secret = configuration.secret
-        config.oauth_token = configuration.token
-        config.oauth_token_secret = configuration.secret
+      Trello.configure do |trello_client|
+        trello_client.consumer_key = configuration.key
+        trello_client.consumer_secret = configuration.secret
+        trello_client.oauth_token = configuration.token
+        trello_client.oauth_token_secret = configuration.secret
       end
     end
 
