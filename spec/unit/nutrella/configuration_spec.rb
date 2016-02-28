@@ -1,7 +1,8 @@
 module Nutrella
   RSpec.describe Configuration do
     let(:configuration_path) { "configuration_path" }
-    let(:subject) { Configuration.new(configuration_path) }
+
+    subject { Configuration.new(configuration_path) }
 
     it "succeeds when the configuration exists and is well formed" do
       configuration_file(key: "c1", secret: "5f", token: "3c")

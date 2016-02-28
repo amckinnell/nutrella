@@ -1,7 +1,8 @@
 module Nutrella
   RSpec.describe Cache do
     let(:cache_path) { "cache_path" }
-    let(:subject) { Cache.new(cache_path, 3) }
+
+    subject { Cache.new(cache_path, 3) }
 
     describe "#fetch" do
       it "cache hit" do
