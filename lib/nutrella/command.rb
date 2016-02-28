@@ -3,21 +3,18 @@ module Nutrella
   # This is the top-level class for the gem.
   #
   class Command
+    attr_reader :cache_filename, :configuration_filename
+
     def initialize(configuration_directory, board_name)
       @configuration_directory = configuration_directory
       @board_name = board_name
+
+      @cache_filename = File.join(@configuration_directory, ".nutrella.cache.yml")
+      @configuration_filename = File.join(@configuration_directory, ".nutrella.yml")
     end
 
     def run
       open board_url
-    end
-
-    def cache_filename
-      File.join(@configuration_directory, ".nutrella.cache.yml")
-    end
-
-    def configuration_filename
-      File.join(@configuration_directory, ".nutrella.yml")
     end
 
     private
