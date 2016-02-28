@@ -4,10 +4,6 @@ module Nutrella
     let(:url) { "board_url" }
     let(:board) { instance_double(Trello::Board, id: "id", name: board_name, url: url) }
 
-    before do
-      allow(TaskBoardName).to receive(:from_git_branch).with(".").and_return(board_name)
-    end
-
     it "creates initial configuration file" do
       create_command do |subject|
         expect { subject.run }.to output(/you don't have a config file/).to_stderr.and(raise_error(SystemExit))
@@ -60,7 +56,7 @@ module Nutrella
     end
 
     def create_command
-      Dir.mktmpdir { |home_dir| yield Command.new(home_dir) }
+      Dir.mktmpdir { |home_dir| yield Command.new(home_dir, board_name) }
     end
 
     def trello_search(board_name, search_result:)

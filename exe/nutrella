@@ -2,4 +2,6 @@
 
 require "nutrella"
 
-Nutrella::Command.new(Dir.home).run
+board_name = Nutrella::TaskBoardName.from_git_branch(".")
+
+Nutrella::Command.new(Dir.home, board_name).run

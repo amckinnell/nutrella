@@ -3,12 +3,13 @@ module Nutrella
   # This is the top-level class for the gem.
   #
   class Command
-    def initialize(configuration_directory)
+    def initialize(configuration_directory, board_name)
       @configuration_directory = configuration_directory
+      @board_name = board_name
     end
 
     def run
-      open_board(TaskBoardName.from_git_branch("."))
+      open board_url
     end
 
     def cache_filename
@@ -21,16 +22,12 @@ module Nutrella
 
     private
 
-    def open_board(board_name)
-      open_url(board_url(board_name))
+    def board_url
+      url_cache.fetch(@board_name) { task_board.lookup_or_create(@board_name).try(:url) }
     end
 
-    def board_url(board_name)
-      url_cache.fetch(board_name) { task_board.lookup_or_create(board_name).try(:url) }
-    end
-
-    def open_url(board_url)
-      system("open #{board_url}") if board_url
+    def open(url)
+      system("open #{url}") if url
     end
 
     def task_board

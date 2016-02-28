@@ -1,6 +1,6 @@
 module Nutrella
   RSpec.describe Command do
-    subject { Command.new("home_dir") }
+    subject { Command.new("home_dir", "board_name") }
 
     it "#cache_filename" do
       expect(subject.cache_filename).to eq("home_dir/.nutrella.cache.yml")
