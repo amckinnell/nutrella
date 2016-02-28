@@ -6,8 +6,9 @@ module Nutrella
 
     it "creates initial configuration file" do
       create_command do |subject|
-        expect { subject.run }.to output(/you don't have a config file/).to_stderr.and(raise_error(SystemExit))
-        expect(subject.configuration_filename).to have_configuration(initial_configuration)
+        expect { subject.run }.to output(/you don't have a config file/).to_stderr
+          .and(raise_error(SystemExit))
+        expect(subject).to have_configuration(initial_configuration)
       end
     end
 
@@ -84,9 +85,9 @@ module Nutrella
     end
 
     RSpec::Matchers.define :have_configuration do |expected_configuration|
-      match do |configuration_filename|
-        expect(File.exist?(configuration_filename)).to eq(true)
-        expect(File.read(configuration_filename)).to eq(expected_configuration)
+      match do |command|
+        expect(File.exist?(command.configuration_filename)).to eq(true)
+        expect(File.read(command.configuration_filename)).to eq(expected_configuration)
       end
     end
   end
