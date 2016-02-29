@@ -61,7 +61,7 @@ module Nutrella
     end
 
     def cache_contents(*contents)
-      allow(YAML).to receive(:load_file).and_return(contents)
+      allow(YAML).to receive(:load_file).with(cache_path).and_return(contents)
     end
 
     def expected_cache(*contents)
@@ -69,7 +69,7 @@ module Nutrella
     end
 
     def cache_load_error
-      allow(YAML).to receive(:load_file).and_raise
+      allow(YAML).to receive(:load_file).with(cache_path).and_raise
     end
   end
 end
