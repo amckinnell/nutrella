@@ -12,6 +12,13 @@ module Nutrella
         expect(subject.fetch("k 1") { "v 1" }).to eq("v 1")
       end
 
+      it "cache hit with alternate value" do
+        cache_contents(["k 1", "v 1"])
+        expected_cache(["k 1", "v 1"])
+
+        expect(subject.fetch("k 1") { "alternate value" }).to eq("v 1")
+      end
+
       it "cache miss" do
         cache_contents(["k 1", "v 1"])
         expected_cache(["k 2", "v 2"], ["k 1", "v 1"])
