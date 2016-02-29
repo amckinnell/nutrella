@@ -5,4 +5,5 @@ Mutant seems to hang when `cache.rb` is subject for mutation. So, choose one fil
 ## Running Mutant
 
 `mutant --use rspec Nutrella::Command*`
+`mutant --use rspec Nutrella::Cache#lookup`
 
