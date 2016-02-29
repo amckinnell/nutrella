@@ -27,7 +27,7 @@ module Nutrella
     end
 
     def write(key, value)
-      File.write(path, cached_entries(key, value).to_yaml) if value
+      File.write(path, cached_entries(key, value).to_yaml)
     end
 
     def cached_entries(key, value)
