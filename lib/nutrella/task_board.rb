@@ -39,7 +39,7 @@ module Nutrella
     end
 
     def make_team_visible(board)
-      Trello.client.put("/boards/#{board.id}", "prefs/permissionLevel=org") if board
+      Trello.client.put("/boards/#{board.id}", "prefs/permissionLevel=org")
     end
   end
 end

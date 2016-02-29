@@ -41,21 +41,6 @@ module Nutrella
       end
     end
 
-    it "fails to create a task board" do
-      create_command do |subject|
-        create_sample(subject.configuration_filename)
-        trello_search(board_name, search_result: [])
-
-        expect(Trello::Board).to receive(:create)
-          .with(name: board_name, organization_id: TaskBoard::NULOGY_ORGANIZATION_ID)
-          .and_return(nil)
-
-        expect(subject).not_to receive(:system).with(start_with("open"))
-
-        subject.run
-      end
-    end
-
     def create_command
       Dir.mktmpdir { |home_dir| yield Command.new(home_dir, board_name) }
     end
