@@ -62,11 +62,6 @@ module Nutrella
       expect(subject.fetch("k 1") { "v 1" }).to eq("v 1")
     end
 
-    it "raises argument error when cache capacity is invalid" do
-      expect { Cache.new(cache_path, 1) }.to_not raise_error
-      expect { Cache.new(cache_path, 0) }.to raise_error(ArgumentError, /invalid cache capacity 0/)
-    end
-
     def cache_contents(*contents)
       allow(YAML).to receive(:load_file).with(cache_path).and_return(contents)
     end
