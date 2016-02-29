@@ -18,11 +18,11 @@ module Nutrella
     private
 
     def board_url
-      url_cache.fetch(@board_name) { task_board.lookup_or_create(@board_name).try(:url) }
+      url_cache.fetch(@board_name) { task_board.lookup_or_create(@board_name).url }
     end
 
     def open(url)
-      system("open #{url}") if url
+      system("open #{url}")
     end
 
     def task_board
