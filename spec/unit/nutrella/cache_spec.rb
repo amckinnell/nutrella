@@ -56,8 +56,8 @@ module Nutrella
     end
 
     it "raises argument error when cache capacity is invalid" do
+      expect { Cache.new(cache_path, 1) }.to_not raise_error
       expect { Cache.new(cache_path, 0) }.to raise_error(ArgumentError, /invalid cache capacity 0/)
-      expect { Cache.new(cache_path, -1) }.to raise_error(ArgumentError, /invalid cache capacity -1/)
     end
 
     def cache_contents(*contents)
