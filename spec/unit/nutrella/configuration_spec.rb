@@ -5,9 +5,9 @@ module Nutrella
     subject { Configuration.new(configuration_path) }
 
     it "succeeds when the configuration exists and is well formed" do
-      configuration_file(key: "c1", secret: "5f", token: "3c")
+      configuration_file(key: "c1", secret: "5f", token: "3c", organization: "org")
 
-      expect(subject).to have_attributes(key: "c1", secret: "5f", token: "3c")
+      expect(subject).to have_attributes(key: "c1", secret: "5f", token: "3c", organization: "org")
     end
 
     it "handles the case when the configuration is missing" do
@@ -19,7 +19,7 @@ module Nutrella
     end
 
     it "fails when configuration is malformed (missing secret)" do
-      configuration_file(key: "c1", token: "5f")
+      configuration_file(key: "c1", token: "5f", organization: "org")
 
       expect { subject }.to output(/#{configuration_path} key not found: "secret"/)
         .to_stderr.and(raise_error(SystemExit))

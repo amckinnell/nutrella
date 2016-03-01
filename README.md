@@ -41,6 +41,9 @@ The configuration file should look like the following (don't use the keys below,
     secret: 7fd865f372891afa93aabdb6b836254bcda10c8a320def2b3207e2ffb425bc0a
     token: 4c13558cbafdcb4765103a195e05b0476f3b3f7f3efc83f2a810fb769f4ae2d6
 
+    # Optional Configuration
+    organization: 542d76ac2fad4697c3e80448
+
 
 ## Usage
 

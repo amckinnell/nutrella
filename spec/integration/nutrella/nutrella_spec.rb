@@ -8,7 +8,7 @@ module Nutrella
       create_command do |subject|
         expect { subject.run }.to output(/you don't have a config file/).to_stderr
           .and(raise_error(SystemExit))
-        expect(subject).to have_configuration(initial_configuration)
+        expect(subject).to have_configuration(Configuration::INITIAL_CONFIGURATION)
       end
     end
 
@@ -29,7 +29,7 @@ module Nutrella
         trello_search(board_name, search_result: [])
 
         expect(Trello::Board).to receive(:create)
-          .with(name: board_name, organization_id: TaskBoard::NULOGY_ORGANIZATION_ID)
+          .with(name: board_name, organization_id: "developer_organization")
           .and_return(board)
 
         expect_any_instance_of(Trello::Client).to receive(:put)
@@ -57,16 +57,10 @@ module Nutrella
         key: developer_key
         secret: developer_secret
         token: developer_token
-      SAMPLE
-    end
 
-    def initial_configuration
-      <<-YAML.strip_heredoc
-        # Trello Developer API Keys
-        key: <your developer key>
-        secret: <your developer secret>
-        token: <your developer token>
-      YAML
+        # Optional Configuration
+        organization: developer_organization
+      SAMPLE
     end
 
     RSpec::Matchers.define :have_configuration do |expected_configuration|
