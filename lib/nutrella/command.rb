@@ -26,7 +26,7 @@ module Nutrella
     end
 
     def task_board
-      TaskBoard.new(Configuration.new(configuration_filename).values)
+      TaskBoard.new(Configuration.values(configuration_filename))
     end
 
     def url_cache

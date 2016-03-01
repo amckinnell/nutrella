@@ -19,6 +19,10 @@ module Nutrella
 
     attr_reader :path, :values
 
+    def self.values(path)
+      new(path).values
+    end
+
     def initialize(path)
       @path = path
 

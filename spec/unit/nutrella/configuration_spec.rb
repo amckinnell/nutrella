@@ -1,37 +1,36 @@
 module Nutrella
   RSpec.describe Configuration do
-    let(:configuration_path) { "configuration_path" }
-
-    subject { Configuration.new(configuration_path) }
+    let(:path) { "path" }
 
     it "succeeds when the configuration exists and is well formed" do
-      configuration_file(key: "c1", secret: "5f", token: "3c", organization: "org")
+      configuration_file_contents(key: "c1", secret: "5f", token: "3c", organization: "org")
 
-      expect(subject.values).to eq(key: "c1", secret: "5f", token: "3c", organization: "org")
+      expect(Configuration.values(path)).to eq(key: "c1", secret: "5f", token: "3c", organization: "org")
     end
 
     it "handles the case when the configuration is missing" do
-      missing_configuration_file
+      configuration_file_missing
 
-      expect(File).to receive(:write).with(configuration_path, Configuration::INITIAL_CONFIGURATION)
+      expect(File).to receive(:write).with(path, Configuration::INITIAL_CONFIGURATION)
 
-      expect { subject }.to output(/you don't have a config file/).to_stderr.and(raise_error(SystemExit))
-    end
-
-    it "fails when configuration is malformed (missing secret)" do
-      configuration_file(key: "c1", token: "5f", organization: "org")
-
-      expect { subject }.to output(/#{configuration_path} key not found: "secret"/)
+      expect { Configuration.values(path) }.to output(/you don't have a config file/)
         .to_stderr.and(raise_error(SystemExit))
     end
 
-    def configuration_file(values)
-      allow(File).to receive(:exist?).with(configuration_path).and_return(true)
-      allow(YAML).to receive(:load_file).with(configuration_path).and_return(values.stringify_keys)
+    it "fails when configuration is malformed (missing secret)" do
+      configuration_file_contents(key: "c1", token: "5f", organization: "org")
+
+      expect { Configuration.values(path) }.to output(/#{path} key not found: "secret"/)
+        .to_stderr.and(raise_error(SystemExit))
     end
 
-    def missing_configuration_file
-      allow(File).to receive(:exist?).with(configuration_path).and_return(false)
+    def configuration_file_contents(values)
+      allow(File).to receive(:exist?).with(path).and_return(true)
+      allow(YAML).to receive(:load_file).with(path).and_return(values.stringify_keys)
+    end
+
+    def configuration_file_missing
+      allow(File).to receive(:exist?).with(path).and_return(false)
     end
   end
 end
