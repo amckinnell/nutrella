@@ -5,14 +5,19 @@ module Nutrella
   # Knows the location and format of the configuration.
   #
   class Configuration
+    NULOGY_ORGANIZATION_ID = "542d76ac2fad4697c3e80448"
+
     INITIAL_CONFIGURATION = <<-YAML.strip_heredoc
       # Trello Developer API Keys
       key: <your developer key>
       secret: <your developer secret>
       token: <your developer token>
+
+      # Optional Configuration
+      organization: #{NULOGY_ORGANIZATION_ID}
     YAML
 
-    attr_reader :key, :path, :secret, :token
+    attr_reader :key, :organization, :path, :secret, :token
 
     def initialize(path)
       @path = path
@@ -28,6 +33,7 @@ module Nutrella
       @key = configuration.fetch("key")
       @secret = configuration.fetch("secret")
       @token = configuration.fetch("token")
+      @organization = configuration.fetch("organization", NULOGY_ORGANIZATION_ID)
     rescue => e
       abort "#{path} #{e}"
     end
