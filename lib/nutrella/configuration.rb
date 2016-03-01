@@ -17,7 +17,7 @@ module Nutrella
       organization: #{NULOGY_ORGANIZATION_ID}
     YAML
 
-    attr_reader :key, :organization, :path, :secret, :token
+    attr_reader :path, :values
 
     def initialize(path)
       @path = path
@@ -30,10 +30,12 @@ module Nutrella
     def load_configuration
       configuration = YAML.load_file(path)
 
-      @key = configuration.fetch("key")
-      @secret = configuration.fetch("secret")
-      @token = configuration.fetch("token")
-      @organization = configuration.fetch("organization", NULOGY_ORGANIZATION_ID)
+      @values = {
+        key: configuration.fetch("key"),
+        secret: configuration.fetch("secret"),
+        token: configuration.fetch("token"),
+        organization: configuration.fetch("organization", NULOGY_ORGANIZATION_ID)
+      }
     rescue => e
       abort "#{path} #{e}"
     end

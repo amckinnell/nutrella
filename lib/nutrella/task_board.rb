@@ -7,13 +7,13 @@ module Nutrella
   class TaskBoard
     def initialize(configuration)
       Trello.configure do |trello_client|
-        trello_client.consumer_key = configuration.key
-        trello_client.consumer_secret = configuration.secret
-        trello_client.oauth_token = configuration.token
-        trello_client.oauth_token_secret = configuration.secret
+        trello_client.consumer_key = configuration.fetch(:key)
+        trello_client.consumer_secret = configuration.fetch(:secret)
+        trello_client.oauth_token = configuration.fetch(:token)
+        trello_client.oauth_token_secret = configuration.fetch(:secret)
       end
 
-      @organization = configuration.organization
+      @organization = configuration.fetch(:organization)
     end
 
     def lookup_or_create(board_name)
