@@ -3,7 +3,7 @@
 [![Gem Version](https://badge.fury.io/rb/nutrella.svg)](https://badge.fury.io/rb/nutrella)
 [![Code Climate](https://codeclimate.com/github/amckinnell/nutrella/badges/gpa.svg)](https://codeclimate.com/github/amckinnell/nutrella)
 
-A command line tool for creating a Trello board based on the current git branch.
+A command line tool for associating a Trello board with the current git branch.
 
 
 ## Installation
