@@ -2,12 +2,12 @@ module Nutrella
   RSpec.describe Configuration do
     let(:path) { "path" }
 
-    subject { Configuration.values(path) }
+    subject(:configuration) { Configuration.values(path) }
 
     it "succeeds when the configuration exists and is well formed" do
       configuration_file_contents(key: "c1", secret: "5f", token: "3c", organization: "org")
 
-      expect(subject).to eq(key: "c1", secret: "5f", token: "3c", organization: "org")
+      expect(configuration).to eq(key: "c1", secret: "5f", token: "3c", organization: "org")
     end
 
     it "handles the case when the configuration is missing" do
@@ -15,14 +15,14 @@ module Nutrella
 
       expect(File).to receive(:write).with(path, Configuration::INITIAL_CONFIGURATION)
 
-      expect { subject }.to output(/you don't have a config file/)
+      expect { configuration }.to output(/you don't have a config file/)
         .to_stderr.and(raise_error(SystemExit))
     end
 
     it "fails when configuration is malformed (missing secret)" do
       configuration_file_contents(key: "c1", token: "5f", organization: "org")
 
-      expect { subject }.to output(/#{path} key not found: "secret"/)
+      expect { configuration }.to output(/#{path} key not found: "secret"/)
         .to_stderr.and(raise_error(SystemExit))
     end
 
