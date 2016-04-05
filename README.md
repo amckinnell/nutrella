@@ -2,6 +2,7 @@
 
 [![Gem Version](https://badge.fury.io/rb/nutrella.svg)](https://badge.fury.io/rb/nutrella)
 [![Code Climate](https://codeclimate.com/github/amckinnell/nutrella/badges/gpa.svg)](https://codeclimate.com/github/amckinnell/nutrella)
+[![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
 
 A command line tool for associating a Trello board with the current git branch.
 
