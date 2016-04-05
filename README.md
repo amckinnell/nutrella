@@ -6,6 +6,14 @@
 
 A command line tool for associating a Trello board with the current git branch.
 
+## Table of Contents
+
+* [Installation](#installation)
+* [Usage](#usage)
+* [Origin of Name](#origin-of-name)
+* [Contributing](#contributing)
+* [License](#license)
+
 
 ## Installation
 
