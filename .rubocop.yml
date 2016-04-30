@@ -2,7 +2,7 @@ AllCops:
   TargetRubyVersion: 2.1
 
   Exclude:
-      - 'bin/**/*'
+    - 'bin/**/*'
 
 Metrics/LineLength:
   Max: 120
