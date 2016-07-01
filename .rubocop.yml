@@ -20,6 +20,6 @@ Style/StringLiterals:
 Style/MutableConstant:
   Enabled: false
 
-# We are not going to distinguish between fail and raise.
-Style/SignalException:
+# Rubocop and I cannot agree.
+Style/MultilineMethodCallBraceLayout:
   Enabled: false
