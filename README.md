@@ -53,6 +53,19 @@ The configuration file should look like the following (don't use the keys below,
     # Optional Configuration
     organization: 542d76ac2fad4697c3e80448
 
+### Troubleshooting
+
+If you run into the following error:
+
+```
+method_missing: undefined method `this' for #<Gem::Specification:0x3fd505420fbc nutrella-0.4.0> (NoMethodError)
+```
+
+it means that you need to update your system's RubyGems version. Apparently there is some sort of version incompatibility for some versioning permutations of Nutrella, Ruby, and RubyGems. Run this to execute the fix:
+
+```
+gem update --system
+```
 
 ## Usage
 
