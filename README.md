@@ -62,7 +62,9 @@ If you run into the following error:
 method_missing: undefined method `this' for #<Gem::Specification:0x3fd505420fbc nutrella-0.4.0> (NoMethodError)
 ```
 
-it means that you need to update your system's RubyGems version. Apparently there is some sort of version incompatibility for some versioning permutations of Nutrella, Ruby, and RubyGems. Run this to execute the fix:
+you need to update RubyGems.
+ 
+To execute the fix run:
 
 ```
 gem update --system
