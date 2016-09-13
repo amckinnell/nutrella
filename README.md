@@ -9,6 +9,7 @@ A command line tool for associating a Trello board with the current git branch.
 ## Table of Contents
 
 * [Installation](#installation)
+* [Troubleshooting](#troubleshooting)
 * [Usage](#usage)
 * [Origin of Name](#origin-of-name)
 * [Contributing](#contributing)
@@ -53,7 +54,7 @@ The configuration file should look like the following (don't use the keys below,
     # Optional Configuration
     organization: 542d76ac2fad4697c3e80448
 
-### Troubleshooting
+## Troubleshooting
 
 If you run into the following error:
 
