@@ -63,8 +63,6 @@ method_missing: undefined method `this' for #<Gem::Specification:0x3fd505420fbc 
 ```
 
 you need to update RubyGems.
- 
-To execute the fix run:
 
 ```
 gem update --system
