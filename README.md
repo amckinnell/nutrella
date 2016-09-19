@@ -66,11 +66,13 @@ gem update --system
 
 ### `uninitialized constant Gem::Source (NameError)`
 
-Try updating `bundler`: 
+Try updating `bundler` 
 
 ```sh
 gem install bundler
 ```
+
+For more information see the `bundler` [CHANGE.LOG]( https://github.com/bundler/bundler/blob/master/CHANGELOG.md#1131-2016-09-13)
 
 ## Usage
 
