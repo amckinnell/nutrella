@@ -56,16 +56,20 @@ The configuration file should look like the following (don't use the keys below,
 
 ## Troubleshooting
 
-If you run into the following error:
+### `method_missing: undefined method 'this'`
 
-```
-method_missing: undefined method `this' for #<Gem::Specification:0x3fd505420fbc nutrella-0.4.0> (NoMethodError)
-```
+Try updating `RubyGems`
 
-you need to update RubyGems.
-
-```
+```sh
 gem update --system
+```
+
+### `uninitialized constant Gem::Source (NameError)`
+
+Try updating `bundler`: 
+
+```sh
+gem install bundler
 ```
 
 ## Usage
