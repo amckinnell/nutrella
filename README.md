@@ -9,8 +9,8 @@ A command line tool for associating a Trello board with the current git branch.
 ## Table of Contents
 
 * [Installation](#installation)
-* [Troubleshooting](#troubleshooting)
 * [Usage](#usage)
+* [Troubleshooting](#troubleshooting)
 * [Origin of Name](#origin-of-name)
 * [Contributing](#contributing)
 * [License](#license)
@@ -54,6 +54,14 @@ The configuration file should look like the following (don't use the keys below,
     # Optional Configuration
     organization: 542d76ac2fad4697c3e80448
 
+
+## Usage
+
+Create or open a Trello board based on the name of the current git branch:
+
+    $ nutrella
+
+
 ## Troubleshooting
 
 ### `method_missing: undefined method 'this'`
@@ -73,12 +81,6 @@ gem install bundler
 ```
 
 For more information see the `bundler` [CHANGELOG]( https://github.com/bundler/bundler/blob/master/CHANGELOG.md#1131-2016-09-13)
-
-## Usage
-
-Create or open a Trello board based on the name of the current git branch:
-
-    $ nutrella
 
 
 ## Origin of Name
