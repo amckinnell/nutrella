@@ -80,8 +80,6 @@ Try updating `bundler`
 gem install bundler
 ```
 
-For more information see the `bundler` [CHANGELOG]( https://github.com/bundler/bundler/blob/master/CHANGELOG.md#1131-2016-09-13)
-
 
 ## Origin of Name
 
