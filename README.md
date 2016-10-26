@@ -26,9 +26,9 @@ A command line tool for associating a Trello board with the current git branch.
 
     $ nutrella
 
-**Step 3**: Get key and secret
+**Step 3**: Get key and secret (best to do this from your home directory)
 
-    $ cd ~ # You cannot run this in a directory that uses Bundler.
+    $ cd ~
     $ irb -rubygems
     irb> require 'nutrella'
     irb> Nutrella.open_public_key_url
