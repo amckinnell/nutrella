@@ -28,6 +28,7 @@ A command line tool for associating a Trello board with the current git branch.
 
 **Step 3**: Get key and secret
 
+    $ cd ~ # You cannot run this in a directory that uses Bundler.
     $ irb -rubygems
     irb> require 'nutrella'
     irb> Nutrella.open_public_key_url
@@ -74,10 +75,18 @@ gem update --system
 
 ### `uninitialized constant Gem::Source (NameError)`
 
-Try updating `bundler` 
+Try updating `bundler`
 
 ```sh
 gem install bundler
+```
+
+### `cannot load such file -- nutrella`
+
+This error may appear after running `irb -rubygems` and you are unable to `require 'nutrella'`. You won't be able to `require 'nutrella'` from a directory that uses Bundler. Try running `irb` instead from your home directory:
+
+```sh
+cd ~
 ```
 
 
