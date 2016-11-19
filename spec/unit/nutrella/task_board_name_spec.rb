@@ -2,30 +2,31 @@ module Nutrella
   RSpec.describe TaskBoardName do
     subject(:task_board_name) { TaskBoardName }
 
-    describe "derives the task board name from the current git branch" do
-      it "given a directory" do
-        configure_git(working_dir: "dir", current_branch: "master")
+    it "derives the task board name from the current git branch" do
+      configure_git_command_success(current_branch: "1234_feature_branch")
 
-        expect(task_board_name.from_git_branch("dir")).to eq("Master")
-      end
-
-      it "defaulting to the current directory" do
-        configure_git(working_dir: ".", current_branch: "1234_feature_branch")
-
-        expect(task_board_name.from_git_branch).to eq("1234 Feature Branch")
-      end
+      expect(task_board_name.from_git_branch).to eq("1234 Feature Branch")
     end
 
     it "displays an error when there is no associated git branch" do
-      Dir.mktmpdir do |non_git_dir|
-        expect { task_board_name.from_git_branch(non_git_dir) }.to output(
-          /Can't find an associated git branch/).to_stderr.and(raise_error(SystemExit))
-      end
+      configure_git_command_failure
+
+      expect { task_board_name.from_git_branch }.to output(
+        "Sorry. Can't find an associated git branch here.\n")
+        .to_stderr.and(raise_error(SystemExit))
     end
 
-    def configure_git(working_dir:, current_branch:)
-      allow(Git).to receive(:open).with(working_dir).and_return(
-        instance_double(Git::Base, current_branch: current_branch))
+    def configure_git_command_success(current_branch:)
+      configure_open3(git_branch_name: "#{current_branch}\n", success: true)
+    end
+
+    def configure_git_command_failure
+      configure_open3(git_branch_name: nil, success: false)
+    end
+
+    def configure_open3(git_branch_name:, success:)
+      expect(Open3).to receive(:capture2).with('git rev-parse --abbrev-ref HEAD')
+        .and_return([git_branch_name, instance_double(Process::Status, success?: success)])
     end
   end
 end
