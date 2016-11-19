@@ -6,7 +6,7 @@ module Nutrella
   #
   module TaskBoardName
     def self.from_git_branch
-      git_branch_name, status = Open3.capture2('git rev-parse --abbrev-ref HEAD')
+      git_branch_name, status = Open3.capture2("git rev-parse --abbrev-ref HEAD")
 
       abort "Sorry. Can't find an associated git branch here." unless status.success?
 

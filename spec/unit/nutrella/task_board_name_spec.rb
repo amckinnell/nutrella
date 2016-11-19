@@ -25,7 +25,7 @@ module Nutrella
     end
 
     def configure_open3(git_branch_name:, success:)
-      expect(Open3).to receive(:capture2).with('git rev-parse --abbrev-ref HEAD')
+      expect(Open3).to receive(:capture2).with("git rev-parse --abbrev-ref HEAD")
         .and_return([git_branch_name, instance_double(Process::Status, success?: success)])
     end
   end
