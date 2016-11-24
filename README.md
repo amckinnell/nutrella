@@ -1,6 +1,6 @@
 # Nutrella
 
-[![Gem Version](http://img.shields.io/gem/v/nutrella.svg?style=flat-square)](https://rubygems.org/gems/nutrella)
+[![Gem Version](http://img.shields.io/gem/v/nutrella.svg?style=flat)](https://rubygems.org/gems/nutrella)
 [![Code Climate](https://codeclimate.com/github/amckinnell/nutrella/badges/gpa.svg)](https://codeclimate.com/github/amckinnell/nutrella)
 [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
 
