@@ -26,7 +26,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "httplog", "~> 0.3"
   spec.add_development_dependency "mutant-rspec", "~> 0.8"
   spec.add_development_dependency "rake", "~> 12.0"
-  spec.add_development_dependency "rspec", "~> 3.4"
+  spec.add_development_dependency "rspec", "~> 3.5"
   spec.add_development_dependency "rubocop", "~> 0.41"
   spec.add_development_dependency "simplecov", "~> 0.12"
 end
