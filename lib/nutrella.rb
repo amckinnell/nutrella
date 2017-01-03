@@ -1,4 +1,4 @@
-require "active_support/core_ext/string"
+require "nutrella/string_ext"
 
 require "nutrella/cache"
 require "nutrella/command"
