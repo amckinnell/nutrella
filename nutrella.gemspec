@@ -19,12 +19,12 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = ">= 2.1"
 
-  spec.add_runtime_dependency "ruby-trello", "~> 1.4"
+  spec.add_runtime_dependency "ruby-trello", "~> 2.0"
 
   spec.add_development_dependency "httplog", "~> 0.3"
   spec.add_development_dependency "mutant-rspec", "~> 0.8"
   spec.add_development_dependency "rake", "~> 12.0"
   spec.add_development_dependency "rspec", "~> 3.5"
-  spec.add_development_dependency "rubocop", "~> 0.48.0"
+  spec.add_development_dependency "rubocop", "~> 0.49.0"
   spec.add_development_dependency "simplecov", "~> 0.14"
 end
