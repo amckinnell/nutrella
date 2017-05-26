@@ -4,6 +4,10 @@ AllCops:
   Exclude:
     - 'bin/**/*'
 
+# Rubocop and I cannot agree.
+Layout/MultilineMethodCallBraceLayout:
+  Enabled: false
+
 Metrics/LineLength:
   Max: 120
 
@@ -18,8 +22,4 @@ Style/StringLiterals:
 
 # We are not going to optimize by freezing strings.
 Style/MutableConstant:
-  Enabled: false
-
-# Rubocop and I cannot agree.
-Style/MultilineMethodCallBraceLayout:
   Enabled: false
