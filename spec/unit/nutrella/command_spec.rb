@@ -29,7 +29,8 @@ RSpec.describe Nutrella::Command do
 
   def configured_task_board
     instance_double(Nutrella::TaskBoard).tap do |task_board|
-      allow(task_board).to receive(:lookup_or_create).with(board_name)
+      allow(task_board).to receive(:lookup_or_create)
+        .with(board_name)
         .and_return(instance_double(Trello::Board, url: url))
     end
   end
