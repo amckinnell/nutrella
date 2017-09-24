@@ -26,11 +26,11 @@ module Nutrella
     end
 
     def task_board
-      TaskBoard.new(Configuration.values(configuration_filename))
+      Nutrella::TaskBoard.new(Nutrella::Configuration.values(configuration_filename))
     end
 
     def url_cache
-      Cache.new(cache_filename, 5)
+      Nutrella::Cache.new(cache_filename, 5)
     end
   end
 end
