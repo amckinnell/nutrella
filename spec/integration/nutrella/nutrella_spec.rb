@@ -5,8 +5,7 @@ RSpec.describe "Nutrella" do
 
   it "creates initial configuration file" do
     create_command do |subject|
-      expect { subject.run }.to output(/you don't have a config file/).to_stderr
-        .and(raise_error(SystemExit))
+      expect { subject.run }.to output(/you don't have a config file/).to_stderr.and(raise_error(SystemExit))
       expect(subject).to have_configuration(Nutrella::Configuration::INITIAL_CONFIGURATION)
     end
   end
