@@ -8,6 +8,12 @@ AllCops:
 Layout/MultilineMethodCallBraceLayout:
   Enabled: false
 
+Lint/RescueWithoutErrorClass:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
 Metrics/LineLength:
   Max: 120
 
@@ -19,6 +25,10 @@ Style/HashSyntax:
 # We'll just use double quotes everywhere.
 Style/StringLiterals:
   EnforcedStyle: double_quotes
+
+# I prefer not to use %i or %I for an array of symbols.
+Style/SymbolArray:
+  Enabled: false
 
 # We are not going to optimize by freezing strings.
 Style/MutableConstant:
