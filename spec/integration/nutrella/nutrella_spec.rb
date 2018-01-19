@@ -1,3 +1,5 @@
+require "tmpdir"
+
 RSpec.describe "Nutrella" do
   let(:board_name) { "My Board" }
   let(:url) { "board_url" }
