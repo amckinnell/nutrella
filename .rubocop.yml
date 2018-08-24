@@ -1,5 +1,5 @@
 AllCops:
-  TargetRubyVersion: 2.2
+  TargetRubyVersion: 2.4
 
   Exclude:
     - 'bin/**/*'
@@ -8,19 +8,24 @@ AllCops:
 Layout/MultilineMethodCallBraceLayout:
   Enabled: false
 
-Lint/RescueWithoutErrorClass:
-  Enabled: false
-
 Metrics/BlockLength:
   Enabled: false
 
 Metrics/LineLength:
   Max: 120
 
+# We can ignore this small performance improvement.
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
 # We like to use the hash rocket in rake files.
 Style/HashSyntax:
   Exclude:
     - 'Rakefile'
+
+# No need to mention StandardError.
+Style/RescueStandardError:
+  EnforcedStyle: implicit
 
 # We'll just use double quotes everywhere.
 Style/StringLiterals:

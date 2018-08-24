@@ -12,7 +12,7 @@ module Nutrella
     end
 
     def run
-      open board_url
+      open board_url # rubocop:disable Security/Open
     end
 
     private
