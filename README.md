@@ -62,6 +62,10 @@ Create or open a Trello board based on the name of the current git branch:
 
     $ nutrella
 
+Create or open a named Trello board:
+
+    $ nutrella <board-name>
+
 Note: you can invoke the `nutrella` from your project directory or from any subdirectory.
 
 ## Troubleshooting
