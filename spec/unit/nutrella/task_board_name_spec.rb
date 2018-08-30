@@ -2,17 +2,23 @@ RSpec.describe Nutrella::TaskBoardName do
   subject(:task_board_name) { Nutrella::TaskBoardName }
 
   it "derives the task board name from the current git branch" do
-    configure_git_command_success(current_branch: "1234_feature_branch")
+    configure_git_command_success(current_branch: "git_branch")
 
-    expect(task_board_name.from_git_branch).to eq("1234 Feature Branch")
+    expect(task_board_name.board_name(["command_line"])).to eq("git_branch")
   end
 
-  it "displays an error when there is no associated git branch" do
+  it "derives the task board name from the first command line arg" do
     configure_git_command_failure
 
-    expect { task_board_name.from_git_branch }.to output(
-      "Sorry. Can't find an associated git branch here.\n")
-      .to_stderr.and(raise_error(SystemExit))
+    expect(task_board_name.board_name(["command_line"])).to eq("command_line")
+  end
+
+  it "displays an error when there is no argument" do
+    configure_git_command_failure
+
+    expect { task_board_name.board_name([]) }.to output(
+      "Sorry. Can't figure out a name for the board.\n"
+    ).to_stderr.and(raise_error(SystemExit))
   end
 
   def configure_git_command_success(current_branch:)
