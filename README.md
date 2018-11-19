@@ -66,11 +66,11 @@ Create or open a named Trello board:
 
     $ nutrella <git-branch-name>
 
-Note: you can invoke the `nutrella` from your project directory or from any subdirectory.
+Note: you can invoke `nutrella` from your project directory or from any subdirectory.
 
 ## Troubleshooting
 
-### `method_missing: undefined method 'this'`
+#### `method_missing: undefined method 'this'`
 
 Try updating `RubyGems`
 
@@ -78,7 +78,7 @@ Try updating `RubyGems`
 gem update --system
 ```
 
-### `uninitialized constant Gem::Source (NameError)`
+#### `uninitialized constant Gem::Source (NameError)`
 
 Try updating `bundler`
 
@@ -86,9 +86,9 @@ Try updating `bundler`
 gem install bundler
 ```
 
-### `cannot load such file -- nutrella`
+#### `cannot load such file -- nutrella`
 
-This error may appear after running `irb -rubygems` and you are unable to `require 'nutrella'`. You won't be able to `require 'nutrella'` from a directory that uses Bundler. Try running `irb` instead from your home directory:
+This error may appear after running `irb -rubygems` and you are unable to `require 'nutrella'`. Try running `irb -rubygems` from your home directory:
 
 ```sh
 cd ~
