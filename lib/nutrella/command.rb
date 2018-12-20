@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Nutrella
   #
   # This is the top-level class for the gem.

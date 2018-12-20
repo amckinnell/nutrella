@@ -1,4 +1,5 @@
-#
+# frozen_string_literal: true
+
 # Simpler versions of extensions from ActiveSupport.
 #
 class String
