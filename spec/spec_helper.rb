@@ -8,7 +8,7 @@ require "nutrella"
 # Fail specs which run for longer than 2 seconds. Most useful during mutation testing.
 require "timeout"
 RSpec.configure do |rspec|
-  rspec.around(:each) do |example|
+  rspec.around do |example|
     Timeout.timeout(2_000, &example)
   end
 end

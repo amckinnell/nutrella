@@ -2,23 +2,23 @@ RSpec.describe Nutrella::Command do
   let(:board_name) { "My Board" }
   let(:url) { "board_url" }
 
-  subject { Nutrella::Command.new("home_dir", board_name) }
+  subject(:command) { Nutrella::Command.new("home_dir", board_name) }
 
   it "#cache_filename" do
-    expect(subject.cache_filename).to eq("home_dir/.nutrella.cache.yml")
+    expect(command.cache_filename).to eq("home_dir/.nutrella.cache.yml")
   end
 
   it "#configuration_filename" do
-    expect(subject.configuration_filename).to eq("home_dir/.nutrella.yml")
+    expect(command.configuration_filename).to eq("home_dir/.nutrella.yml")
   end
 
   it "#run" do
-    allow(subject).to receive(:url_cache).and_return(configured_cache)
-    allow(subject).to receive(:task_board).and_return(configured_task_board)
+    allow(command).to receive(:url_cache).and_return(configured_cache)
+    allow(command).to receive(:task_board).and_return(configured_task_board)
 
-    expect(subject).to receive(:system).with("open #{url}")
+    expect(command).to receive(:system).with("open #{url}")
 
-    subject.run
+    command.run
   end
 
   def configured_cache

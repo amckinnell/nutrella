@@ -11,8 +11,35 @@ Layout/MultilineMethodCallBraceLayout:
 Metrics/BlockLength:
   Enabled: false
 
+RSpec/AnyInstance:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Max: 15
+
 Metrics/LineLength:
   Max: 120
+
+RSpec/DescribeClass:
+  Enabled: false
+
+RSpec/DescribedClass:
+  Enabled: false
+
+RSpec/NotToNot:
+  EnforcedStyle: to_not
+
+RSpec/LeadingSubject:
+  Enabled: false
+
+RSpec/MessageSpies:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Max: 3
+
+RSpec/SubjectStub:
+  Enabled: false
 
 # We can ignore this small performance improvement.
 Style/FrozenStringLiteralComment:

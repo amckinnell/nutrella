@@ -6,26 +6,26 @@ RSpec.describe "Nutrella" do
   let(:board) { instance_double(Trello::Board, id: "id", name: board_name, url: url) }
 
   it "creates initial configuration file" do
-    create_command do |subject|
-      expect { subject.run }.to output(/you don't have a config file/).to_stderr.and(raise_error(SystemExit))
-      expect(subject).to have_configuration(Nutrella::Configuration::INITIAL_CONFIGURATION)
+    create_command do |command|
+      expect { command.run }.to output(/you don't have a config file/).to_stderr.and(raise_error(SystemExit))
+      expect(command).to have_configuration(Nutrella::Configuration::INITIAL_CONFIGURATION)
     end
   end
 
   it "looks up an existing task board" do
-    create_command do |subject|
-      create_sample(subject.configuration_filename)
+    create_command do |command|
+      create_sample(command.configuration_filename)
       trello_search(board_name, search_result: [board])
 
-      expect(subject).to receive(:system).with("open #{url}")
+      expect(command).to receive(:system).with("open #{url}")
 
-      subject.run
+      command.run
     end
   end
 
   it "creates a task board" do
-    create_command do |subject|
-      create_sample(subject.configuration_filename)
+    create_command do |command|
+      create_sample(command.configuration_filename)
       trello_search(board_name, search_result: [])
 
       expect(Trello::Board).to receive(:create)
@@ -35,9 +35,9 @@ RSpec.describe "Nutrella" do
       expect_any_instance_of(Trello::Client).to receive(:put)
         .with("/boards/#{board.id}", "prefs/permissionLevel=org")
 
-      expect(subject).to receive(:system).with("open #{url}")
+      expect(command).to receive(:system).with("open #{url}")
 
-      subject.run
+      command.run
     end
   end
 
