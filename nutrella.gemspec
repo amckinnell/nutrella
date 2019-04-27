@@ -22,8 +22,9 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "ruby-trello", "~> 2.1"
 
   spec.add_development_dependency "rake", "~> 12.1"
-  spec.add_development_dependency "rspec", "~> 3.7"
-  spec.add_development_dependency "rubocop", "~> 0.61"
+  spec.add_development_dependency "rspec", "~> 3.8"
+  spec.add_development_dependency "rubocop", "~> 0.67"
+  spec.add_development_dependency "rubocop-performance", "~> 1.1"
   spec.add_development_dependency "rubocop-rspec", "~> 1.30"
   spec.add_development_dependency "simplecov", "~> 0.16"
 end
