@@ -12,6 +12,13 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/amckinnell/nutrella"
   spec.license       = "MIT"
 
+  spec.metadata = {
+    "homepage_uri" => "https://github.com/amckinnell/nutrella",
+    "changelog_uri" => "https://github.com/amckinnell/nutrella/blob/master/CHANGELOG.md",
+    "source_code_uri" => "https://github.com/amckinnell/nutrella",
+    "bug_tracker_uri" => "https://github.com/amckinnell/nutrella/issues"
+  }
+
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(spec|features)/}) }
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
