@@ -12,18 +12,26 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/amckinnell/nutrella"
   spec.license       = "MIT"
 
+  spec.metadata = {
+    "homepage_uri" => "https://github.com/amckinnell/nutrella",
+    "changelog_uri" => "https://github.com/amckinnell/nutrella/blob/master/CHANGELOG.md",
+    "source_code_uri" => "https://github.com/amckinnell/nutrella",
+    "bug_tracker_uri" => "https://github.com/amckinnell/nutrella/issues"
+  }
+
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(spec|features)/}) }
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.required_ruby_version = ">= 2.3"
+  spec.required_ruby_version = ">= 2.4"
 
   spec.add_runtime_dependency "ruby-trello", "~> 2.1"
 
   spec.add_development_dependency "rake", "~> 12.1"
-  spec.add_development_dependency "rspec", "~> 3.7"
-  spec.add_development_dependency "rubocop", "~> 0.61"
+  spec.add_development_dependency "rspec", "~> 3.8"
+  spec.add_development_dependency "rubocop", "~> 0.67"
+  spec.add_development_dependency "rubocop-performance", "~> 1.1"
   spec.add_development_dependency "rubocop-rspec", "~> 1.30"
   spec.add_development_dependency "simplecov", "~> 0.16"
 end

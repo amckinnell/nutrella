@@ -1,5 +1,9 @@
+require:
+  - rubocop-performance
+  - rubocop-rspec
+
 AllCops:
-  TargetRubyVersion: 2.3
+  TargetRubyVersion: 2.4
 
   Exclude:
     - 'bin/**/*'
