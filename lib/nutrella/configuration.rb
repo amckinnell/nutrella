@@ -17,6 +17,7 @@ module Nutrella
 
       # Optional Configuration
       organization: #{NULOGY_ORGANIZATION_ID}
+      launch_command: open $url$
     YAML
 
     attr_reader :path, :values
@@ -40,7 +41,8 @@ module Nutrella
         key: configuration.fetch("key"),
         secret: configuration.fetch("secret"),
         token: configuration.fetch("token"),
-        organization: configuration.fetch("organization", NULOGY_ORGANIZATION_ID)
+        organization: configuration.fetch("organization", NULOGY_ORGANIZATION_ID),
+        launch_command: configuration.fetch("launch_command", "open $url$")
       }
     rescue => e
       abort "#{path} #{e}"

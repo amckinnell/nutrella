@@ -1,6 +1,6 @@
 RSpec.describe Nutrella::Configuration do
   let(:path) { "path" }
-  let(:values) { { key: "c1", secret: "5f", token: "3c", organization: "org" } }
+  let(:values) { { key: "c1", secret: "5f", token: "3c", organization: "org", launch_command: "open $url$" } }
 
   subject(:configuration) { Nutrella::Configuration.values(path) }
 
