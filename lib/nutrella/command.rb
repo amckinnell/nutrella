@@ -23,12 +23,18 @@ module Nutrella
       url_cache.fetch(@board_name) { task_board.lookup_or_create(@board_name).url }
     end
 
+    def configuration_values
+      @configuration_values ||= Nutrella::Configuration.values(configuration_filename)
+    end
+
     def open(url)
-      system("open #{url}")
+      launch_command = configuration_values.fetch(:launch_command).gsub("$url$", url)
+
+      system(launch_command)
     end
 
     def task_board
-      Nutrella::TaskBoard.new(Nutrella::Configuration.values(configuration_filename))
+      Nutrella::TaskBoard.new(configuration_values)
     end
 
     def url_cache
