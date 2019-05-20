@@ -1,6 +1,7 @@
 RSpec.describe Nutrella::Command do
   let(:board_name) { "My Board" }
   let(:url) { "board_url" }
+  let(:values) { { launch_command: "open $url$" } }
 
   subject(:command) { Nutrella::Command.new("home_dir", board_name) }
 
@@ -13,8 +14,9 @@ RSpec.describe Nutrella::Command do
   end
 
   it "#run" do
-    allow(command).to receive(:url_cache).and_return(configured_cache)
+    allow(command).to receive(:configuration_values).and_return(values)
     allow(command).to receive(:task_board).and_return(configured_task_board)
+    allow(command).to receive(:url_cache).and_return(configured_cache)
 
     expect(command).to receive(:system).with("open #{url}")
 

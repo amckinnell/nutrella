@@ -45,7 +45,7 @@ Insert your `token` into your `~/.nutrella.yml` file.
 
 If your haven't already done so, insert your `key`, `secret`, and `token` into your `~/.nutrella.yml` file.
 
-The configuration file should look like the following (don't use the keys below, they won't work) :
+The configuration file should look like the following (don't use the keys below, they won't work):
 
     # Trello Developer API Keys
     key: c2fc703429da08b6e7dcb0a878e35564
@@ -54,6 +54,12 @@ The configuration file should look like the following (don't use the keys below,
 
     # Optional Configuration
     organization: 542d76ac2fad4697c3e80448
+    launch_command: open $url$
+
+Finally, you can adjust the launch_command to fit your needs. For example, on macOS to open your
+Trello board in Firefox change the last line to:
+
+    launch_command: open -a firefox $url$
 
 
 ## Usage
