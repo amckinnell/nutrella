@@ -41,7 +41,7 @@ module Nutrella
     end
 
     def cache_contents
-      @cache_contents ||= YAML.load_file(path)
+      @_cache_contents ||= YAML.load_file(path)
     end
   end
 end

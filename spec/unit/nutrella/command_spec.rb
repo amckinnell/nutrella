@@ -1,9 +1,15 @@
 RSpec.describe Nutrella::Command do
   let(:board_name) { "My Board" }
-  let(:url) { "board_url" }
-  let(:values) { { launch_command: "open $url$" } }
+  let(:https_url) { "https://board_url" }
+  let(:trello_url) { "trello://board_url" }
+  let(:values) { { launch_command: "open $url$", enable_trello_app: false } }
 
   subject(:command) { Nutrella::Command.new("home_dir", board_name) }
+
+  before do
+    allow(command).to receive(:task_board).and_return(configured_task_board)
+    allow(command).to receive(:url_cache).and_return(configured_cache)
+  end
 
   it "#cache_filename" do
     expect(command.cache_filename).to eq("home_dir/.nutrella.cache.yml")
@@ -13,12 +19,20 @@ RSpec.describe Nutrella::Command do
     expect(command.configuration_filename).to eq("home_dir/.nutrella.yml")
   end
 
-  it "#run" do
+  it "#run and launch in browser" do
+    values = { launch_command: "open $url$", enable_trello_app: false }
     allow(command).to receive(:configuration_values).and_return(values)
-    allow(command).to receive(:task_board).and_return(configured_task_board)
-    allow(command).to receive(:url_cache).and_return(configured_cache)
 
-    expect(command).to receive(:system).with("open #{url}")
+    expect(command).to receive(:system).with("open #{https_url}")
+
+    command.run
+  end
+
+  it "#run and launch in Trello app" do
+    values = { launch_command: "open $url$", enable_trello_app: true }
+    allow(command).to receive(:configuration_values).and_return(values)
+
+    expect(command).to receive(:system).with("open #{trello_url}")
 
     command.run
   end
@@ -33,7 +47,7 @@ RSpec.describe Nutrella::Command do
     instance_double(Nutrella::TaskBoard).tap do |task_board|
       allow(task_board).to receive(:lookup_or_create)
         .with(board_name)
-        .and_return(instance_double(Trello::Board, url: url))
+        .and_return(instance_double(Trello::Board, url: https_url))
     end
   end
 end

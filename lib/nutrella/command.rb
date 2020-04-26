@@ -14,23 +14,35 @@ module Nutrella
     end
 
     def run
-      open board_url # rubocop:disable Security/Open
+      launch(board_url)
     end
 
     private
 
-    def board_url
-      url_cache.fetch(@board_name) { task_board.lookup_or_create(@board_name).url }
-    end
-
-    def configuration_values
-      @configuration_values ||= Nutrella::Configuration.values(configuration_filename)
-    end
-
-    def open(url)
+    def launch(url)
       launch_command = configuration_values.fetch(:launch_command).gsub("$url$", url)
 
       system(launch_command)
+    end
+
+    def board_url
+      enable_trello_app? ? trello_url(cached_url) : cached_url
+    end
+
+    def cached_url
+      @_cached_url ||= url_cache.fetch(@board_name) { task_board.lookup_or_create(@board_name).url }
+    end
+
+    def configuration_values
+      @_configuration_values ||= Nutrella::Configuration.values(configuration_filename)
+    end
+
+    def enable_trello_app?
+      configuration_values.fetch(:enable_trello_app)
+    end
+
+    def trello_url(http_url)
+      http_url.gsub(/^http.?:/, "trello:")
     end
 
     def task_board
