@@ -11,8 +11,20 @@ AllCops:
 Layout/MultilineMethodCallBraceLayout:
   Enabled: false
 
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+
+Lint/RaiseException:
+  Enabled: true
+
+Lint/StructNewOverride:
+  Enabled: true
+
 Metrics/BlockLength:
   Enabled: false
+
+Naming/MemoizedInstanceVariableName:
+  EnforcedStyleForLeadingUnderscores: required
 
 RSpec/AnyInstance:
   Enabled: false
@@ -43,6 +55,15 @@ RSpec/MultipleExpectations:
 
 RSpec/SubjectStub:
   Enabled: false
+
+Style/BlockDelimiters:
+  Enabled: true
+  EnforcedStyle: line_count_based
+  BracesRequiredMethods:
+    - 'let'
+
+Style/ExponentialNotation:
+  Enabled: true
 
 # We can ignore this small performance improvement.
 Style/FrozenStringLiteralComment:
