@@ -18,6 +18,7 @@ module Nutrella
       # Optional Configuration
       organization: #{NULOGY_ORGANIZATION_ID}
       launch_command: open $url$
+      enable_trello_app: False
     YAML
 
     attr_reader :path, :values
@@ -35,17 +36,20 @@ module Nutrella
     private
 
     def load_configuration
-      configuration = YAML.load_file(path)
-
       @values = {
         key: configuration.fetch("key"),
         secret: configuration.fetch("secret"),
         token: configuration.fetch("token"),
         organization: configuration.fetch("organization", NULOGY_ORGANIZATION_ID),
-        launch_command: configuration.fetch("launch_command", "open $url$")
+        launch_command: configuration.fetch("launch_command", "open $url$"),
+        enable_trello_app: configuration.fetch("enable_trello_app", "False")
       }
     rescue => e
       abort "#{path} #{e}"
+    end
+
+    def configuration
+      @_configuration ||= YAML.load_file(path)
     end
 
     def configuration_missing?

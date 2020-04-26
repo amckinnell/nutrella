@@ -47,6 +47,7 @@ If your haven't already done so, insert your `key`, `secret`, and `token` into y
 
 The configuration file should look like the following (don't use the keys below, they won't work):
 
+```yaml
     # Trello Developer API Keys
     key: c2fc703429da08b6e7dcb0a878e35564
     secret: 7fd865f372891afa93aabdb6b836254bcda10c8a320def2b3207e2ffb425bc0a
@@ -55,50 +56,69 @@ The configuration file should look like the following (don't use the keys below,
     # Optional Configuration
     organization: 542d76ac2fad4697c3e80448
     launch_command: open $url$
+    enable_trello_app: false
+```
 
-Finally, you can adjust the launch_command to fit your needs. For example, on macOS to open your
-Trello board in Firefox change the last line to:
+Finally, you can tweak your configuration:
 
+1. Adjust the launch_command configuration to fit your needs. For example, on macOS to open
+your Trello board in Firefox change your configuration to:
+
+```yaml
     launch_command: open -a firefox $url$
+```
 
+1. Adjust the enable_trello_app configuration to open boards in the Trello app. For example,
+if you have installed the Trello app on macOS to open your Trello board in the Trello app
+change your configuration to:
+
+```yaml
+    enable_trello_app: true
+```
 
 ## Usage
 
 Create or open a Trello board based on the name of the current git branch:
 
+```sh
     $ nutrella
+```
 
 Create or open a named Trello board:
 
+```sh
     $ nutrella <git-branch-name>
+```
 
 Note: you can invoke `nutrella` from your project directory or from any subdirectory.
 
+
 ## Troubleshooting
 
-#### `method_missing: undefined method 'this'`
+1. For `method_missing: undefined method 'this'`
 
-Try updating `RubyGems`
+    Try updating `RubyGems`
 
-```sh
-gem update --system
-```
+    ```sh
+    gem update --system
+    ```
 
-#### `uninitialized constant Gem::Source (NameError)`
+1. For `uninitialized constant Gem::Source (NameError)`
 
-Try updating `bundler`
+    Try updating `bundler`
 
-```sh
-gem install bundler
-```
+    ```sh
+    gem install bundler
+    ```
 
-#### `cannot load such file -- nutrella`
+1. For `cannot load such file -- nutrella`
 
-This error may appear after running `irb -rubygems` and you are unable to `require 'nutrella'`. Try running `irb -rubygems` from your home directory:
+    This error may appear after running `irb -rubygems` and you are unable to `require 'nutrella'`.
+    Try running `irb -rubygems` from your home directory:
 
-```sh
-cd ~
-```
+    ```sh
+    cd ~
+    ```
 
 
 ## Origin of Name

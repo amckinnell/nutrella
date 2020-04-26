@@ -1,6 +1,15 @@
 RSpec.describe Nutrella::Configuration do
   let(:path) { "path" }
-  let(:values) { { key: "c1", secret: "5f", token: "3c", organization: "org", launch_command: "open $url$" } }
+  let(:values) {
+    {
+      key: "c1",
+      secret: "5f",
+      token: "3c",
+      organization: "org",
+      launch_command: "open $url$",
+      enable_trello_app: "True"
+    }
+  }
 
   subject(:configuration) { Nutrella::Configuration.values(path) }
 
