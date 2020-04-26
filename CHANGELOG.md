@@ -26,7 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.3.0] - 2019-05-20
 
-#### Yanked
+- Yanked
 
 ## [1.2.2] - 2019-04-27
 
