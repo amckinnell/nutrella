@@ -75,6 +75,12 @@ To open your Trello board in the Trello app change your configuration to:
     enable_trello_app: true
 ```
 
+Adjust the `enable_logging` configuration to start logging diagnostics:
+
+```yaml
+    enable_logging: true
+```
+
 
 ## Usage
 
