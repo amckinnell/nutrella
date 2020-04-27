@@ -18,7 +18,8 @@ module Nutrella
       # Optional Configuration
       organization: #{NULOGY_ORGANIZATION_ID}
       launch_command: open $url$
-      enable_trello_app: False
+      enable_trello_app: false
+      enable_logging: false
     YAML
 
     attr_reader :path, :values
@@ -35,14 +36,15 @@ module Nutrella
 
     private
 
-    def load_configuration
+    def load_configuration # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
       @values = {
         key: configuration.fetch("key"),
         secret: configuration.fetch("secret"),
         token: configuration.fetch("token"),
         organization: configuration.fetch("organization", NULOGY_ORGANIZATION_ID),
         launch_command: configuration.fetch("launch_command", "open $url$"),
-        enable_trello_app: configuration.fetch("enable_trello_app", "False")
+        enable_trello_app: configuration.fetch("enable_trello_app", "false"),
+        enable_logging: configuration.fetch("enable_logging", "false")
       }
     rescue => e
       abort "#{path} #{e}"
