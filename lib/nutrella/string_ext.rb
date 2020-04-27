@@ -1,12 +1,8 @@
 # frozen_string_literal: true
 
-# Simpler versions of extensions from ActiveSupport.
+# Simpler versions of an extension from ActiveSupport.
 #
 class String
-  def strip_heredoc
-    gsub(/^ +/, "")
-  end
-
   def titleize
     tr("_-", " ").split(" ").map(&:capitalize).join(" ")
   end

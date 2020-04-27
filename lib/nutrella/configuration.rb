@@ -9,7 +9,7 @@ module Nutrella
   class Configuration
     NULOGY_ORGANIZATION_ID = "542d76ac2fad4697c3e80448"
 
-    INITIAL_CONFIGURATION = <<-YAML.strip_heredoc
+    INITIAL_CONFIGURATION = <<~YAML
       # Trello Developer API Keys
       key: <your developer key>
       secret: <your developer secret>
@@ -64,7 +64,7 @@ module Nutrella
     end
 
     def configuration_missing_message
-      <<-TEXT.strip_heredoc
+      <<~TEXT
         I see that you don't have a config file '#{path}'.
         So, I created one for you.
 
