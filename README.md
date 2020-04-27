@@ -59,22 +59,22 @@ The configuration file should look like the following (don't use the keys below,
     enable_trello_app: false
 ```
 
-Finally, you can tweak your configuration:
+**Step 6**: Adjust configuration file (Optional)
 
-1. Adjust the launch_command configuration to fit your needs. For example, on macOS to open
-your Trello board in Firefox change your configuration to:
+Adjust the `launch_command` configuration to fit your needs.
+For example, to open your Trello board in Firefox change your configuration to:
 
 ```yaml
     launch_command: open -a firefox $url$
 ```
 
-1. Adjust the enable_trello_app configuration to open boards in the Trello app. For example,
-if you have installed the Trello app on macOS to open your Trello board in the Trello app
-change your configuration to:
+Adjust the `enable_trello_app` configuration to open boards in the Trello app.
+To open your Trello board in the Trello app change your configuration to:
 
 ```yaml
     enable_trello_app: true
 ```
+
 
 ## Usage
 

@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.1] - 2020-04-27
+
+#### Bug Fix
+
+- Honour the specified named Trello board argument over the Trello board derived from the current git branch
+
 ## [1.5.0] - 2020-04-26
 
 #### New Features

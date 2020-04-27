@@ -1,19 +1,19 @@
 RSpec.describe Nutrella::TaskBoardName do
   subject(:task_board_name) { Nutrella::TaskBoardName }
 
-  it "derives the task board name from the current git branch" do
-    configure_git_command_success(current_branch: "git_branch")
-
-    expect(task_board_name.board_name(["command_line"])).to eq("git_branch")
-  end
-
   it "derives the task board name from the first command line arg" do
     configure_git_command_failure
 
     expect(task_board_name.board_name(["command_line"])).to eq("command_line")
   end
 
-  it "displays an error when there is no argument" do
+  it "derives the task board name from the current git branch" do
+    configure_git_command_success(current_branch: "git_branch")
+
+    expect(task_board_name.board_name([])).to eq("git_branch")
+  end
+
+  it "displays an error when there is no command line arg and no current git branch" do
     configure_git_command_failure
 
     expect { task_board_name.board_name([]) }.to output(
@@ -30,7 +30,7 @@ RSpec.describe Nutrella::TaskBoardName do
   end
 
   def configure_open3(git_branch_name:, success:)
-    expect(Open3).to receive(:capture2)
+    allow(Open3).to receive(:capture2)
       .with("git rev-parse --abbrev-ref HEAD")
       .and_return([git_branch_name, instance_double(Process::Status, success?: success)])
   end
