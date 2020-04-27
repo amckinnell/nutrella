@@ -95,7 +95,13 @@ Note: you can invoke `nutrella` from your project directory or from any subdirec
 
 ## Troubleshooting
 
-1. For `method_missing: undefined method 'this'`
+1. If an unexpected Trello board is opening try clearing your cache:
+
+    ```sh
+    rm ~/.nutrella.cache.yml
+    ```
+
+1. If you see `method_missing: undefined method 'this'`
 
     Try updating `RubyGems`
 
@@ -103,7 +109,7 @@ Note: you can invoke `nutrella` from your project directory or from any subdirec
     gem update --system
     ```
 
-1. For `uninitialized constant Gem::Source (NameError)`
+1. If you see `uninitialized constant Gem::Source (NameError)`
 
     Try updating `bundler`
 
@@ -111,7 +117,7 @@ Note: you can invoke `nutrella` from your project directory or from any subdirec
     gem install bundler
     ```
 
-1. For `cannot load such file -- nutrella`
+1. If you see `cannot load such file -- nutrella`
 
     This error may appear after running `irb -rubygems` and you are unable to `require 'nutrella'`.
     Try running `irb -rubygems` from your home directory:
