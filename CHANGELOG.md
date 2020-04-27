@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.2] - 2020-04-27
+
+#### New Features
+
+- Added a configuration option to enable logging for easier troubleshooting
+
 ## [1.5.1] - 2020-04-27
 
 #### Bug Fix
