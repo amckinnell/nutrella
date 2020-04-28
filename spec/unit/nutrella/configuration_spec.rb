@@ -7,7 +7,8 @@ RSpec.describe Nutrella::Configuration do
       token: "3c",
       organization: "org",
       launch_command: "open $url$",
-      enable_trello_app: "True"
+      enable_trello_app: "true",
+      enable_logging: "true"
     }
   }
 

@@ -15,6 +15,8 @@ module Nutrella
 
     def run
       launch(board_url)
+    ensure
+      logger.close
     end
 
     private
@@ -22,11 +24,17 @@ module Nutrella
     def launch(url)
       launch_command = configuration_values.fetch(:launch_command).gsub("$url$", url)
 
+      logger.info { "Launch command: '#{launch_command}'" }
+
       system(launch_command)
     end
 
     def board_url
-      enable_trello_app? ? trello_url(cached_url) : cached_url
+      url = enable_trello_app? ? trello_url(cached_url) : cached_url
+
+      logger.info { "Board URL: '#{url}'" }
+
+      url
     end
 
     def cached_url
@@ -39,6 +47,14 @@ module Nutrella
 
     def enable_trello_app?
       configuration_values.fetch(:enable_trello_app)
+    end
+
+    def logger
+      @_logger ||= Logger.new(log_filename)
+    end
+
+    def log_filename
+      configuration_values.fetch(:enable_logging) ? "nutrella.log" : "/dev/null"
     end
 
     def trello_url(http_url)

@@ -2,7 +2,7 @@ RSpec.describe Nutrella::Command do
   let(:board_name) { "My Board" }
   let(:https_url) { "https://board_url" }
   let(:trello_url) { "trello://board_url" }
-  let(:values) { { launch_command: "open $url$", enable_trello_app: false } }
+  let(:values) { { launch_command: "open $url$", enable_trello_app: false, enable_logging: false } }
 
   subject(:command) { Nutrella::Command.new("home_dir", board_name) }
 
@@ -20,7 +20,7 @@ RSpec.describe Nutrella::Command do
   end
 
   it "#run and launch in browser" do
-    values = { launch_command: "open $url$", enable_trello_app: false }
+    values = { launch_command: "open $url$", enable_trello_app: false, enable_logging: false }
     allow(command).to receive(:configuration_values).and_return(values)
 
     expect(command).to receive(:system).with("open #{https_url}")
@@ -29,7 +29,7 @@ RSpec.describe Nutrella::Command do
   end
 
   it "#run and launch in Trello app" do
-    values = { launch_command: "open $url$", enable_trello_app: true }
+    values = { launch_command: "open $url$", enable_trello_app: true, enable_logging: false }
     allow(command).to receive(:configuration_values).and_return(values)
 
     expect(command).to receive(:system).with("open #{trello_url}")
