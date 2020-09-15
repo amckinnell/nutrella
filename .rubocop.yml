@@ -2,6 +2,7 @@ require:
   - rubocop-rspec
 
 AllCops:
+  NewCops: enable
   TargetRubyVersion: 2.5
 
   Exclude:
@@ -10,15 +11,6 @@ AllCops:
 # Rubocop and I cannot agree.
 Layout/MultilineMethodCallBraceLayout:
   Enabled: false
-
-Layout/SpaceAroundMethodCallOperator:
-  Enabled: true
-
-Lint/RaiseException:
-  Enabled: true
-
-Lint/StructNewOverride:
-  Enabled: true
 
 Metrics/BlockLength:
   Enabled: false
@@ -62,21 +54,9 @@ Style/BlockDelimiters:
   BracesRequiredMethods:
     - 'let'
 
-Style/ExponentialNotation:
-  Enabled: true
-
 # We can ignore this small performance improvement.
 Style/FrozenStringLiteralComment:
   Enabled: false
-
-Style/HashEachMethods:
-  Enabled: true
-
-Style/HashTransformKeys:
-  Enabled: true
-
-Style/HashTransformValues:
-  Enabled: true
 
 # We like to use the hash rocket in rake files.
 Style/HashSyntax:

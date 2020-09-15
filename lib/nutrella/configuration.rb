@@ -36,7 +36,7 @@ module Nutrella
 
     private
 
-    def load_configuration # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+    def load_configuration # rubocop:disable Metrics/MethodLength
       @values = {
         key: configuration.fetch("key"),
         secret: configuration.fetch("secret"),
