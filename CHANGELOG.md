@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.3] - 2021-02-18
+
+- Update ruby-trello
+- Update development dependencies
+
+#### Breaking Changes
+
+- Drop support for Ruby 2.5
+
 ## [1.5.2] - 2020-04-27
 
 #### New Features
