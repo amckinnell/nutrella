@@ -28,7 +28,7 @@ RSpec.describe "Nutrella" do
       create_sample(command.configuration_filename)
       trello_search(board_name, search_result: [])
 
-      expect(Trello::Board).to receive(:create)
+      allow(Trello::Board).to receive(:create)
         .with(name: board_name, organization_id: "developer_organization")
         .and_return(board)
 

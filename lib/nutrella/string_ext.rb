@@ -4,6 +4,6 @@
 #
 class String
   def titleize
-    tr("_-", " ").split(" ").map(&:capitalize).join(" ")
+    tr("_-", " ").split.map(&:capitalize).join(" ")
   end
 end
