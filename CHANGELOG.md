@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.4] - 2021-07-29
+
+#### New Features
+
+- Added a configuration option to adjust the cache capacity
+
 ## [1.5.3] - 2021-02-18
 
 - Update ruby-trello
