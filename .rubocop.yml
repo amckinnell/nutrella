@@ -8,6 +8,9 @@ AllCops:
   Exclude:
     - 'bin/**/*'
 
+Layout/LineLength:
+  Max: 120
+
 # Rubocop and I cannot agree.
 Layout/MultilineMethodCallBraceLayout:
   Enabled: false
@@ -18,17 +21,11 @@ Metrics/BlockLength:
 Naming/MemoizedInstanceVariableName:
   EnforcedStyleForLeadingUnderscores: required
 
-Rake/Desc:
-  Enabled: false
-
 RSpec/AnyInstance:
   Enabled: false
 
 RSpec/ExampleLength:
   Max: 15
-
-Metrics/LineLength:
-  Max: 120
 
 RSpec/DescribeClass:
   Enabled: false
