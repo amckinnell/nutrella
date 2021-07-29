@@ -37,6 +37,10 @@ module Nutrella
       url
     end
 
+    def cache_capacity
+      @_cache_capacity ||= configuration_values.fetch(:cache_capacity)
+    end
+
     def cached_url
       @_cached_url ||= url_cache.fetch(@board_name) { task_board.lookup_or_create(@board_name).url }
     end
@@ -66,7 +70,7 @@ module Nutrella
     end
 
     def url_cache
-      Nutrella::Cache.new(cache_filename, 5)
+      Nutrella::Cache.new(cache_filename, cache_capacity)
     end
   end
 end

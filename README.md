@@ -57,6 +57,8 @@ The configuration file should look like the following (don't use the keys below,
     organization: 542d76ac2fad4697c3e80448
     launch_command: open $url$
     enable_trello_app: false
+    enable_logging: true
+    cache_capacity: 5
 ```
 
 **Step 6**: Adjust configuration file (Optional)
@@ -79,6 +81,12 @@ Adjust the `enable_logging` configuration to start logging diagnostics:
 
 ```yaml
     enable_logging: true
+```
+
+Adjust the `cache_capacity` configuration to increase the capacity of the cache (see `~/.nutrella.cache.yml`):
+
+```yaml
+   cache_capacity: 15
 ```
 
 

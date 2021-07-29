@@ -60,6 +60,10 @@ RSpec.describe "Nutrella" do
 
       # Optional Configuration
       organization: developer_organization
+      launch_command: open $url$
+      enable_trello_app: true
+      enable_logging: false
+      cache_capacity: 15
     SAMPLE
   end
 

@@ -8,7 +8,8 @@ RSpec.describe Nutrella::Configuration do
       organization: "org",
       launch_command: "open $url$",
       enable_trello_app: "true",
-      enable_logging: "true"
+      enable_logging: "true",
+      cache_capacity: 5
     }
   }
 
