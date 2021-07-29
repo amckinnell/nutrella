@@ -21,6 +21,7 @@ module Nutrella
       enable_trello_app: false
       enable_logging: false
       cache_capacity: 5
+      cache_first: /^PM-(\d+)/
     YAML
 
     attr_reader :path, :values
@@ -46,7 +47,8 @@ module Nutrella
         launch_command: configuration.fetch("launch_command", "open $url$"),
         enable_trello_app: configuration.fetch("enable_trello_app", "false"),
         enable_logging: configuration.fetch("enable_logging", "false"),
-        cache_capacity: configuration.fetch("cache_capacity", 5)
+        cache_capacity: configuration.fetch("cache_capacity", 5),
+        cache_first: configuration.fetch("cache_first", /^PM-(\d+)/)
       }
     rescue => e
       abort "#{path} #{e}"
