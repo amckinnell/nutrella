@@ -9,7 +9,7 @@ module Nutrella
   # Note: will also accept the name of a branch as an argument.
   #
   class TaskBoardName
-    def self.board_name(args)
+    def self.board_name_from_git_branch(args)
       git_branch_name = args[0]
       return git_branch_name if git_branch_name.present?
 

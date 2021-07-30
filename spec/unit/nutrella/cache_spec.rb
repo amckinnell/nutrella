@@ -54,6 +54,32 @@ RSpec.describe Nutrella::Cache do
     end
   end
 
+  describe "#search" do
+    it "search specification found" do
+      cache_contents(["k 1", "v 1"])
+
+      expect(cache.search(/^k /)).to eq("v 1")
+    end
+
+    it "search specification not found" do
+      cache_contents(["k 1", "v 1"])
+
+      expect(cache.search(/^1/)).to be_nil
+    end
+
+    it "search specification is blank" do
+      cache_contents(["k 1", "v 1"])
+
+      expect(cache.search("")).to be_nil
+    end
+
+    it "search specification is nil" do
+      cache_contents(["k 1", "v 1"])
+
+      expect(cache.search(nil)).to be_nil
+    end
+  end
+
   it "handles error loading cache from file" do
     cache_load_error
     expected_cache(["k 1", "v 1"])

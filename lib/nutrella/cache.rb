@@ -20,6 +20,12 @@ module Nutrella
       value
     end
 
+    def search(search_reg_exp)
+      cache_contents.find { |k, _v| search_reg_exp.match?(k) }.last
+    rescue
+      nil
+    end
+
     private
 
     def lookup(key)
@@ -41,7 +47,11 @@ module Nutrella
     end
 
     def cache_contents
-      @_cache_contents ||= YAML.load_file(path)
+      @_cache_contents ||= begin
+        YAML.load_file(path)
+      rescue
+        nil
+      end
     end
   end
 end

@@ -64,6 +64,7 @@ RSpec.describe "Nutrella" do
       enable_trello_app: true
       enable_logging: false
       cache_capacity: 15
+      cache_first: /PM-(\d+)/
     SAMPLE
   end
 

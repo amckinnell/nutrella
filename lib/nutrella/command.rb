@@ -42,7 +42,7 @@ module Nutrella
     end
 
     def cached_url
-      @_cached_url ||= url_cache.fetch(@board_name) { task_board.lookup_or_create(@board_name).url }
+      @_cached_url ||= board_name_resolver.resolve(@board_name) { task_board.lookup_or_create(@board_name).url }
     end
 
     def configuration_values
@@ -63,6 +63,10 @@ module Nutrella
 
     def trello_url(http_url)
       http_url.gsub(/^http.?:/, "trello:")
+    end
+
+    def board_name_resolver
+      Nutrella::BoardNameResolver.new(url_cache, configuration_values.fetch(:cache_first, ""))
     end
 
     def task_board

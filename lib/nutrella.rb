@@ -1,5 +1,4 @@
-require "nutrella/string_ext"
-
+require "nutrella/board_name_resolver"
 require "nutrella/cache"
 require "nutrella/command"
 require "nutrella/configuration"

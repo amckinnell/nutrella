@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.0] - 2021-07-30
+
+#### New Features
+
+- Allow opening a previously created Trello board based on a JIRA ticket
+- Added a configuration option to specify exactly how to search in the cache first
+
 ## [1.5.4] - 2021-07-29
 
 #### New Features
