@@ -44,7 +44,7 @@ Insert your `token` into your `~/.nutrella.yml` file.
 
 If your haven't already done so, insert your `key`, `secret`, and `token` into your `~/.nutrella.yml` file.
 
-The configuration file should look like the following (don't use the keys below, they won't work):
+The configuration file should look like the following (don't use the keys below as they won't work for you):
 
 ```yaml
     # Trello Developer API Keys
@@ -58,6 +58,7 @@ The configuration file should look like the following (don't use the keys below,
     enable_trello_app: false
     enable_logging: true
     cache_capacity: 5
+    cache_first: '^PM-\d+'
 ```
 
 **Step 6**: Adjust configuration file (Optional)
@@ -88,22 +89,43 @@ Adjust the `cache_capacity` configuration to increase the capacity of the cache 
    cache_capacity: 15
 ```
 
+Adjust the `cache_first` configuration to allow searching the cache first before creating or opening a Trello board:
+
+```yaml
+   cache_first: '^(PM|QC)-\d+'
+```
+
+The string that you specify will be treated as a regular expression.
+
+
 
 ## Usage
 
-Create or open a Trello board based on the name of the current git branch:
+There are three ways to invoke the nutrella command:
 
-```sh
+1. Create or open a Trello board based on the name of the current git branch:
+
+    ```sh
     $ nutrella
-```
+    ```
+   
+    This is the command invocation that should meet your needs 90% of the time.
 
-Create or open a named Trello board:
 
-```sh
+1. Create or open a named Trello board using the full git branch name:
+
+    ```sh
     $ nutrella <git-branch-name>
-```
+    ```
 
-Note: you can invoke `nutrella` from your project directory or from any subdirectory.
+
+2. Create or open a previously created Trello board using a JIRA ticket like `PM-9423`:
+
+    ```sh
+    $ nutrella <JIRA Ticket>
+    ```
+
+    This behaviour relies on the `cache_first` configuration setting. Invoking `nutrella` with a JIRA ticket number is for those situations where you make multiple git branches for the same JIRA ticket with a different suffix.
 
 
 ## Troubleshooting
