@@ -10,7 +10,7 @@ RSpec.describe Nutrella::Configuration do
       enable_trello_app: "true",
       enable_logging: "true",
       cache_capacity: 5,
-      cache_first: /^DQI-(\d+)/
+      cache_first: /^DQI-\d+/i
     }
   }
 
@@ -31,7 +31,7 @@ RSpec.describe Nutrella::Configuration do
       enable_trello_app: "false",
       enable_logging: "false",
       cache_capacity: 5,
-      cache_first: /^PM-(\d+)/
+      cache_first: /^PM-\d+/i
     }
     default_values = values.except(*use_defaults_for).merge(defaults)
 

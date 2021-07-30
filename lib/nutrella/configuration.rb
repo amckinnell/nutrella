@@ -21,7 +21,7 @@ module Nutrella
       enable_trello_app: false
       enable_logging: false
       cache_capacity: 5
-      cache_first: /^PM-(\d+)/
+      cache_first: '^PM-\d+'
     YAML
 
     attr_reader :path, :values
@@ -48,7 +48,7 @@ module Nutrella
         enable_trello_app: configuration.fetch("enable_trello_app", "false"),
         enable_logging: configuration.fetch("enable_logging", "false"),
         cache_capacity: configuration.fetch("cache_capacity", 5),
-        cache_first: configuration.fetch("cache_first", /^PM-(\d+)/)
+        cache_first: to_reg_exp("cache_first")
       }
     rescue => e
       abort "#{path} #{e}"
@@ -78,6 +78,10 @@ module Nutrella
 
         See https://github.com/amckinnell/nutrella for instructions.
       TEXT
+    end
+
+    def to_reg_exp(key)
+      Regexp.new(configuration.fetch(key, '^PM-\d+'), Regexp::IGNORECASE)
     end
   end
 end

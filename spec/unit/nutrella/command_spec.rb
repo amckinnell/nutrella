@@ -2,7 +2,6 @@ RSpec.describe Nutrella::Command do
   let(:board_name) { "My Board" }
   let(:https_url) { "https://board_url" }
   let(:trello_url) { "trello://board_url" }
-  let(:values) { { launch_command: "open $url$", enable_trello_app: false, enable_logging: false } }
 
   subject(:command) { Nutrella::Command.new("home_dir", board_name) }
 
@@ -40,6 +39,7 @@ RSpec.describe Nutrella::Command do
   def configured_cache
     instance_double(Nutrella::Cache).tap do |cache|
       allow(cache).to receive(:fetch).and_yield
+      allow(cache).to receive(:search)
     end
   end
 
