@@ -70,7 +70,7 @@ RSpec.describe "Nutrella" do
 
   RSpec::Matchers.define :have_configuration do |expected_configuration|
     match do |command|
-      expect(File.exist?(command.configuration_filename)).to eq(true)
+      expect(File.exist?(command.configuration_filename)).to be(true)
       expect(File.read(command.configuration_filename)).to eq(expected_configuration)
     end
   end

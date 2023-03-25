@@ -1,12 +1,14 @@
 require:
+  - rubocop-rake
   - rubocop-rspec
 
 AllCops:
   NewCops: enable
-  TargetRubyVersion: 2.6
+  TargetRubyVersion: 3.0
 
   Exclude:
     - 'bin/**/*'
+
 
 Layout/LineLength:
   Max: 120
@@ -20,6 +22,9 @@ Metrics/BlockLength:
 
 Naming/MemoizedInstanceVariableName:
   EnforcedStyleForLeadingUnderscores: required
+
+Rake/Desc:
+  Enabled: false
 
 RSpec/AnyInstance:
   Enabled: false
