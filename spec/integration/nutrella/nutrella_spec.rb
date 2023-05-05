@@ -29,11 +29,8 @@ RSpec.describe "Nutrella" do
       trello_search(board_name, search_result: [])
 
       allow(Trello::Board).to receive(:create)
-        .with(name: board_name, organization_id: "developer_organization")
+        .with(name: board_name, organization_id: "developer_organization", visibility_level: "org")
         .and_return(board)
-
-      expect_any_instance_of(Trello::Client).to receive(:put)
-        .with("/boards/#{board.id}", "prefs/permissionLevel=org")
 
       expect(command).to receive(:system).with("open #{url}")
 
