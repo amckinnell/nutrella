@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.7.1] - 2023-05-05
+
+#### Bug Fix
+
+- Fix board creation (which was broken due to changes in the Trello API)
+
 ## [1.7.0] - 2023-03-25
 
 - Update ruby-trello
