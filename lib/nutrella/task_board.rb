@@ -33,15 +33,7 @@ module Nutrella
     end
 
     def create(board_name)
-      create_board(board_name).tap { |board| make_team_visible(board) }
-    end
-
-    def create_board(board_name)
-      Trello::Board.create(name: board_name, organization_id: @organization)
-    end
-
-    def make_team_visible(board)
-      Trello.client.put("/boards/#{board.id}", "prefs/permissionLevel=org")
+      Trello::Board.create(name: board_name, organization_id: @organization, visibility_level: "org")
     end
   end
 end
