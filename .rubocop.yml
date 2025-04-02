@@ -1,14 +1,13 @@
-require:
+plugins:
   - rubocop-rake
   - rubocop-rspec
 
 AllCops:
-  NewCops: enable
-  TargetRubyVersion: 3.0
+  NewCops: disable
+  TargetRubyVersion: 3.2
 
   Exclude:
     - 'bin/**/*'
-
 
 Layout/LineLength:
   Max: 120

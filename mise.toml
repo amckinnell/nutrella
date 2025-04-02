@@ -1,0 +1,3 @@
+[settings]
+# The .ruby-version file is the source of truth.
+idiomatic_version_file_enable_tools = ["ruby"]

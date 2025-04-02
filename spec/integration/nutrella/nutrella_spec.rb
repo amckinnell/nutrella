@@ -48,6 +48,7 @@ RSpec.describe "Nutrella" do
       .and_return("boards" => search_result)
   end
 
+  # rubocop:disable Metrics/MethodLength
   def create_sample(configuration_filename)
     File.write(configuration_filename, <<~SAMPLE)
       # Trello Developer API Keys
@@ -64,6 +65,7 @@ RSpec.describe "Nutrella" do
       cache_first: /PM-(\d+)/
     SAMPLE
   end
+  # rubocop:enable Metrics/MethodLength
 
   RSpec::Matchers.define :have_configuration do |expected_configuration|
     match do |command|

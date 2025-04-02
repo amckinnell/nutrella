@@ -58,7 +58,7 @@ module Nutrella
     end
 
     def log_filename
-      configuration_values.fetch(:enable_logging) ? "nutrella.log" : "/dev/null"
+      configuration_values.fetch(:enable_logging) ? "nutrella.log" : File::NULL
     end
 
     def trello_url(http_url)
