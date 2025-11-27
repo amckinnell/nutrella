@@ -111,6 +111,11 @@ There are three ways to invoke the nutrella command:
    
     This is the command invocation that should meet your needs 90% of the time.
 
+    **Note:** Trailing all-caps suffixes (e.g., -SPIKE, -KEEP, -INVESTIGATE)
+    are automatically removed from branch names when generating the board name.
+    For example, a branch named `user-auth-SPIKE` will create or open a board
+    named `user-auth`.
+   
 
 1. Create or open a named Trello board using the full git branch name:
 
