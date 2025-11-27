@@ -13,6 +13,12 @@ RSpec.describe Nutrella::TaskBoardName do
     expect(task_board_name.board_name_from_git_branch([])).to eq("git_branch")
   end
 
+  it "ignores trailing all caps modifiers from the current git branch" do
+    configure_git_command_success(current_branch: "git_branch-SPIKE")
+
+    expect(task_board_name.board_name_from_git_branch([])).to eq("git_branch")
+  end
+
   it "displays an error when there is no command line arg and no current git branch" do
     configure_git_command_failure
 
