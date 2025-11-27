@@ -6,8 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-- Address rubocop violations
-- Update development dependencies
+## [1.8.0] - 2025-11-27
+
+#### New Features
+
+- Strip trailing all-caps suffixes from branch names when generating task
+  board names (e.g., -SPIKE, -KEEP, -INVESTIGATE are automatically removed)
 
 ## [1.7.1] - 2023-05-05
 
