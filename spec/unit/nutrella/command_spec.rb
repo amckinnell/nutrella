@@ -6,8 +6,7 @@ RSpec.describe Nutrella::Command do
   subject(:command) { Nutrella::Command.new("home_dir", board_name) }
 
   before do
-    allow(command).to receive(:task_board).and_return(configured_task_board)
-    allow(command).to receive(:url_cache).and_return(configured_cache)
+    allow(command).to receive_messages(task_board: configured_task_board, url_cache: configured_cache)
   end
 
   it "#cache_filename" do
